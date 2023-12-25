@@ -22,3 +22,49 @@
 * AVL Tree is a common type of balanced binary search tree, which maintains tree balance through rotations
 * Ensures that the time complexity for search, insertion, and deletion operations remains `O(log n)` in the worst-case scenario
 ![image](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter6_Tree/img/BBST.png)
+
+# Tree Traversal
+Tree traversal refers to the process of visiting each node in a tree exactly once in some order. In binary trees, the most common traversal methods fall into two main categories: `Depth-First Search (DFS)` and `Breadth-First Search (BFS)`. Each traversal method has its unique characteristics and applications.
+## Depth-First Search (DFS)
+* Depth-First Search tries to explore as **deep** as possible down each branch before backtracking. This type of traversal can be further divided into three main methods: *Pre-order*, *In-order*, and *Post-order* traversal.
+![image](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter6_Tree/img/dfsTraversal.png)
+
+### Pre-order Traversal
+* Order of Visiting: Visit the **root** node first, then traverse the **left** subtree, and finally traverse the **right** subtree
+* Application: Used for **cloning a tree** structure, as it preserves the structure of the tree
+
+### In-order Traversal
+* Order of Visiting: Traverse the **left** subtree first, visit the **root** node, and then traverse the **right** subtree
+* Application: In a binary search tree, in-order traversal visits the nodes in **ascending** order, useful for **sorting** and **retrieval** operations.
+
+### Post-order Traversal
+* Order of Visiting: Traverse the **left** subtree first, then the **right** subtree, and finally visit the **root** node
+* Application: Used in scenarios where children nodes need to be processed before the parent node, such as **deleting** a folder and its contents in a file system.
+
+## Breadth-First Search (BFS)
+Breadth-First Search starts at the root node and explores the tree level by level. This type of traversal typically uses a `queue` to facilitate the process
+
+### Level-order Traversal
+* Order of Visiting: Start at the root node, then move to the second level, the third level, and so forth, moving level by level downwards.
+* Application: Used for **level-related problems**, such as finding the **minimum or maximum depth** of a tree or printing the nodes of a tree level by level.
+
+## Implementation
+* `DFS` is typically implemented using **recursion** or a **stack**.
+* `BFS` is usually implemented using a **queue** to store the nodes of each level.
+
+# Defination of Tree (Code)
+```
+pulbic class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode(){};
+    TreeNode (int val){ this.val = val};
+    TreeNode (int val, TreeNode left, TreeNode right){
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+}
+```
