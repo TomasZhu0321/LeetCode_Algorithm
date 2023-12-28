@@ -70,7 +70,22 @@ class Solution {
 # 116. Populating Next Right Pointers in Each Node
 * 一刷：30:44 (✅)
 * [116. Populating Next Right Pointers in Each Node](https://leetcode.com/problems/populating-next-right-pointers-in-each-node/description/)
+  
+***
+# 117. Populating Next Right Pointers in Each Node II
+* 一刷：14:02 (✅)
+* [117. Populating Next Right Pointers in Each Node II](https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/description/)
 
+***
+# 104. Maximum Depth of Binary Tree
+* 一刷：5:19 (✅)
+* [104. Maximum Depth of Binary Tree](https://leetcode.com/problems/maximum-depth-of-binary-tree/description/)
+
+***
+# 111. Minimum Depth of Binary Tree
+* 一刷：5:39 (✅)
+* [111. Minimum Depth of Binary Tree](https://leetcode.com/problems/minimum-depth-of-binary-tree/description/)
+  
 ***
 # 226. Invert Binary Tree
 * 一刷：26:04 （✅）[有点卡壳]
