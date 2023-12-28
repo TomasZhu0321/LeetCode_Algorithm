@@ -5,7 +5,7 @@
   * 层序遍历的时候，通过**fixed size**来distinguish each level!! 
 # 102. Binary Tree Level Order Traversal
 * **一刷: 30:05 (❌)**
-* ![102. Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/submissions/)
+* [102. Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/submissions/)
   
 ## My questions
 * Q1: 如何区分单层是否clear？
@@ -43,24 +43,24 @@ class Solution {
 ***
 # 107. Binary Tree Level Order Traversal II
 * 一刷：8:04 （✅）
-* ![107. Binary Tree Level Order Traversal II](https://leetcode.com/problems/binary-tree-level-order-traversal-ii/description/)
+* [107. Binary Tree Level Order Traversal II](https://leetcode.com/problems/binary-tree-level-order-traversal-ii/description/)
 
 ***
 # 199. Binary Tree Right Side View
 * 一刷：7:00 （✅）
-* ![199. Binary Tree Right Side View](https://leetcode.com/problems/binary-tree-right-side-view/description/)
+* [199. Binary Tree Right Side View](https://leetcode.com/problems/binary-tree-right-side-view/description/)
 
 ***
 # 226. Invert Binary Tree
 * 一刷：26:04 （✅）[有点卡壳]
-* ![226. Invert Binary Tree](https://leetcode.com/problems/invert-binary-tree/description/)
+* [226. Invert Binary Tree](https://leetcode.com/problems/invert-binary-tree/description/)
 
 ## Keypoints
 * 递归法：
   * 真正的逻辑是在一开始的`swap`，而不是之后的遍历（中左右和中右左其实都可以）
 * 迭代法：
   * 在push入stack时，需要检查是否为null
-* 
+  
 
 ## Code
 ### 递归法
@@ -110,7 +110,7 @@ class Solution {
 ***
 # 101. Symmetric Tree
 * 一刷：23:44 （✅）
-* ![101. Symmetric Tree](https://leetcode.com/problems/symmetric-tree/description/)
+* [101. Symmetric Tree](https://leetcode.com/problems/symmetric-tree/description/)
 
 ## My code
 ```
