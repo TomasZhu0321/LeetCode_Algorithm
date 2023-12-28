@@ -51,10 +51,31 @@ class Solution {
 * [199. Binary Tree Right Side View](https://leetcode.com/problems/binary-tree-right-side-view/description/)
 
 ***
+# 637. Average of Levels in Binary Tree
+* 一刷：8:00 （✅
+* [637. Average of Levels in Binary Tree](https://leetcode.com/problems/average-of-levels-in-binary-tree/description/)
+
+***
+# 429. N-ary Tree Level Order Traversal
+* 一刷：23:00 （✅
+* [429. N-ary Tree Level Order Traversal](https://leetcode.com/problems/n-ary-tree-level-order-traversal/description/)
+
+## Keypoints
+* 使用 `for(Node n: treeNodes.children)` 循环遍历来访问List上元素
+***
+# 515. Find Largest Value in Each Tree Row
+* 一刷：6:44 (✅)
+* [515. Find Largest Value in Each Tree Row](https://leetcode.com/problems/find-largest-value-in-each-tree-row/description/)
+
+# 116. Populating Next Right Pointers in Each Node
+* 一刷：30:44 (✅)
+* [116. Populating Next Right Pointers in Each Node](https://leetcode.com/problems/populating-next-right-pointers-in-each-node/description/)
+
+***
 # 226. Invert Binary Tree
 * 一刷：26:04 （✅）[有点卡壳]
 * [226. Invert Binary Tree](https://leetcode.com/problems/invert-binary-tree/description/)
-
+  
 ## Keypoints
 * 递归法：
   * 真正的逻辑是在一开始的`swap`，而不是之后的遍历（中左右和中右左其实都可以）
