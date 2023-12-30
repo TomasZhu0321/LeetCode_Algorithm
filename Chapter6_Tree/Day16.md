@@ -56,9 +56,12 @@ class Solution {
 * [111.Minimum Depth of Binary Tree](https://leetcode.com/problems/minimum-depth-of-binary-tree/description/)
   
 ## Keypoints
-* `leaf node`指的是left和right都是null的情况
-* 在return的条件判断中，依然可以保持`if(root == null)`,因为在主体logic中,需要添加`if(left == 0) return right + 1;`. 也就是如果左边没有，右边有的情况，应该直接直接按照right的height + 1
-
+* `leaf node`指的是left和right都是`null`的情况
+* 在return的条件判断中，依然可以保持`if(root == null)`,因为在主体logic中,需要添加`if(left == 0) return right + 1;`. 也就是如果左边没有，右边有的情况，应该直接按照right的height + 1
+* `Complete Full Tree`的nodes个数是`2^n - 1`. 本题如果通过性质来做:
+  * 通过`int leftDep`和`int rightDep`来记录左右深度
+  * `if(leftDep == rightDep) return (2 << leftDepth) - 1;` 如果`不相等`，就继续遍历，直到是`complete full tree` `return countNodes(root.left) + countNodes(root.right) + 1;`
+  * `leftDepth` 和 `rightDepth`是通过不断往下探索得出
 ## Code
 ```java
 class Solution {
@@ -76,3 +79,51 @@ class Solution {
     }       
 }
 ```
+***
+# 222. Count Complete Tree Nodes
+* 一刷:3:02(✅)
+* [222. Count Complete Tree Nodes](https://leetcode.com/problems/count-complete-tree-nodes/description/)
+
+## My Code
+* Recursion
+```java
+class Solution {
+    public int countNodes(TreeNode root) {
+         if(root == null){
+             return 0;
+         }
+         int left = countNodes(root.left);
+         int right = countNodes(root.right);
+         return left + right + 1;
+    }
+}
+```
+* 利用`complete full tree`性质
+```java
+class Solution {
+    /**
+     * 针对完全二叉树的解法
+     *
+     * 满二叉树的结点数为：2^depth - 1
+     */
+    public int countNodes(TreeNode root) {
+        if (root == null) return 0;
+        TreeNode left = root.left;
+        TreeNode right = root.right;
+        int leftDepth = 0, rightDepth = 0; // 这里初始为0是有目的的，为了下面求指数方便
+        while (left != null) {  // 求左子树深度
+            left = left.left;
+            leftDepth++;
+        }
+        while (right != null) { // 求右子树深度
+            right = right.right;
+            rightDepth++;
+        }
+        if (leftDepth == rightDepth) {
+            return (2 << leftDepth) - 1; // 注意(2<<1) 相当于2^2，所以leftDepth初始为0
+        }
+        return countNodes(root.left) + countNodes(root.right) + 1;
+    }
+}
+```
+
