@@ -12,7 +12,7 @@
   * 通过**固定size**且**内部while**
 
 ## Code
-```
+```java
 class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> res = new LinkedList<List<Integer>>();
@@ -100,7 +100,7 @@ class Solution {
 
 ## Code
 ### 递归法
-```
+```java
 class Solution {
     public TreeNode invertTree(TreeNode root) {
         if(root == null){return root;}
@@ -149,7 +149,7 @@ class Solution {
 * [101. Symmetric Tree](https://leetcode.com/problems/symmetric-tree/description/)
 
 ## My code
-```
+```java
 class Solution {
     public boolean isSymmetric(TreeNode root) {
         int result = 0;

@@ -8,7 +8,7 @@
 ## 144. Binary Tree Preorder Traversal
 * 题目:[144. Binary Tree Preorder Traversal](https://leetcode.com/problems/binary-tree-preorder-traversal/)
 ### My Code
-```
+```java
 class Solution {
     public List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> res = new LinkedList<>();
@@ -41,7 +41,8 @@ class Solution {
 * 通过将node `push`进 Stack中，然后通过`pop`来访问`leaves`实现遍历
 * 空节点不入stack
 ### My Code
-``` class Solution {
+``` java
+class Solution {
     public List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> res = new LinkedList<>();
         if (root == null){
@@ -71,7 +72,7 @@ class Solution {
 ### Keypoints
 * 因为访问元素和处理元素的顺序不一样，inorder需要先到达底部然后再存入res。因此通过`TreeNode cur`指针来实现遍历（访问），通过`Stack stack`来实现处理
 ### My Code
-```
+```java
 class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<>();
