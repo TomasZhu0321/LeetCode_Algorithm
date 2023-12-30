@@ -50,3 +50,29 @@ class Solution {
     }
 }
 ```
+***
+# 111. Minimum Depth of Binary Tree
+* 一刷:23:04(✅)
+* [111.Minimum Depth of Binary Tree](https://leetcode.com/problems/minimum-depth-of-binary-tree/description/)
+  
+## Keypoints
+* `leaf node`指的是left和right都是null的情况
+* 在return的条件判断中，依然可以保持`if(root == null)`,因为在主体logic中,需要添加`if(left == 0) return right + 1;`. 也就是如果左边没有，右边有的情况，应该直接直接按照right的height + 1
+
+## Code
+```java
+class Solution {
+    public int minDepth(TreeNode root) {
+        if(root == null){
+            return 0;
+        }
+        int left = 0;
+        int right = 0;
+        left = minDepth(root.left);
+        right = minDepth(root.right);
+        if(left == 0) return right + 1;
+        if(right == 0) return left + 1;
+        return Math.min(left,right) + 1;
+    }       
+}
+```
