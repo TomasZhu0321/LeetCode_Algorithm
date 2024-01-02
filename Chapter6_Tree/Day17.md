@@ -58,7 +58,7 @@ class Solution {
 ### Q1: 如何在分流的时候复制之前的内容？
 * 通过一个`List<Integer> path ` 来存储路径，并且在每次到底之后，进行遍历输出结果再返回
 ## My Idea
-![image](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter6_Tree/img/257_1.png)
+![image](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter6_Tree/img/257_1.jpeg)
 * 通过Queue来遍历，如果左边右边都没有就加入`List res`,如果有一边存在，就`append`。尝试通过`while`来自动复制
 * 问题是，这样也没有自动复制，因为哪怕在if中复制了一个新的，但如何确定底部节点对应的上层是谁？
 ### 错误代码
