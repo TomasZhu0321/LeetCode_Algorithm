@@ -149,17 +149,4 @@ class Solution {
         return sum;       
     }
 }
-```java
-class Solution {
-    public int sumOfLeftLeaves(TreeNode root) {
-        if(root == null) return 0;
-        int left = sumOfLeftLeaves(root.left);
-        int right = sumOfLeftLeaves(root.right);
-        int sum = left + right;
-        if(root.left != null && root.left.left == null && root.left.right == null){
-            sum = sum + root.left.val;
-        }
-        return sum;       
-    }
-}
 ```
