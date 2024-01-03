@@ -126,3 +126,40 @@ class Solution {
     }
 }
 ```
+***
+# 404. Sum of Left Leaves
+* **一刷:32:03(❌)**
+* [404. Sum of Left Leaves](https://leetcode.com/problems/sum-of-left-leaves/description/)
+
+## Keypoints
+* 终止条件依然可以是`if(root==null) return 0;`,因为`postTraversal`逻辑,我的sum计算可以放在 `中` 这一步
+* 一定要分析清楚题目要求的条件是什么，也就是`逻辑`这一步，不要盲目一上来就写，通常逻辑处理放在`中`这一步
+
+## Code
+```java
+class Solution {
+    public int sumOfLeftLeaves(TreeNode root) {
+        if(root == null) return 0;
+        int left = sumOfLeftLeaves(root.left);
+        int right = sumOfLeftLeaves(root.right);
+        int sum = left + right;
+        if(root.left != null && root.left.left == null && root.left.right == null){
+            sum = sum + root.left.val;
+        }
+        return sum;       
+    }
+}
+```java
+class Solution {
+    public int sumOfLeftLeaves(TreeNode root) {
+        if(root == null) return 0;
+        int left = sumOfLeftLeaves(root.left);
+        int right = sumOfLeftLeaves(root.right);
+        int sum = left + right;
+        if(root.left != null && root.left.left == null && root.left.right == null){
+            sum = sum + root.left.val;
+        }
+        return sum;       
+    }
+}
+```
