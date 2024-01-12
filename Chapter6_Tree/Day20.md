@@ -238,7 +238,8 @@ class Solution {
 * [98. Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/)
 ## Q1: BST如何保证right所有的值都大于left?
 * 通过全局变量一个`TreeNode leftMax`来记录
-
+* `leftMax`相当于是记录的前一个数组中的最大值
+* 而且遍历过程中要一直return
 ## Code
 ```java
 class Solution {
