@@ -232,5 +232,28 @@ class Solution {
     }   
 }
 ```
+***
+# 98. Validate Binary Search Tree
+* **一刷:20:46(❌)**
+* [98. Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/)
+## Q1: BST如何保证right所有的值都大于left?
+* 通过全局变量一个`TreeNode leftMax`来记录
 
+## Code
+```java
+class Solution {
+    TreeNode leftmax = null;
+    public boolean isValidBST(TreeNode root) {
+        if(root == null) return true;
+        boolean left = isValidBST(root.left);
+        if(!left) return false;
+        if(leftmax != null && root.val <= leftmax.val){
+             return false;
+        }
+        leftmax = root;
+        boolean right = isValidBST(root.right);
+        return right;
+    }
+}
+```
 
