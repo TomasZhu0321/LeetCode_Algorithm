@@ -47,3 +47,11 @@ class Solution {
 }
 ```
 ***
+# 376. Wiggle Subsequence
+* **一刷：30:00 （❌）**
+* [376. Wiggle Subsequence](https://leetcode.com/problems/wiggle-subsequence/description/)
+
+## Questions
+### 1. 如何找到最优结果？
+### 2. cur = pre 的更新 为什么不可以放在if外？
+![image](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter8_Greedy/img/376.png)
