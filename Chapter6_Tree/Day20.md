@@ -67,7 +67,7 @@ class Solution {
     }
 }
 ```
-
+***
 # 617. Merge Two Binary Trees
 * **一刷:36:18(❌)**
 * [617. Merge Two Binary Trees](https://leetcode.com/problems/merge-two-binary-trees/description/)
@@ -192,6 +192,44 @@ class Solution {
         root1.right = mergeTrees(root1.right,root2.right);
         return root1;
     }
+}
+```
+***
+# 700. Search in a Binary Search Tree
+* **一刷:6:35(✅)**
+* [700. Search in a Binary Search Tree](https://leetcode.com/problems/search-in-a-binary-search-tree/description/)
+
+```java
+* 直接Recursion 法
+class Solution {
+    public TreeNode searchBST(TreeNode root, int val) {
+        if(root == null) return null;
+        if(root.val == val) return root;
+        TreeNode left= searchBST(root.left,val);
+        TreeNode right = searchBST(root.right,val);
+        TreeNode res = null;
+        if(left!= null) res = left;
+        if(right!= null) res = right;
+        return res;
+    }   
+}
+```
+
+```java
+* 利用BST的性质
+class Solution {
+    public TreeNode searchBST(TreeNode root, int val) {
+        if(root == null) return null;
+        if(root.val == val) return root;
+        TreeNode res = null;
+        if(val < root.val){
+            res = searchBST(root.left,val);
+        }
+        else {
+            res = searchBST(root.right,val);
+        }
+        return res;
+    }   
 }
 ```
 
