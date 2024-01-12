@@ -55,3 +55,38 @@ class Solution {
 ### 1. 如何找到最优结果？
 ### 2. cur = pre 的更新 为什么不可以放在if外？
 ![image](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter8_Greedy/img/376.png)
+
+## Idea
+* 通过画图，找到正负变化的点，转折点就是最优数量
+* 有三种情况需要讨论
+  * 情况1: 单调
+  * 情况2: 遇到平坡
+  * 情况3: 单调+平坡 (这个情况对应了为什么需要将`cur = pre`放在if之中，因为单调+平坡看似变化了(-/+ ==> 0)但是实际总体还是单调)
+    * 因此只有当res ++, 也就是记录了真实的正负交替才更新pre的值
+## Code 
+```java
+class Solution {
+    public int wiggleMaxLength(int[] nums) {
+        int res = 1;
+        if(nums.length == 1){
+            return res;
+        }
+        int pre = 0; 
+        for(int i = 0; i < nums.length - 1; i ++){
+            int cur = 0;
+            if(nums[i + 1] - nums[i] < 0 ){
+                cur = -1;
+            }
+            else if(nums[i + 1] - nums[i] == 0){
+                cur = 0;
+            }
+            else {cur = 1;}
+            if(cur != pre && cur != 0) {
+                res ++;
+                pre = cur;               
+            }
+        }
+        return res;
+    }
+}
+```
