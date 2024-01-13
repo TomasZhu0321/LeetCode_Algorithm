@@ -90,3 +90,11 @@ class Solution {
     }
 }
 ```
+***
+# 53. Maximum Subarray
+* **一刷:18:10(✅)**
+* [53. Maximum Subarray](https://leetcode.com/problems/maximum-subarray/description/)
+
+## 思路
+* 通过一个数组，记录`当前值`和`与前一个最大值相加`比较之下的`最大值`
+* ![image](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter8_Greedy/img/53.jpg)
