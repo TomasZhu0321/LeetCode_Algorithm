@@ -63,4 +63,27 @@ class Solution {
     }
 }
 ```
-
+***
+# 45. Jump Game II
+* **一刷:30:36(✅)**
+* [45. Jump Game II](https://leetcode.com/problems/jump-game-ii/description/)
+```java
+class Solution {
+    public int jump(int[] nums) {
+        if(nums.length == 1) return 0;
+        int max = 0;
+        int end = nums[0];
+        if(end >= nums.length - 1) return 1;
+        int res = 1;
+        for (int i = 0; i <= end ; i ++){
+            max = Math.max(max, nums[i] + i);
+            if(i == end){
+                res ++;
+                end = max;
+            }
+            if(end >= nums.length - 1) return res;
+        }
+        return res;
+    }
+}
+```
