@@ -23,3 +23,24 @@ class Solution {
     }
 }
 ```
+***
+# 70. Climbing Stairs
+* **一刷:6：45(✅)**
+* [70. Climbing Stairs](https://leetcode.com/problems/climbing-stairs/description/)
+
+## My Code
+```java
+class Solution {
+    public int climbStairs(int n) {
+        int [] stairMethods = new int [n];
+        stairMethods[0] = 1;
+        if(n >= 2){
+            stairMethods[1] = 2;
+        }
+        for(int i = 2; i < stairMethods.length; i ++){
+            stairMethods[i] = stairMethods[i-1] + stairMethods[i-2];
+        }
+        return stairMethods[n-1];
+    }
+}
+```
