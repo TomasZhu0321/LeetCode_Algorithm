@@ -86,3 +86,41 @@ public class BagProblem {
         }
     }
 ```
+# 416. Partition Equal Subset Sum
+* **一刷:58:50(✅)**
+* [416. Partition Equal Subset Sum](https://leetcode.com/problems/partition-equal-subset-sum/description/)
+
+## My Code
+* 背包的体积为sum / 2
+* 背包要放入的商品（集合里的元素）重量为 元素的数值，价值也为元素的数值
+* 背包如果正好装满，说明找到了总和为 sum / 2 的子集
+* 背包中每一个元素是不可重复放入
+```java
+class Solution {
+    public boolean canPartition(int[] nums) {
+        int total = 0;
+        for(int i : nums){
+            total += i;
+        }
+        if(total % 2 == 1) return false;
+        int max = total >> 1;
+        int [][] dp = new int [nums.length][max + 1];
+        for(int i = 1; i <= max; i ++){
+            if(nums[0]>= i){
+                dp[0][i] = nums[0];
+            }
+        }
+        for (int i = 1; i < nums.length; i ++){
+            for (int j = 1; j <= max ; j ++){
+                if(nums[i] <= j){
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j-nums[i]] + nums[i]);
+                }
+                else {
+                    dp[i][j] = dp[i - 1][j];
+                }
+                while(dp[i][j] == max )return true;
+            }
+        }
+        return false;
+    }
+}
