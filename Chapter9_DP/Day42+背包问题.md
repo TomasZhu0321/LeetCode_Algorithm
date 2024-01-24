@@ -1,4 +1,4 @@
-![image](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter9_DP/img/背包1.jpg)
+![image](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter9_DP/img/背包问题1.jpg)
 
 ## 法1: 对应代码
 ```java
