@@ -136,3 +136,71 @@ class Solution {
     }
 }
 ```
+# 474. Ones and Zeroes
+* **一刷:36:05(❌)**
+* [474. Ones and Zeroes](https://leetcode.com/problems/ones-and-zeroes/)
+
+## My Wrong Idea
+* 想通过两个背包来分别遍历，然后取最小值
+* **First Obstacle** : 0和1是绑定在一起的，如何确保他们是**同步进行遍历**的？
+
+```java
+class Solution {
+    public int findMaxForm(String[] strs, int m, int n) {
+        int [] dpZ = new int [m + 1];
+        int [] dpO = new int [n + 1];
+        dpZ[0] = 1;
+        dpO[0] = 1;
+        for (int i = 0; i < strs.length; i ++){
+            int numZeros = 0;
+            for(int z = 0; z < strs[i].length(); z ++){
+                if(strs[i].charAt(z) == '0'){
+                    numZeros ++;
+                }
+            }
+            for (int j = m; j >= numZeros; j --){
+                dpZ[j] += dpZ[j - numZeros];
+            }
+        }
+        for (int i = 0; i < strs.length; i ++){
+            int numZeros = 0;
+            for(int z = 0; z < strs[i].length() ; z ++){
+                if(strs[i].charAt(z) == '1'){
+                    numZeros ++;
+                }
+            }
+            for (int j = n; j >= numZeros; j --){
+                dpO[j] += dpO[j - numZeros];
+            }
+        }
+        return Math.min(dpZ[m],dpO[n]);
+    }
+}
+```
+## 思路
+* 首先将其看成两个背包🎒: 0背包 & 1背包
+* dp[i][j]表示的就是在 `0 的容量为 i， 1 的容量为 j的情况下`，最多能装的个数
+* First Obstacle的解决方案是:通过在`最外围对string 数组进行遍历`，记录每次0，1的个数，然后再`针对单个的str`进行二维dp的遍历
+* dp的i，j遍历可以`抽象成两个背包`，也就是两个都需要倒序
+![image](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter9_DP/img/474_1.jpeg)
+```java
+class Solution {
+    public int findMaxForm(String[] strs, int m, int n) {
+        int [][] dp = new int [m + 1][n + 1];
+        for(String s : strs){
+            int zeroNums = 0;
+            int oneNums = 0;
+            for (int i = 0; i < s.length(); i ++){
+                if(s.charAt(i) == '0') zeroNums ++;
+                if(s.charAt(i) == '1') oneNums ++;
+            }
+            for(int i = m ; i >= zeroNums; i --){
+                for (int j = n ; j >= oneNums; j --){
+                    dp[i][j] = Math.max(dp[i - zeroNums][j - oneNums] + 1, dp[i][j]);
+                }
+            }
+        }
+        return dp[m][n];
+    }
+}
+```
