@@ -57,7 +57,7 @@ class Solution {
     }
 }
 ```
-## Improvment
+## Improvement
 * 通过设置一个`j`来模拟移动，增减自动就变化了
 ```java
 class Solution {
