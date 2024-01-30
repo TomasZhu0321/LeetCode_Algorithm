@@ -49,4 +49,55 @@ class Solution {
     }
 }
 ```
+***
+# 213. House Robber II
+* **一刷:47:49(✅)**
+* [213. House Robber II](https://leetcode.com/problems/house-robber-ii/description/)
+
+## My Code
+* 思路:
+  * 通过构建一个二维数组。row 1表示以0开头/ row 2表示以 1 开头
+  * 类似两个交错开的龙头，用来模拟最后一个 的情况
+  * 注意的是第一个和最后一个的初始值和结束条件不一样
+
+```java
+class Solution {
+    public int rob(int[] nums) {
+        if(nums.length == 1){
+            return nums[0];
+        }
+        if(nums.length == 2){
+            return Math.max(nums[0],nums[1]);
+        }
+        int [][] dp = new int [2][2];
+        dp[0][0] = nums[0];
+        dp[0][1] = Math.max(nums[0],nums[1]);
+        if(nums.length >= 2){
+        dp[1][0] = 0;
+        dp[1][1] = nums[1];
+        }
+        if(nums.length >= 3){
+            for(int i = 2; i < nums.length; i ++){
+            if(i < nums.length - 1){
+                int tmp0 = Math.max(dp[0][0] + nums[i], dp[0][1]);
+                dp[0][0] = dp[0][1];
+                dp[0][1] = tmp0;
+            }
+            if(i == 2){
+                dp[1][0] = nums[1];
+                dp[1][1] = Math.max(nums[2],nums[1]);
+                continue;
+            }
+            int tmp1 = Math.max(dp[1][0] + nums[i], dp[1][1]);
+            dp[1][0] = dp[1][1];
+            dp[1][1] = tmp1;
+            }
+        }
+        return Math.max(dp[1][1],dp[0][1]);
+    }
+}
+```
+
+
+
 
