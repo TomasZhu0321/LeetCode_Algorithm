@@ -84,3 +84,25 @@ class Solution {
     }
 }
 ```
+# 139. Word Break
+* **一刷:36:51(✅)**
+* [139. Word Break](https://leetcode.com/problems/word-break/description/)
+## My Code
+```java
+class Solution {
+    public boolean wordBreak(String s, List<String> wordDict) {
+        boolean [] dp = new boolean [s.length() + 1];
+        dp[0] = true;
+        for(int i = 0; i < s.length() + 1; i ++){
+            for(String str : wordDict){
+                int len = str.length();
+                if(i >= len && dp[i - len] && s.substring(i - len ,i).equals(str)){
+                    dp[i] = true;
+                    break;
+                }
+            }
+        }
+        return dp[s.length()];
+    }
+}
+```
