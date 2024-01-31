@@ -97,7 +97,39 @@ class Solution {
     }
 }
 ```
+***
+# 337. House Robber III
+* **一刷:30:30(❌)**
+* [337. House Robber III](https://leetcode.com/problems/house-robber-iii/)
 
+## 问题
+### Q1: 知道是 post-order，但是如何区分 左右/中？
+![image](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter9_DP/img/337.png)
+### Q2: dp记录的是什么，如何与post-order 递归相结合
 
+## 解决
+* 先确定`递归`的逻辑: 左右中。然后返回值🔙应该是dp数组，dp[2];记录了`偷当前值`和`不偷当前值`
+* `dp[0] = 左孩子的最大 + 右孩子的最大`
+* `dp[1] = 不偷左孩子结果 + 不偷右孩子结果 + 中`
+* 难点在于没有想到数组的迭代
 
+```java
+class Solution {
+    public int rob(TreeNode root) {
+        int [] res = robAction (root);
+        return Math.max(res[0],res[1]);
+    }
+    private int [] robAction(TreeNode root){
+        int [] dp = new int [2];
+        if(root == null){
+            return dp;
+        }
+        int [] left = robAction(root.left);
+        int [] right = robAction(root.right);
+        dp[0] = Math.max(left[0],left[1]) + Math.max(right[0],right[1]);
+        dp[1] = left[0] + right[0] + root.val;
+        return dp;
+    }
+}
+```
 
