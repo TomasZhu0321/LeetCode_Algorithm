@@ -36,3 +36,34 @@ class Solution {
     }
 }
 ```
+***
+# 188. Best Time to Buy and Sell Stock IV
+* **一刷:14:02(✅)**
+* [188. Best Time to Buy and Sell Stock IV](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/description/)
+
+## My Code
+* 上面👆那道题的普世版本
+```java
+class Solution {
+    public int maxProfit(int k, int[] prices) {
+        int len = prices.length;
+        if(len == 1){
+            return 0;
+        }
+        int [] dp = new int [k * 2 + 1];
+        for(int i = 1; i <= 2*k ; i = i + 2){
+            dp[i] = -prices[0];
+        }
+        for(int i = 1;i < len; i ++){
+            for (int j = 1; j <= 2*k; j ++){
+                if(j % 2 == 1){
+                    dp[j] = Math.max(dp[j], dp[j - 1] - prices[i]);
+                }else {
+                    dp[j] = Math.max(dp[j], dp[j - 1] + prices[i]);
+                }
+            }
+        }
+        return dp[2*k];
+    }
+}
+```
