@@ -37,3 +37,26 @@ class Solution {
     }
 }
 ```
+***
+# 714. Best Time to Buy and Sell Stock with Transaction Fee
+* **一刷:4:34(✅)**
+* [714. Best Time to Buy and Sell Stock with Transaction Fee](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/)
+
+## My Code
+```java
+class Solution {
+    public int maxProfit(int[] prices, int fee) {
+        int len = prices.length;
+        if(len == 1) return 0;
+        int [] dp = new int [2];
+        dp[0] = -prices[0];
+        for(int i = 1; i < len; i ++){
+            int zero = Math.max(dp[0], dp[1]-prices[i]);
+            int one = Math.max(dp[1] , dp[0] + prices[i] - fee);
+            dp[0] = zero;
+            dp[1] = one;
+        }
+        return dp[1];
+    }
+}
+```
