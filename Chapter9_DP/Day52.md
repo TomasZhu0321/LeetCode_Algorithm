@@ -55,4 +55,33 @@ class Solution {
     }
 }
 ```
+***
+# 718. Maximum Length of Repeated Subarray
+* **一刷:15:50(❌)**
+* [718. Maximum Length of Repeated Subarray](https://leetcode.com/problems/maximum-length-of-repeated-subarray/description/)
 
+## 问题
+### Q1. 如何对比数组子序列？
+### Q2. 如果遍历nums1, 未必nums2全部来一遍?
+
+## 思路
+* `二维数组`可以记录两个arrays的所有比较情况
+* dp[i][j]的状态只能由dp[i - 1][j - 1]推导出来. 也就是说，因为是连续的子序列，那么当 `nums1[i] == nums2[j]` 我们才有找他们前面一个值的必要。其实二维数组已经帮我们找到了`不同的开头和结尾，对应的最大连续子序列个数了`
+![image](img/718.jpg)
+```java
+class Solution {
+    public int findLength(int[] nums1, int[] nums2) {
+        int [][] dp = new int [nums1.length + 1][nums2.length + 1];
+        int res = 0;
+        for (int i = 1; i <= nums1.length; i ++){
+            for (int j = 1; j <= nums2.length; j++){
+                if(nums1[i - 1] == nums2[j - 1]){
+                    dp[i][j] = dp[i - 1][j - 1] + 1;
+                }
+                res = Math.max(res, dp[i][j]);
+            }
+        }
+        return res;
+    }
+}
+```
