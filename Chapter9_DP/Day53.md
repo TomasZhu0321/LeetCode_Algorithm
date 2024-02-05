@@ -31,7 +31,7 @@ class Solution {
 
 ***
 # 1035. Uncrossed Lines
-* **一刷:6:35(❌)**
+* **一刷:6:35(✅)**
 * [1035. Uncrossed Lines](https://leetcode.com/problems/uncrossed-lines/)
 
 ## My Code
@@ -53,6 +53,24 @@ class Solution {
             }
         }
         return dp[len1][len2];
+    }
+}
+```
+
+# 53. Maximum Subarray
+* **一刷:15:12(✅)**
+* [53. Maximum Subarray](https://leetcode.com/problems/maximum-subarray/description/)
+
+```java
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int [] dp = new int [nums.length + 1];
+        int max = Integer.MIN_VALUE;
+        for (int i = 1; i <= nums.length; i ++){
+            dp[i] = Math.max(dp[i-1]+nums[i - 1],nums[i - 1]);
+            max = Math.max(max, dp[i]);
+        }
+        return max;
     }
 }
 ```
