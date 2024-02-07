@@ -171,5 +171,33 @@ class Solution {
         return true;
     }
 }
+```
 ***
+# 1. Two Sum
+* **一刷:9:50(✅)**
+* [1. Two Sum](https://leetcode.com/problems/two-sum/)
+
+## My Code
+```java
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        HashMap <Integer,Integer> map = new HashMap<>();
+        int j = 0;
+        int [] res = new int [2];
+        for (int i : nums){
+            map.put(i,j);
+            j ++;
+        }
+        for (int i = 0; i < nums.length; i ++){
+            int tmp = target - nums[i];
+            if(map.containsKey(tmp) && map.get(tmp) != i){
+                res[0] = map.get(tmp);
+                res[1] = i;
+                break;
+            };
+        }
+        return res;
+    }
+}
+```
 
