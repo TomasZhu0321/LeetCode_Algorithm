@@ -114,3 +114,32 @@ class Solution {
     }
 }
 ```
+***
+# 349. Intersection of Two Arrays
+* **一刷:10:42(✅)**
+* [349. Intersection of Two Arrays](https://leetcode.com/problems/intersection-of-two-arrays/)
+
+## My Code
+```java
+class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+        HashSet <Integer> hashSet = new HashSet<>();
+        for(int i:nums1){
+            hashSet.add(i);
+        }
+        HashSet<Integer> res = new HashSet<>();
+        for(int i : nums2){
+            if(hashSet.contains(i)){
+                res.add(i);
+            }
+        }
+        int [] arr = new int[res.size()];
+        int j = 0;
+        for(int i : res){
+            arr[j] = i;
+            j ++;
+        }
+        return arr;
+    }
+}
+```
