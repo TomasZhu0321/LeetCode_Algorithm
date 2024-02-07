@@ -76,3 +76,41 @@ class Solution {
     }
 }
 ```
+***
+# 1002. Find Common Characters
+* **一刷:25:50(✅)**
+* [1002. Find Common Characters](https://leetcode.com/problems/find-common-characters/description/)
+
+## My Code
+```java
+class Solution {
+    public List<String> commonChars(String[] words) {
+        int [] arr = new int [26];
+        int len = words.length;
+        List<String> res = new ArrayList<>();
+        for(int i = 0; i < words[0].length(); i ++){
+            int index = words[0].charAt(i) - 'a';
+            arr[index] ++;
+        }
+        for(int i = 1; i < words.length; i ++){
+            int [] tmp = new int [26];
+            for(int j = 0; j < words[i].length(); j ++){
+                int index = words[i].charAt(j) - 'a';
+                tmp[index] ++;
+            }
+            for(int z = 0; z < 26; z ++){
+                arr[z] = Math.min(arr[z],tmp[z]);
+            }
+        }
+        for(int i = 0; i < 26; i ++){
+            int times = arr[i];
+            if(times > 0){
+            for(int j = 0; j < times; j ++){
+                res.add(String.valueOf((char)(i + 'a')));
+                }
+            }
+        }
+        return res;
+    }
+}
+```
