@@ -75,3 +75,46 @@ class Solution {
     }
 }
 ```
+***
+# 142. Linked List Cycle II
+* **一刷:30:50(❌)**
+* [142. Linked List Cycle II](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0142.%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8II.md)
+
+## 思路
+![image](img/142.png)
+```java
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode detectCycle(ListNode head) {
+        ListNode fast = new ListNode (-1, head);
+        ListNode slow = new ListNode (-2, head);
+        fast = head;
+        slow = head;
+        int meetPoint = 0;
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if( slow == fast){
+                ListNode index1 = fast;
+                ListNode index2 = head;
+                while(index1 != index2){
+                    index1 = index1.next;
+                    index2 = index2.next;
+                }
+                return index1;
+            }
+        }
+        return null;
+    }
+}
+```
