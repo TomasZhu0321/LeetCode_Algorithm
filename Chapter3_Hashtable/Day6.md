@@ -143,3 +143,33 @@ class Solution {
     }
 }
 ```
+***
+# 202. Happy Number
+* **一刷:30:50(✅)**
+* [202. Happy Number](https://leetcode.com/problems/happy-number/description/)
+
+## My Code
+```java
+class Solution {
+    public boolean isHappy(int n) {
+        HashSet<Integer> res = new HashSet<>();
+        res.add(n);
+        while(n != 1 ){
+            int tmp = 0;
+            while(n > 0){
+                tmp += (n%10)*(n%10);
+                n = n/10;
+            }
+            if(res.contains(tmp)){
+                return false;
+            }
+            else{
+                res.add(tmp);
+            }
+            n = tmp;
+        }
+        return true;
+    }
+}
+***
+
