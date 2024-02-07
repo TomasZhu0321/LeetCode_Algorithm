@@ -4,7 +4,7 @@
 
 ## 思路
 * 需要通过`虚拟头节点dummyNode` 来找到前一个的状态
-* 这里最终要的就是这个`cur`,他补全了整个`swap`逻辑，并且能够自动的记录上一个状态e.g. dummy, 1, 3
+* 这里 **!!paramount** 就是这个`cur`,他补全了整个`swap`逻辑，并且能够自动的记录上一个状态e.g. dummy, 1, 3
 ![image](../Chapter2_List/img/24.JPEG)
 ```java
 /**
@@ -34,6 +34,43 @@ class Solution {
             firstNode.next = tmp;
             cur = firstNode;
         }
+        return dummy.next;
+    }
+}
+```
+***
+# 19. Remove Nth Node From End of List
+* **一刷:23:19(✅)**
+* [19. Remove Nth Node From End of List](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
+
+## My Code 
+```java
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        int size = 0;
+        ListNode pointer = new ListNode (-1,head);
+        ListNode dummy = new ListNode(-1,head);
+        while(pointer.next != null){
+            size ++;  
+            pointer = pointer.next; 
+        }
+        int stop = size - n;
+        ListNode cur = new ListNode (-1);
+        cur = dummy;
+        for(int i = 0; i < stop; i++){
+            cur = cur.next;
+        }
+        cur.next = cur.next.next;
         return dummy.next;
     }
 }
