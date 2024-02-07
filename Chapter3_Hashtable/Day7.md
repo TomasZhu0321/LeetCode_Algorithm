@@ -33,3 +33,33 @@ class Solution {
     }
 }
 ```
+***
+# 383. Ransom Note
+* **一刷:7:23(✅)**
+* [383. Ransom Note](https://leetcode.com/problems/ransom-note/)
+
+## My Code
+```java
+class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) {
+        int lenR = ransomNote.length();
+        int lenM = magazine.length();
+        if(lenM < lenR) return false;
+        int [] set = new int[26];
+        for (int i = 0; i < lenM; i ++){
+            char a = magazine.charAt(i);
+            set[a - 'a'] ++;
+        }
+        for(int j = 0; j < lenR; j ++){
+            char i = ransomNote.charAt(j);
+            if(set[i - 'a'] == 0){
+                return false;
+            }
+            else {
+                set[i - 'a'] --;
+            }
+        }
+        return true;
+    }
+}
+```
