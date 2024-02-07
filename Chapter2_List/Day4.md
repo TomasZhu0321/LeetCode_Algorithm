@@ -82,6 +82,7 @@ class Solution {
 
 ## 思路
 ![image](img/142.png)
+![image](img/142_2.png)
 ```java
 /**
  * Definition for singly-linked list.
