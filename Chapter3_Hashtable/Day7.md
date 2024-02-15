@@ -105,3 +105,45 @@ class Solution {
     }
 }
 ```
+***
+# 18. 4Sum
+* **一刷:27:32(✅)**
+* [18. 4Sum](https://leetcode.com/problems/4sum/)
+
+## 知识点
+### 1. int 溢出 通过 转换成 long型来比较大小。 int 溢出 2*10^9(2,147,483,647) 就要考虑溢出情况
+![image](img/18.png)
+## My Code
+class Solution {
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        Arrays.sort(nums);
+        List<List<Integer>> res = new LinkedList<>();
+        if(nums.length < 4)return res;
+        for(int i = 0; i <= nums.length - 4; i ++){
+            if(i > 0 && nums[i - 1] == nums[i]) continue;
+            for (int j = i + 1; j <= nums.length - 3; j ++){
+                if(j > i + 1 && nums[j - 1] == nums[j]) continue;
+                int left = j + 1;
+                int right = nums.length - 1;
+                while(left < right){
+                    long t = (long)nums[i] + nums[j] + nums[left] + nums[right];
+                    if(t < target) left ++;
+                    else if (t > target ) right --;
+                    else  {
+                        List<Integer> r = new LinkedList<>();
+                        r.add(nums[i]);
+                        r.add(nums[j]);
+                        r.add(nums[left]);
+                        r.add(nums[right]);
+                        res.add(r);
+                        while(left < right && nums[left] == nums[left + 1]) left ++;
+                        while(left < right && nums[right] == nums[right - 1]) right --;
+                        left ++;
+                        right --;
+                    }
+                }
+            }
+        }
+        return res;
+    }
+}
