@@ -114,6 +114,7 @@ class Solution {
 ### 1. int 溢出 通过 转换成 long型来比较大小。 int 溢出 2*10^9(2,147,483,647) 就要考虑溢出情况
 ![image](img/18.png)
 ## My Code
+```java
 class Solution {
     public List<List<Integer>> fourSum(int[] nums, int target) {
         Arrays.sort(nums);
@@ -147,3 +148,4 @@ class Solution {
         return res;
     }
 }
+```
