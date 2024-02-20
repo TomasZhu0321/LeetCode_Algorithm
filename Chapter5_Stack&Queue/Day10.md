@@ -54,3 +54,51 @@ class MyQueue {
  * boolean param_4 = obj.empty();
  */
 ```
+
+***
+# 225. Implement Stack using Queues
+* **一刷:12：35(✅)**
+* [225. Implement Stack using Queues](https://leetcode.com/problems/implement-stack-using-queues/)
+  
+## My Code
+```java
+class MyStack {
+    int size ;
+    Queue <Integer> que1;
+    public MyStack() {
+        size = 0;
+        que1 = new LinkedList<>();
+    }
+    
+    public void push(int x) {
+        que1.offer(x);
+        for(int i = 0; i < size; i ++){
+            int tmp = que1.poll();
+            que1.offer(tmp);
+        }
+        size ++;
+    }
+    
+    public int pop() {
+        size --;
+        return que1.poll();
+    }
+    
+    public int top() {
+        return que1.peek();
+    }
+    
+    public boolean empty() {
+        return que1.isEmpty();
+    }
+}
+
+/**
+ * Your MyStack object will be instantiated and called as such:
+ * MyStack obj = new MyStack();
+ * obj.push(x);
+ * int param_2 = obj.pop();
+ * int param_3 = obj.top();
+ * boolean param_4 = obj.empty();
+ */
+```
