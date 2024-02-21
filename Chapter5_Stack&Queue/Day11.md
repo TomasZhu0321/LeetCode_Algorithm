@@ -66,3 +66,46 @@ class Solution {
     }
 }
 ```
+***
+# 150. Evaluate Reverse Polish Notation
+* **一刷:12：53(✅)**
+* [150. Evaluate Reverse Polish Notation](https://leetcode.com/problems/evaluate-reverse-polish-notation/)
+## My Code
+```java
+class Solution {
+    public int evalRPN(String[] tokens) {
+        Stack<Integer> stack = new Stack<>();
+        for(int i = 0; i < tokens.length; i ++){
+            if(tokens[i].equals("+")){
+                int tmp1 = stack.pop();
+                int tmp2 = stack.pop();
+                int tmp = tmp1+tmp2;
+                stack.push(tmp);
+            }
+            else if(tokens[i].equals("*")){
+                int tmp1 = stack.pop();
+                int tmp2 = stack.pop();
+                int tmp = tmp1*tmp2;
+                stack.push(tmp);
+            }
+            else if(tokens[i].equals("/")){
+                int tmp1 = stack.pop();
+                int tmp2 = stack.pop();
+                int tmp = tmp2/tmp1;
+                stack.push(tmp);
+            }
+            else if(tokens[i].equals("-")){
+                int tmp1 = stack.pop();
+                int tmp2 = stack.pop();
+                int tmp = tmp2-tmp1;
+                stack.push(tmp);
+            }
+            else {
+                int tmp = Integer.parseInt(tokens[i]);
+                stack.push(tmp);
+            }
+        }
+        return stack.pop();
+    }
+}
+```
