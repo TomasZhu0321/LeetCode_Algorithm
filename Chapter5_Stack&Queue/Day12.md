@@ -35,3 +35,44 @@ class Solution {
     }
 }
 ```
+***
+# 347. Top K Frequent Elements
+* **一刷:34：04(❌)**
+
+## ❗️相关知识点
+### Java优先级队列: PriorityQueue
+1. 优先队列`PriorityQueue`是Queue接口的实现，可以对其中元素进行`排序`
+2. 常用方法
+* `peek()//返回队首元素`
+* `poll()//返回队首元素，队首元素出队列`
+* `add()//添加元素`
+3. 初始化:`Queue<Integer> q = new PriorityQueue<>();`
+4. 自定义比较器
+* 升序排列：`PriorityQueue<int []> pq = new PriorityQueue<>((pair1,pair2) -> pair2[1] - pair1[1]);`
+* 降序排列：`PriorityQueue<int []> pq = new PriorityQueue<>((pair1,pair2) -> pair1[1] - pair2[1]);`
+
+### Java Map集合
+1. map的常用方法
+![image](./img/347_1.JPG)
+![image](./img/347_2.JPG)
+
+## My Code
+```java
+class Solution {
+    public int[] topKFrequent(int[] nums, int k) {
+        Map<Integer,Integer> map = new HashMap<>();
+        for (int i : nums){
+            map.put(i,map.getOrDefault(i,0) + 1);
+        }
+        PriorityQueue<int []> pq = new PriorityQueue<>((pair1,pair2) -> pair2[1] - pair1[1]);
+        for(Map.Entry<Integer,Integer> me : map.entrySet()){
+            pq.add(new int []{me.getKey(),me.getValue()});
+        }
+        int [] res = new int [k];
+        for(int i =0; i<k;i ++){
+            res[i] = pq.poll()[0];
+        }
+        return res;
+    }
+}
+```
