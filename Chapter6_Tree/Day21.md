@@ -28,3 +28,54 @@ class Solution {
     }
 }
 ```
+***
+# 501. Find Mode in Binary Search Tree
+* **一刷:19:46(❌)**
+* [501. Find Mode in Binary Search Tree](https://leetcode.com/problems/find-mode-in-binary-search-tree/description/)
+
+## Code
+### IDEA
+* 通过List来记录最大的值（们）。如果count的值超过了maxCount，那么就需要更新 ==> `resList.clear()`
+* 因为是BST，所以 1.如果pre是null，说明前一个肯定是没有的，count为1（当前的）；2. 如果不相等，重新开始
+
+```java
+class Solution {
+    List<Integer> resList;
+    int maxCount ;
+    int count ;
+    TreeNode pre;
+    public int[] findMode(TreeNode root) {
+        resList = new ArrayList<>();
+        maxCount = 0;
+        count = 0;
+        findMode1(root);
+        int [] res = new int [resList.size()];
+        int j = 0;
+        for(int i:resList){
+            res[j] = i;
+            j ++;
+        }
+        return res;
+    }
+    private void findMode1(TreeNode root){
+        if(root == null) return;
+        findMode1(root.left);
+        if(pre == null || pre.val != root.val){
+            count = 1;
+        }else{
+            count ++;
+        }
+        if(count > maxCount){
+            resList.clear();
+            resList.add(root.val);
+            maxCount = count;
+        }
+        else if(count == maxCount){
+            resList.add(root.val);
+        }
+        
+        pre = root;
+        findMode1(root.right);
+    }
+}
+```
