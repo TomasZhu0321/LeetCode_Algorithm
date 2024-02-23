@@ -86,6 +86,10 @@ class Solution {
 
 ## My Code
 ![image](img/236.png)
+![image](img/RecursionReturn.png)
+## Tips
+* TreeNode 可以直接比较是否相等:`root == p (两个都是TreeNode类型)` 
+* 
 ```java
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
