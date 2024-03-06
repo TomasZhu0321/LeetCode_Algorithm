@@ -5,7 +5,10 @@
 ### Q1:如何继续遍历深入循环？
 * 做题时难点
   * 知道需要继续深入遍历，但是不知道如何接住继续深入返回的Tree
+  * **接住逻辑** 是通过最后普通操作的`root.left = trimBST(root.left,low,high);` 完成的！ 
 ![image](./img/Day23_1.jpg)
+* 接住逻辑
+![image](./img/Day23_2.png)
 ```java 
 class Solution {
     public TreeNode trimBST(TreeNode root, int low, int high) {
