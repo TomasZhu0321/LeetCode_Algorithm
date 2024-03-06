@@ -42,6 +42,7 @@ class Solution {
 ```
 
 ## Code
+
 ```java
 class Solution {
     public TreeNode trimBST(TreeNode root, int low, int high) {
