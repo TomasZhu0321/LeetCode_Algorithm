@@ -93,3 +93,25 @@ class Solution {
     }
 }
 ```
+***
+# 538. Convert BST to Greater Tree 
+* **一刷:6:53(✅)**
+* [538. Convert BST to Greater Tree ](https://leetcode.com/problems/convert-bst-to-greater-tree/description/)
+## My Code
+```java
+class Solution {
+    int sum = 0;
+    public TreeNode convertBST(TreeNode root) {
+        traversal (root);
+        return root;
+    }
+    private void traversal(TreeNode root){
+        if(root == null) return;
+        traversal(root.right);
+        root.val = root.val + sum;
+        sum = root.val;
+        traversal(root.left);
+        return ;
+    }
+}
+```
