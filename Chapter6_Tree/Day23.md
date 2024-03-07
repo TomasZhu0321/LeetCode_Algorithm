@@ -66,3 +66,30 @@ class Solution {
     }
 }
 ```
+***
+# 108.Convert Sorted Array to Binary Search Tree
+* **一刷:40:15(❌)**
+* [108.Convert Sorted Array to Binary Search Tree](https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/description/)
+
+## 错误点🙅
+### “Range范围” 投入Recursion没有太理解
+* 需要注意left和right也是需要实时更改的
+* 并且因为是递归所以`大的框架`就是root的left和right，每次的大框架其实都是定的，都是在内部进行移动
+![image](./img/Day23_3.jpeg)
+## Code
+```java
+class Solution {
+    public TreeNode sortedArrayToBST(int[] nums) {
+        TreeNode res = numsToBST(nums,0,nums.length - 1);
+        return res;
+    }
+    public TreeNode numsToBST(int [] nums, int left, int right){
+        if(left > right ) return null;
+        int center = left + ((right - left) / 2);
+        TreeNode root = new TreeNode(nums[center]);
+        root.left = numsToBST(nums,left,center - 1);
+        root.right = numsToBST(nums,center + 1, right);
+        return root;
+    }
+}
+```
