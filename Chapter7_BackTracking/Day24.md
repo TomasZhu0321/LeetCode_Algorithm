@@ -45,6 +45,8 @@ class Solution {
 ![image](../Chapter7_BackTracking/img/77.jpeg)
 
 ## Code
+* startIndex 确保的组合而不是排序
+* 问题: 对于index的移动不清楚
 ```java
 class Solution {
     List <Integer> tmp = new LinkedList<>();
