@@ -103,7 +103,7 @@ class Solution {
     }
 ```
 * 通过👆代码，所以当`startIndex>=s.length()`时，可以看作找到了一组parlindrome
-
+* 反过来说，如果startIndex没有移动到末尾，也就是` i > s.length() but startIndex < s.length()`说明没有找到parlindrome
 ## Code
 ```java
 class Solution {
