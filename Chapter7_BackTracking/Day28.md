@@ -48,3 +48,32 @@ class Solution {
 
 }
 ```
+***
+# 78. Subsets
+* **一刷:18:22(✅)**
+* [78. Subsets](https://leetcode.com/problems/subsets/)
+
+## My Code
+```java
+class Solution {
+    List<List<Integer>> res = new LinkedList<>();
+    List<Integer> tmp = new LinkedList<>();
+    public List<List<Integer>> subsets(int[] nums) {
+        backTracking(nums, 0);
+        return res;
+    }
+    private void backTracking(int [] nums, int startIndex){
+        if(startIndex <= nums.length){
+            res.add(new LinkedList<>(tmp));
+        }
+        if(startIndex > nums.length){
+            return;
+        }
+        for(int i = startIndex; i < nums.length; i ++){
+            tmp.add(nums[i]);
+            backTracking(nums, i + 1);
+            tmp.removeLast();
+        }
+    }
+}
+```
