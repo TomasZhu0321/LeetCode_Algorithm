@@ -77,3 +77,41 @@ class Solution {
     }
 }
 ```
+***
+# 90. Subsets II
+* **一刷:13:22(✅)**
+* [90. Subsets II](https://leetcode.com/problems/subsets-ii/)
+## My Code
+```java
+class Solution {
+    List<List<Integer>> res = new LinkedList<>();
+    List<Integer> tmp = new LinkedList<>();
+    boolean [] used;
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        used = new boolean [nums.length];
+        Arrays.fill(used,false);
+        Arrays.sort(nums);
+        backTracking(nums,0);
+        return res;
+    }
+    private void backTracking(int[]nums, int startIndex){
+        if(startIndex > nums.length){
+            return ;
+        }
+        else {
+            res.add(new LinkedList<>(tmp));
+        }
+        for(int i = startIndex ; i < nums.length; i ++){
+            if(i > 0 && nums[i - 1] == nums[i] && !used[i - 1]){
+                continue;
+            }else {
+                tmp.add(nums[i]);
+            }
+            used[i] = true;
+            backTracking(nums, i + 1);
+            tmp.removeLast();
+            used[i] = false;
+        }
+    }
+}
+```
