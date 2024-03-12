@@ -82,3 +82,65 @@ class Solution {
     }
 }
 ```
+***
+# 131. Palindrome Partitioning
+* **一刷:40:22(❌)**
+* [131. Palindrome Partitioning](https://leetcode.com/problems/palindrome-partitioning/description/)
+
+## 问题
+### 如何确定终止条件？ 也就是什么时候说明成功取到了一个完整parlindrome?
+* 这里的i其实很巧妙，他**既当了startIndex又当了endIndex**
+```java
+    for(int i = startIndex; i < s.length(); i ++){
+        String part = s.substring(startIndex,i + 1);
+        if(parlindromeJudge(part)){
+            tmp.add(part);
+        }else{
+            continue; //如果不符合他会跳过带入backtracking，继续往下移动endIndex;
+        }
+        backTracking(s, i + 1); //此时的i已经不是startIndex了，而是上一个endIndex的末尾
+        tmp.removeLast();
+    }
+```
+* 通过👆代码，所以当`startIndex>=s.length()`时，可以看作找到了一组parlindrome
+
+## Code
+```java
+class Solution {
+    List<List<String>> res = new LinkedList<>();
+    List<String> tmp = new LinkedList<>();
+    public List<List<String>> partition(String s) {
+        backTracking(s,0);
+        return res;
+    }
+    private void backTracking(String s,int startIndex){
+        if(startIndex >= s.length()){
+            res.add(new LinkedList<>(tmp));
+            return;
+        }
+        for(int i = startIndex; i < s.length(); i ++){
+            String part = s.substring(startIndex,i + 1);
+            if(parlindromeJudge(part)){
+                tmp.add(part);
+            }else{
+                continue;
+            }
+            backTracking(s, i + 1);
+            tmp.removeLast();
+        }
+    }
+    private boolean parlindromeJudge(String s) {
+        int left = 0;
+        int right = s.length() - 1;
+        while (left <= right) {
+            if (s.charAt(left) != s.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+}
+```
+
