@@ -21,3 +21,11 @@
 (✅)216. Combination Sum III
 
 (❌)17. Letter Combinations of a Phone Number
+
+## [Day 27](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter7_BackTracking/Day27.md)
+
+(✅)39. Combination Sum
+
+(❌)40. Combination Sum II
+
+(❌)131. Palindrome Partitioning
