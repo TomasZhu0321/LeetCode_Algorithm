@@ -73,3 +73,45 @@ class Solution {
         }
     }
 }
+```
+***
+
+# 47. Permutations II
+* **一刷:22:22(✅)**
+* [47. Permutations II](https://leetcode.com/problems/permutations-ii/)
+
+## My Code
+```java
+class Solution {
+    List<List<Integer>> res = new LinkedList<>();
+    List<Integer> tmp = new LinkedList<>();
+    boolean [] pathUsed ;
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        pathUsed = new boolean[nums.length];
+        backTracking(nums);
+        Arrays.sort(nums);
+        return res;
+    }
+    private void backTracking(int [] nums){
+        if(tmp.size() == nums.length){
+            res.add(new LinkedList<>(tmp));
+            return;
+        }
+        boolean [] used = new boolean [21];
+        for (int i = 0; i < nums.length; i ++){
+            if(used[nums[i] + 10] == true){
+                continue;
+            }
+            if(pathUsed[i] == true){
+                continue;
+            }
+            tmp.add(nums[i]);
+            pathUsed[i] = true;
+            used[nums[i] + 10] = true;
+            backTracking(nums);
+            tmp.removeLast();
+            pathUsed[i] = false;
+        }
+    }
+}
+```
