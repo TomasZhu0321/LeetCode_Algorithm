@@ -37,3 +37,11 @@
 (✅)78. Subsets
 
 (✅)90. Subsets II
+
+## [Day 29](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter7_BackTracking/Day29.md)
+
+(❌)491. Non-decreasiong Subsequences
+
+(✅)46. Permutations
+
+(✅)47. Permutations II
