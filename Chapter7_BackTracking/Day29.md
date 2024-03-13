@@ -37,3 +37,39 @@ class Solution {
         }
     }
 }
+***
+# 46. Permutations
+* **一刷:9:22(✅)**
+* [46. Permutations](https://leetcode.com/problems/permutations/)
+
+## My Code
+* 感悟：
+  * 注意理解for作为每层，然后backtracking作为深度
+```java
+class Solution {
+    List<List<Integer>> res = new LinkedList<>();
+    List<Integer> tmp = new LinkedList<>();
+    boolean [] used ;
+    public List<List<Integer>> permute(int[] nums) {
+        used = new boolean [nums.length];
+        Arrays.fill(used, false);
+        backTracking(nums);
+        return res;
+    }
+    private void backTracking(int [] nums){
+        if(tmp.size() == nums.length){
+            res.add(new LinkedList<>(tmp));
+            return;
+        }
+        for (int i = 0; i < nums.length; i ++){
+            if(used[i] == true){
+                continue;
+            }
+            used[i] = true;
+            tmp.add(nums[i]);
+            backTracking(nums);
+            tmp.removeLast();
+            used[i] = false;
+        }
+    }
+}
