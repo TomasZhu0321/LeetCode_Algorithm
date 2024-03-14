@@ -45,3 +45,8 @@
 (✅)46. Permutations
 
 (✅)47. Permutations II
+
+## [Day 30](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter7_BackTracking/Day30.md)
+
+(❌)332. Reconstruct Itinerary
+
