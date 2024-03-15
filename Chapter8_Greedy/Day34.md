@@ -83,3 +83,37 @@ class Solution {
     }
 }
 ```
+***
+# 135. Candy
+* **一刷:32：09(✅)**
+* [135. Candy](https://leetcode.com/problems/candy/)
+
+## My Code
+```java
+class Solution {
+    public int candy(int[] ratings) {
+        int total = 0;
+        if(total == 1){return total;}
+        int [] res = new int [ratings.length];
+        Arrays.fill(res,1);
+        for (int i = 1; i < ratings.length; i ++){
+            if(ratings[i - 1] < ratings[i] ){
+                res[i] = res[i - 1] + 1;
+            }else if(ratings[i - 1] > ratings[i] && res[i - 1] <= res[i]){
+                res[i - 1] += 1;
+            }else {
+                continue;
+            }
+        } 
+        for (int i = ratings.length - 1; i > 0 ; i --){
+            if(ratings[i - 1] > ratings[i] && res[i - 1] <= res[i]){
+                res[i - 1] = res[i] + 1;
+            }
+        }     
+        for(int i : res){
+            total += i;
+        }
+        return total;
+    }
+}
+```
