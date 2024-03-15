@@ -48,7 +48,7 @@ class Solution {
 ```
 ***
 # 376. Wiggle Subsequence
-* **一刷：30:00 （❌）**
+* **一刷：30:00(❌)**
 * [376. Wiggle Subsequence](https://leetcode.com/problems/wiggle-subsequence/description/)
 
 ## Questions

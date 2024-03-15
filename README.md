@@ -50,3 +50,7 @@
 
 (❌)332. Reconstruct Itinerary
 
+# Chapter 8 - Greedy
+
+## [Day 34](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter8_Greedy/Day34.md)
+(✅)1005. Maximize Sum Of Array After K Negations
