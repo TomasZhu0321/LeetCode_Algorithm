@@ -58,3 +58,10 @@
 (❌) 134. Gas Station
 
 (✅) 135. Candy
+
+## [Day 35](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter8_Greedy/Day35.md)
+(✅) 860. Lemonade Change
+
+(❌) 406. Queue Reconstruction by Height
+
+(✅) 452. Minimum Number of Arrows to Burst Balloons
