@@ -79,3 +79,38 @@ class Solution {
     }
 }
 ```
+***
+# 452. Minimum Number of Arrows to Burst Balloons
+* **一刷:30:20(✅)**
+* [452. Minimum Number of Arrows to Burst Balloons](https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/)
+
+## 技巧
+### 比较器的`整数溢出`问题
+* 发生情况: 如果a[0]和b[0]（或a[1]和b[1]）的值非常大或非常小，而且它们的差接近Integer.MIN_VALUE或Integer.MAX_VALUE，那么a[0] - b[0]（或a[1] - b[1]）可能会导致整数溢出。整数溢出发生时，计算的结果可能会跳转到整数的另一端，导致比较操作返回错误的结果
+* **解决** `Integer.compare(a,b);` (升序)
+
+## My Code
+```java
+class Solution {
+    public int findMinArrowShots(int[][] points) {
+        //sort Arrays according to start 
+        Arrays.sort(points,(a,b) -> Integer.compare(a[0],b[0]));
+        //record points
+        int res = 1;
+        int max = points[0][1];
+        for(int i = 1; i < points.length; i ++){
+            int curStart = points[i][0];
+            int curEnd = points[i][1];
+            int preEnd = points[i - 1][1];
+            if(curStart > preEnd || curStart > max){
+                res ++;
+                max = curEnd;
+                continue;
+            }
+            max = Math.min(max,curEnd);
+        }
+        return res;
+
+    }
+}
+```
