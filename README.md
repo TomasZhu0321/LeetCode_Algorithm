@@ -69,10 +69,12 @@
 ## [Day 36](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter8_Greedy/Day36.md)
 (✅) 435. Non-overlapping Intervals
 
-
 (✅) 763. Partition Labels
 
 
-(✅) 763. Partition Labels
+(✅) 56. Merge Intervals
 
-(❌) 56. Merge Intervals
+## [Day 37](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter8_Greedy/Day37.md)
+(❌) 76. Minimum Window Substring
+
+(❌) 738. Monotone Increasing Digits

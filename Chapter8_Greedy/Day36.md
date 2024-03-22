@@ -57,61 +57,7 @@ class Solution {
     }
 }
 ```
-***
-# 76. Minimum Window Substring
-* **一刷:50:49(❌)**
-* [76. Minimum Window Substring](https://leetcode.com/problems/minimum-window-substring/)
 
-## 代码技巧
-### ASCII 码一共 128
-* 可以直接通过 `int [128]`分配的数组来将所有ascii码归纳进去(A-Z,a-z)
-* `arr['A'],arr['a']`能够直接在对应char位置记录个数等
-### 操作String
-* `char [] t_arr = t.toCharArray();`需要对字符串里面单个char操作时，可以直接用char来
-
-## 本题解题思路
-* 通过**count记录总的个数**
-  * 这样可以判断count == t.length时，说明就找到了对应的一个substring
-* 通过while里面再while，**R来控制右边界，L来控制左边界** 实现窗口滑动
-```java
-class Solution {
-    public String minWindow(String s, String t) {
-        char[] s_arr = s.toCharArray();
-        char[] t_arr = t.toCharArray();
-        int[] arr = new int[128];
-        for (char i : t_arr) {
-            arr[i]++;
-        }
-        int count = 0;
-        int L = 0;
-        int R = 0;
-        int minLen = Integer.MAX_VALUE;
-        String res = "";
-        while (R < s_arr.length) {
-            char tmp = s_arr[R];
-            arr[tmp]--;
-            if (arr[tmp] >= 0) {
-                count++;
-            }
-            while (count == t_arr.length) {
-                int len = R - L + 1;
-                if (len < minLen) {
-                    minLen = len;
-                    res = s.substring(L, R + 1);
-                }
-                arr[s_arr[L]]++;
-                if (arr[s_arr[L]] > 0) {
-                    count--;
-                }
-                L++;
-            }
-            R++;
-        }
-        return res;
-
-    }
-}
-```
 ***
 # 56. Merge Intervals
 * **一刷:30:49(✅)**
