@@ -78,3 +78,8 @@
 (❌) 76. Minimum Window Substring
 
 (❌) 738. Monotone Increasing Digits
+
+## [Day 57](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter8_Greedy/Day37.md)
+(❌) 647. Palindromic Substrings
+
+(❌) 516. Longest Palindromic Subsequence 
