@@ -85,3 +85,9 @@
 (❌) 647. Palindromic Substrings
 
 (❌) 516. Longest Palindromic Subsequence 
+
+# Chapter 10 - Monotonic Stack
+## [Day 58](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter10_Monotonic%20Stack/Day58.md)
+(✅) 739. Daily Temperature
+
+(✅) 496. Next Greater Element I
