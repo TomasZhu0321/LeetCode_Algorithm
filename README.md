@@ -91,3 +91,8 @@
 (✅) 739. Daily Temperature
 
 (✅) 496. Next Greater Element I
+
+## [Day 59](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter10_Monotonic%20Stack/Day59.md)
+(✅) 503. Next Greater Element II
+
+(❌) 42. Trapping Rain Water
