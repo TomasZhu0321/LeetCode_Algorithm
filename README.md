@@ -104,3 +104,10 @@
 (❌) 200. Number of Islands
 
 # [695_1020_130_417](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter11_Graph_DFS_BFS/695_1020_130_417.md)
+(✅) 695. Max Area of Island 
+
+(✅) 1020. Number of Enclaves 
+
+(✅) 130. Surrounded Regions
+
+(❌) 417. Pacific Atlantic Water Flows
