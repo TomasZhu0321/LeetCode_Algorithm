@@ -1,43 +1,16 @@
-# 797. All Paths from Source to Target
-* **一刷:36:50(✅)**
-* [797. All Paths from Source to Target](https://leetcode.com/problems/all-paths-from-source-to-target/)
+# Breadth First Search
+## 使用场景
+* Finding the **shortest path on unweighted graphs**
+* 广搜的搜索方式就适合于解决两个点之间的最短路径问题。 因为广搜是从起点出发，以起始点为中心一圈一圈进行搜索，一旦遇到终点，记录之前走过的节点就是一条最短路。
+## BFS过程
+![image](./img/BFS_1.png)
 
-## My Code
-```java
-class Solution {
-    List<Integer> tmp = new LinkedList<>();
-    List<List<Integer>> res = new LinkedList<>();
-    int index = 0;
-    public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
-        tmp.add(0);
-        bfs(graph, graph[0]);
-        return res;
-    }
+## 代码实现过程
+* 通过Queue先进先出，一圈圈遍历neighbors
+![image](./img/BFS_2.png)
+![image](./img/BFS_3.png)
 
-    private void bfs(int[][] graph, int[] head) {
-        if (index == graph.length - 1) {
-            res.add(new LinkedList<>(tmp));
-            return;
-        }
-        for (int i = 0; i < head.length; i++) {
-            tmp.add(head[i]);
-            index = head[i];
-            bfs(graph,graph[head[i]]);
-            tmp.removeLast();
-        }
-    }
-}
-```
-***
-# 200. Number of Islands 
-* **一刷:40:50(❌)**
-* [200. Number of Islands ](https://leetcode.com/problems/number-of-islands/description/)
-
-## Code
-### 思路
-* 通过visited来遍历所有走过的岛屿
-* 通过deque来记录当前岛屿上所有的内容
-* 通过move初始数组来模拟上下左右按键
+## 代码模版
 ```java
 class Solution {
     //visited 数组记录走过路径
@@ -81,3 +54,4 @@ class Solution {
     }
 }
 ```
+
