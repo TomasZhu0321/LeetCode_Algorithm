@@ -103,3 +103,49 @@ class Solution {
     }
 }
 ```
+***
+# 283. Move Zeroes
+* **一刷:5：44(✅)**
+* [283. Move Zeroes](https://leetcode.com/problems/move-zeroes/)
+
+## My Code
+```java
+class Solution {
+    public void moveZeroes(int[] nums) {
+        if (nums.length == 1) {
+            return;
+        }
+        int cur = 0;
+        int next = 1;
+        while (next < nums.length) {
+            if (nums[cur] == 0 && nums[next] != 0) {
+                int tmp = nums[cur];
+                nums[cur] = nums[next];
+                nums[next] = tmp;
+                cur++;
+            } else if (nums[cur] == 0 && nums[next] == 0) {
+                next++;
+            } else {
+                cur++;
+                next++;
+            }
+        }
+        return;
+    }
+}
+```
+* **优化**: 快慢指针，直接快指针将不是0的数放在slow，然后将后面的数赋值为0(因为后面都有一个统一要求，就是0，可以不用每次交换，提高效率)
+```java
+public void moveZeroes(int[] nums) {
+        int slow = 0;
+        for (int fast = 0; fast < nums.length; fast++) {
+            if (nums[fast] != 0) {
+                nums[slow++] = nums[fast];
+            }
+        }
+        // 后面的元素全变成 0
+        for (int j = slow; j < nums.length; j++) {
+            nums[j] = 0;
+        }
+    }
+```
