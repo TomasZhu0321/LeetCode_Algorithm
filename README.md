@@ -1,5 +1,5 @@
 # Chapter 1 - Array
-## [补充 Day1](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter6_Tree/Day22.md)
+## [补充 Day1](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter1_Array/%E8%A1%A5%E5%85%85_Day1.md)
 
 (✅)1365. How Many Numbers Are Smaller Then the Current Number
 
