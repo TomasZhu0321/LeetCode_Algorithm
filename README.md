@@ -1,3 +1,16 @@
+# Chapter 1 - Array
+## [补充 Day1](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter6_Tree/Day22.md)
+
+(✅)1365. How Many Numbers Are Smaller Then the Current Number
+
+(✅)941. Valid Mountain Array
+
+(✅)1207. Unique Number of Occurrences
+
+(✅)283. Move Zeroes
+
+(❌)189. Rotate Array
+
 # Chapter 6 - Binary Tree
 ## [Day 22](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter6_Tree/Day22.md)
 (❌)235. Lowest Common Ancestor of a Binary Search Tree

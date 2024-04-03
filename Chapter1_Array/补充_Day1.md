@@ -149,3 +149,32 @@ public void moveZeroes(int[] nums) {
         }
     }
 ```
+***
+# 189. Rotate Array
+* **一刷：38：44(❌)**
+* [189. Rotate Array](https://leetcode.com/problems/rotate-array/)
+
+## 整体 ”前移/后移“ 思路
+* 通过reverse
+  * 大的reverse一次
+  * 再分别进行两次小的reverse
+```java
+class Solution {
+    public void rotate(int[] nums, int k) {
+        int n = nums.length;
+        k %= n ;
+        reverse(0,n - 1,nums);
+        reverse(0,k - 1, nums);
+        reverse(k, n - 1,nums);
+        return ;
+    }
+    public void reverse(int start,int end, int [] nums){
+        
+        for(int i = start, j = end; i <= j ; i ++, j --){
+            int tmp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = tmp;
+        }
+    }
+}
+```
