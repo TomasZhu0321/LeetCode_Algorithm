@@ -121,3 +121,9 @@
 (❌) 841. Keys and Rooms
 
 (❌) 127. Word Ladder
+
+# [1971_684](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter11_Graph_DFS_BFS/1971_684.md)
+
+(✅) 1971. Find if Path Exists in Graph
+
+(✅) 684. Redundant Connection
