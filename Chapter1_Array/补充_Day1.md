@@ -63,3 +63,43 @@ class Solution {
     }
 }
 ```
+***
+# 1207. Unique Number of Occurrences
+* **一刷：6：44(✅)**
+* [1207. Unique Number of Occurrences](https://leetcode.com/problems/unique-number-of-occurrences/)
+
+## HashTable的三种方法
+### 解决问题
+* 快速判断一个元素**是否出现集合里**
+
+### 数组实现
+* 当规定了**范围**: 可以通过Array来实现HashTable
+
+### Set实现
+* 当**不确定**范围
+
+### Map实现
+* 需要一对**key-value**来记录
+
+## Code
+```java
+class Solution {
+    public boolean uniqueOccurrences(int[] arr) {
+        int[] count = new int[2002];
+        for (int i = 0; i < arr.length; i++) {
+            count[arr[i] + 1000]++; // 防止负数作为下标
+        }
+        boolean[] flag = new boolean[1002]; // 标记相同频率是否重复出现
+        for (int i = 0; i <= 2000; i++) {
+            if (count[i] > 0) {
+                if (flag[count[i]] == false) {
+                    flag[count[i]] = true;
+                } else {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}
+```
