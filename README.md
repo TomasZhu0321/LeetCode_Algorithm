@@ -21,6 +21,12 @@
 
 (✅)35. Search Insert Position
 
+# Chapter 2 - List
+## [补充 Day1](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter1_Array/%E8%A1%A5%E5%85%85_Day1.md)
+
+(✅)24. Swap Nodes in Pairs
+
+(✅)234. Palindrome Linked List
 
 # Chapter 6 - Binary Tree
 ## [Day 22](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter6_Tree/Day22.md)
