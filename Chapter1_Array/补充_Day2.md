@@ -90,3 +90,51 @@ class Solution {
     }
 }
 ```
+***
+# 922. Sort Array By Parity II
+* **一刷:15:22(✅)**
+* [922. Sort Array By Parity II](https://leetcode.com/problems/sort-array-by-parity-ii/)
+
+## My Code
+* 思路：通过cur和next，每次满足就交换，然后更新next = cur；
+* 问题：时间复杂度是O(n^2)
+```java
+class Solution {
+    public int[] sortArrayByParityII(int[] nums) {
+        int cur = 0;
+        int next = 0;
+        for (; next < nums.length; next++) {
+            if (cur % 2 == nums[next] % 2) {
+                int tmp = nums[cur];
+                nums[cur] = nums[next];
+                nums[next] = tmp;
+                cur++;
+                next = cur;
+            }
+        }
+        return nums;
+    }
+}
+```
+
+* 优化：通过定义odd和even指针，不满足条件的时候odd和even指针交换就可以了。需要开辟一个`int [] result`来存放结果数组 
+* 时间复杂度: 一个for循环搞定，时间复杂度O(n)
+```java
+class Solution {
+    public int[] sortArrayByParityII(int[] nums) {
+        int even = 0;
+        int odd = 1;
+        int[] result = new int[nums.length];
+        for(int i = 0; i < nums.length; i ++){
+            if(nums[i]%2 == 0){
+                result[even] = nums[i];
+                even = even + 2;
+            }
+            if(nums[i] % 2 == 1){
+                result[odd] = nums[i];
+                odd = odd + 2;
+            }
+        }
+        return nums;
+    }
+}
