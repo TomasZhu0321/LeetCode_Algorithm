@@ -44,3 +44,49 @@ class Solution {
 }
 ```
 ***
+# 34. Find First and Last Position of Element in Sorted Array
+* **一刷:15:22(✅)**
+* [34. Find First and Last Position of Element in Sorted Array](https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/)
+
+## Code
+* Log(n)的复杂度，通常就是**二分法**
+```java
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        int index = findBinary(nums, target);
+        int[] res = { -1, -1 };
+        if (index == -1)
+            return res;
+        int left = index;
+        int right = index;
+        while (left >= 0 && nums[left] == target) {
+            left--;
+        }
+        while (right <= nums.length - 1 && nums[right] == target) {
+            right++;
+        }
+        res[0] = left + 1;
+        res[1] = right - 1;
+        return res;
+
+    }
+
+    public int findBinary(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length - 1;
+        while (left <= right) {
+            int mid = ((right - left) / 2) + left;
+            if (nums[mid] == target) {
+                return mid;
+            }
+            if (nums[mid] < target) {
+                left = mid + 1;
+            }
+            if (nums[mid] > target) {
+                right = mid - 1;
+            }
+        }
+        return -1;
+    }
+}
+```
