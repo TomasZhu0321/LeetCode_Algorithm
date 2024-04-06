@@ -33,3 +33,25 @@ class Solution {
     }
 }
 ```
+***
+# 141. Linked List Cycle
+* **一刷:5:12(✅)**
+* [141. Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/)
+## My Code 
+```java
+public class Solution {
+    public boolean hasCycle(ListNode head) {
+        if(head == null) {return false;}
+        ListNode fast = head.next;
+        ListNode slow = head;
+        while(fast!= null && fast.next != null){
+            if(fast == slow){
+                return true;
+            }
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        return false;
+    }
+}
+```
