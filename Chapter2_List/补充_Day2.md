@@ -55,3 +55,36 @@ public class Solution {
     }
 }
 ```
+***
+# 160. Intersection of Two Linked Lists
+* **一刷:12:22(✅)**
+* [160. Intersection of Two Linked Lists](https://leetcode.com/problems/intersection-of-two-linked-lists/)
+
+## 思路
+* 链表问题涉及到"环/相交“多半都和数学问题有关，要找到总的不变量，写写方程
+![image](./img/IMG_4019%202.jpg)
+![iamge](./img/IMG_4020.jpg)
+```java
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        ListNode p1 = headA;
+        ListNode p2 = headB;
+        while(p1!=p2){
+            if(p1 == null){
+                p1 = headB;
+            }
+            else {
+                p1 = p1.next;
+            }
+            if(p2 == null){
+                p2 = headA;
+            }
+            else {
+                p2 = p2.next;
+            }
+        }
+        return p1;
+    }
+}
+```
+
