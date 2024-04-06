@@ -28,6 +28,14 @@
 
 (✅)234. Palindrome Linked List
 
+## [补充 Day2](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter2_List/%E8%A1%A5%E5%85%85_Day2.md)
+
+(✅)143. Reorder List
+
+(✅)141. Linked List Cycle
+
+(✅)160. Intersection of Two Linked Lists
+
 # Chapter 6 - Binary Tree
 ## [Day 22](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter6_Tree/Day22.md)
 (❌)235. Lowest Common Ancestor of a Binary Search Tree
