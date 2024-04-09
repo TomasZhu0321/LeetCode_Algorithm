@@ -36,6 +36,11 @@
 
 (✅)160. Intersection of Two Linked Lists
 
+# Chapter 3 - HashTable
+## [补充 Day1](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter3_Hashtable/%E8%A1%A5%E5%85%85_Day1.md)
+
+(✅)205. Isomorphic Strings 
+
 # Chapter 6 - Binary Tree
 ## [Day 22](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter6_Tree/Day22.md)
 (❌)235. Lowest Common Ancestor of a Binary Search Tree
