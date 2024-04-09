@@ -26,3 +26,35 @@ class Solution {
     }
 }
 ```
+***
+# 925. Long Pressed Name
+* **一刷:28:02(❌)**
+* [925. Long Pressed Name](https://leetcode.com/problems/long-pressed-name/)
+
+## Code
+```java
+class Solution {
+    public boolean isLongPressedName(String name, String typed) {
+        int i = 0, j = 0;
+        int m = name.length(), n = typed.length();
+        while (i< m && j < n) {
+            if (name.charAt(i) == typed.charAt(j)) {  
+                i++; j++;
+            }
+            else {
+                if (j == 0) return false; 
+                while (j < n-1 && typed.charAt(j) == typed.charAt(j-1)) j++;
+                if (name.charAt(i) == typed.charAt(j)) { 
+                    i++; j++;
+                }
+                else return false;
+            }
+        }
+        if (i < m) return false;
+        while (j < n) {
+            if (typed.charAt(j) == typed.charAt(j-1)) j++;
+            else return false;
+        }
+        return true;
+    }
+}
