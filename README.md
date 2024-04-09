@@ -41,6 +41,13 @@
 
 (✅)205. Isomorphic Strings 
 
+# Chapter 4 - String
+## [补充 Day1](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter3_Hashtable/%E8%A1%A5%E5%85%85_Day1.md)
+
+(❌) 925. Long Pressed Name
+
+(✅)844. Backspace String Compar
+
 # Chapter 6 - Binary Tree
 ## [Day 22](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter6_Tree/Day22.md)
 (❌)235. Lowest Common Ancestor of a Binary Search Tree
