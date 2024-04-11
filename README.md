@@ -63,6 +63,13 @@
 
 (✅)538. Convert BST to Greater Tree
 
+## [补充_Day1](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter6_Tree/%E8%A1%A5%E5%85%85_Day1.md)
+
+(✅)129. Sum Root to Leaf Numbers
+
+(❌)1382. Balance a Binary Search Tree
+
+
 # Chapter 7 - Backtracking
 ## [Day 24](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter7_BackTracking/Day24.md)
 (❌)77. Combinations
