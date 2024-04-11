@@ -41,3 +41,34 @@ class Solution {
     }
 }
 ```
+# 1382. Balance a Binary Search Tree
+* **一刷:40:46(❌)**
+* [1382. Balance a Binary Search Tree](https://leetcode.com/problems/balance-a-binary-search-tree/)
+
+## 思路
+* 通过**inorder-traversal**按照ascending遍历Tree
+* 然后通过二分法，递归构造BST
+
+```java
+class Solution {
+    ArrayList <Integer> res = new ArrayList<Integer>();
+    private void travesal(TreeNode cur) {
+            if (cur == null) return;
+            travesal(cur.left);
+            res.add(cur.val);
+            travesal(cur.right);
+        }
+    private TreeNode getTree(ArrayList <Integer> nums, int left, int right) {
+        if (left > right) return null;
+        int mid = left + (right - left) / 2;
+        TreeNode root = new TreeNode(nums.get(mid));
+        root.left = getTree(nums, left, mid - 1);
+        root.right = getTree(nums, mid + 1, right);
+        return root;
+    }
+    public TreeNode balanceBST(TreeNode root) {
+        travesal(root);
+        return getTree(res, 0, res.size() - 1);
+    }
+}
+```
