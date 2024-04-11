@@ -42,13 +42,13 @@ class Solution {
 }
 ```
 # 1382. Balance a Binary Search Tree
-* **一刷:40:46(❌)**
+* **一刷:40:46(❌)** [重刷]
 * [1382. Balance a Binary Search Tree](https://leetcode.com/problems/balance-a-binary-search-tree/)
 
 ## 思路
 * 通过**inorder-traversal**按照ascending遍历Tree
 * 然后通过二分法，递归构造BST
-
+* ❗️退出条件:`left > right`;
 ```java
 class Solution {
     ArrayList <Integer> res = new ArrayList<Integer>();
