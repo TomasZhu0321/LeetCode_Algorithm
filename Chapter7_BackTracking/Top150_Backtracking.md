@@ -47,3 +47,51 @@ class Solution {
     }
 }
 ```
+***
+# 22. Generate Parentheses
+* **一刷:35:22(❌)**
+* [22. Generate Parentheses](https://leetcode.com/problems/generate-parentheses/)
+![image](./img/22_Q.png)
+
+## Questions
+### Q1.如何确定 ( 和 ) 是对应包含在里面的？
+* 通过设置一个openN 和 closeN
+* `)`的判断条件是:`if(closeN < openN)`
+* index是不用backtracking移动的，因为recursion就是会自动完成这个过程了！
+  * 也就是说不用手动:`index - 1`
+* 也不需要重复for循环，只要if找到了慢慢往下走就可
+```java
+class Solution {
+    List<String> res = new LinkedList<>();
+    char[] tmp;
+    int openN = 0;
+    int closeN = 0;
+
+    public List<String> generateParenthesis(int n) {
+        Deque<Character> stack = new LinkedList<>();
+        tmp = new char[n * 2];
+        tmp[0] = '(';
+        openN = 1;
+        backTracking(1, tmp, n);
+        return res;
+    }
+    public void backTracking(int index, char[] tmp, int n) {
+        if (index == tmp.length) {
+            res.add(new String(tmp));
+            return;
+        }
+        if (openN < n) {
+            tmp[index] = '(';
+            openN++;
+            backTracking(index + 1, tmp, n);
+            openN--;
+        }
+        if (closeN < openN) {
+            tmp[index] = ')';
+            closeN++;
+            backTracking(index + 1, tmp, n);
+            closeN--;
+        }
+    }
+}
+```
