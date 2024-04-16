@@ -59,7 +59,7 @@ class Solution {
 * `)`的判断条件是:`if(closeN < openN)`
 * index是不用backtracking移动的，因为recursion就是会自动完成这个过程了！
   * 也就是说不用手动:`index - 1`
-* 也不需要重复for循环，只要if找到了慢慢往下走就可
+* 也不需要重复for循环，只要if找到了慢慢往下走就可(不是非要for的，backtracking可不是因为有这个for才实现的，本质是recursion)
 ```java
 class Solution {
     List<String> res = new LinkedList<>();
