@@ -12,6 +12,7 @@
 ![image](./img/491.jpg)
 
 ## Code
+```java
 class Solution {
     List<List<Integer>> res = new LinkedList<>();
     List<Integer> tmp = new LinkedList<>();
@@ -37,6 +38,7 @@ class Solution {
         }
     }
 }
+```
 ***
 # 46. Permutations
 * **一刷:9:22(✅)**

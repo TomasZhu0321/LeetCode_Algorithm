@@ -7,7 +7,7 @@
 * **map.getOrDefault(key, 初始化)** ：map获取key对应的value，如果key不存在，初始化
 * **(String类型的值A).compareTo(String类型的值B)**: return 的是一个int，依次比较字典顺序abcdefg..
   * == 0：相等
-  * >0: A的字典顺序大于B
+  * \>0: A的字典顺序大于B
   * <0: A的字典顺序小于B
 * LinkedList类型的 **.add(index, 插入内容)** :在指定位置插入具体内容，并且**之后的内容的index依次往后挪动！！！**
 * LinkedList类型的 **.add(插入内容)**: 默认在末尾添加
