@@ -49,6 +49,8 @@ class Solution {
 ***
 # 376. Wiggle Subsequence
 * **一刷：30:00(❌)**
+* **二刷: 23:00 (❌)** 
+  * 问题：cur=pre放在if中忘记。
 * [376. Wiggle Subsequence](https://leetcode.com/problems/wiggle-subsequence/description/)
 
 ## Questions
@@ -63,6 +65,7 @@ class Solution {
   * 情况2: 遇到平坡
   * 情况3: 单调+平坡 (这个情况对应了为什么需要将`cur = pre`放在if之中，因为单调+平坡看似变化了(-/+ ==> 0)但是实际总体还是单调)
     * 因此只有当res ++, 也就是记录了真实的正负交替才更新pre的值
+* ![image](./img/376_2.jpg)
 ## Code 
 ```java
 class Solution {
