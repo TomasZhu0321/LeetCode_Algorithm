@@ -48,6 +48,10 @@ class Solution {
 ***
 # 134. Gas Station
 * **一刷:40：09(❌)**
+* **二刷:32:16(✅)**
+  * 技巧:先通过数组来traversal出所有的left，然后通过totalSum和curSum来模拟往后移动
+  * 这里的curSum就是当前的tank
+  * totalSum如果总数大于0，那么肯定有解(vice versa)
 * [134. Gas Station](https://leetcode.com/problems/gas-station/)
 
 ## 问题
@@ -59,7 +63,7 @@ class Solution {
   ![image](./img/134.jpeg)
 
 ## Code
-* **技巧:** 数组模拟circular的问题`res = (i + 1)%leftTank.length;` 
+* **技巧:** 数组模拟circular的问题`res = (i + 1)%leftTank.length;`  (本题用不上)
 ```java
 class Solution {
     public int canCompleteCircuit(int[] gas, int[] cost) {
