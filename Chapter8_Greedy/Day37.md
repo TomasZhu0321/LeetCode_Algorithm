@@ -58,7 +58,7 @@ class Solution {
 * [738. Monotone Increasing Digits](https://leetcode.com/problems/monotone-increasing-digits/)
 
 ## 代码技巧
-* Integet ==> String: `Integer.toString(n)`;
+* Integer ==> String: `Integer.toString(n)`;
 * char [] chr ==> String: `new String(chr)`;
 * char 的数字 可以直接+,- 
 
