@@ -35,9 +35,10 @@ class Solution {
 ***
 # 406. Queue Reconstruction by Height
 * **一刷:45:23(❌)**
+* **二刷:26:16(✅)**
 * [406. Queue Reconstruction by Height](https://leetcode.com/problems/queue-reconstruction-by-height/)
 
-## 操作技巧
+## 操作技巧s
 * 数组的比较器构造:(实现了二维数组**两个维度**的比较 ==> 1. 身高的降序 2.如果身高相同，k的升序！！)
 ```java
 Arrays.sort(arr, (arr1,arr2)->{
