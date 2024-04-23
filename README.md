@@ -128,7 +128,6 @@
 
 (✅) 763. Partition Labels
 
-
 (✅) 56. Merge Intervals
 
 ## [Day 37](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter8_Greedy/Day37.md)
@@ -136,6 +135,12 @@
 
 (❌) 738. Monotone Increasing Digits
 
+## [补充_Greedy](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter8_Greedy/%E8%A1%A5%E5%85%85_Greedy.md)
+(❌) 649. Dota2 Senate
+
+(✅) 1221. Split a String in Balanced Strings
+
+***
 # Chapter 9 - DP
 
 ## [Day 57](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter8_Greedy/Day37.md)

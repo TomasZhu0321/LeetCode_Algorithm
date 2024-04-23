@@ -40,3 +40,33 @@ class Solution {
     }
 }
 ```
+***
+# 1221. Split a String in Balanced Strings
+* **一刷:4:47(✅)**
+* [1221. Split a String in Balanced Strings](https://leetcode.com/problems/split-a-string-in-balanced-strings/)
+
+## My Code
+```java
+class Solution {
+    public int balancedStringSplit(String s) {
+        int res = 0;
+        int R = 0;
+        int L = 0;
+        char [] charArr = s.toCharArray();
+        for(int i = 0 ; i < charArr.length; i ++){
+            if(charArr[i] == 'R'){
+                R ++;
+            }
+            if(charArr[i] == 'L'){
+                L ++;
+            }
+            if(R == L){
+                R = 0;
+                L = 0;
+                res ++;
+            }
+        }
+        return res;
+    }
+}
+```
