@@ -107,6 +107,7 @@
 
 (❌)332. Reconstruct Itinerary
 
+***
 # Chapter 8 - Greedy
 
 ## [Day 34](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter8_Greedy/Day34.md)
@@ -141,6 +142,7 @@
 (✅) 1221. Split a String in Balanced Strings
 
 ***
+***
 # Chapter 9 - DP
 
 ## [Day 57](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter8_Greedy/Day37.md)
@@ -148,6 +150,18 @@
 
 (❌) 516. Longest Palindromic Subsequence 
 
+## [补充1](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter9_DP/%E8%A1%A5%E5%85%851.md)
+(✅) 120. Triangle
+
+(✅) 64. Minimum Path Sum
+
+(❌) 5. Longest Palindromic Substring
+
+(✅) 221. Maximal Square
+
+(❌) 97. Interleaving String
+
+***
 # Chapter 10 - Monotonic Stack
 ## [Day 58](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter10_Monotonic%20Stack/Day58.md)
 (✅) 739. Daily Temperature
@@ -159,6 +173,7 @@
 
 (❌) 42. Trapping Rain Water
 
+***
 # Chapter 11 - Graph_DFS_BFS
 # [797_200](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter11_Graph_DFS_BFS/797_200.md)
 (✅) 797. All Paths from Source to Target
