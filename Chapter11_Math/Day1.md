@@ -70,3 +70,24 @@ class Solution {
     }
 }
 ```
+***
+# 172. Factorial Trailing Zeroes
+* **一刷:17:02(❌)**
+* [172. Factorial Trailing Zeroes](https://leetcode.com/problems/factorial-trailing-zeroes/?envType=study-plan-v2&envId=top-interview-150)
+
+## Code
+* 思路：
+  * 本题的关键是找到产生0的原因 ==> `5 和 5 的倍数`
+  * 5的倍数会产生一个，25的倍数会产生两个，125会产生3个
+  * 通过`n/5 + trailingZeroes(n/5);`,其实是在通过**递归**一层层筛选5和25和125及他们的倍数
+  
+```java
+class Solution {
+  public int trailingZeroes(int n) {
+    if (n == 0) {
+      return 0;
+    }
+    return n/5 + trailingZeroes(n/5);
+  }
+}
+```
