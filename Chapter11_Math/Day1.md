@@ -97,8 +97,7 @@ class Solution {
 * [69. Sqrt(x)](https://leetcode.com/problems/sqrtx/?envType=study-plan-v2&envId=top-interview-150)
 
 ## My Code 
-* 思路：二分法，最后结果return end。因为当end < start 时，已经相当于round down了
-
+* 思路：二分法，最后结果return end. 因为当end < start 时，已经相当于round down了
 ```java
 class Solution {
     public int mySqrt(int x) {
@@ -117,4 +116,43 @@ class Solution {
     }
 }
 ```
+***
+# 50. Pow(x,n)
+* **一刷:30:02(❌)**
+* [50. Pow(x,n)](https://leetcode.com/problems/powx-n/?envType=study-plan-v2&envId=top-interview-150)
 
+## 🌟位运算的应用
+### 1. 通过 `(n & 1)!= 0 ` 来判断奇偶数
+* 位运算中 : `(n&1) == 0` 是偶数; `(n&1) != 0` 是奇数
+
+### 2.  >> 和 >>> 的区别
+* `>>` and `>>>` are both **bitwise shift operators**, but they differ in how they handle the sign bit (the leftmost bit) for signed integers.
+* `>>` is the signed right shift operator. It will keep the orginal sign
+* `>>>` is the unsigned right shift operator. No matter what, the result will always be positive.
+
+#### 3. int range from -2^31 to 2^31 - 1
+* Which means if we use `n = -n ` and the `n = -2^31`. The n won't be 2^31, as it out of int range!!!  ==> it will still be `n = -2^31`
+* In this case, use `>>>` instead of `>>`
+
+## 本题思路
+### Binary exponentiation （二分幂） 算法
+![image](./img/50.jpeg)
+```java
+class Solution {
+    public double myPow(double x, int n) {
+        if(n < 0){
+            n = -n;
+            x = 1 / x;
+        }
+        double pow = 1;
+        while(n != 0){
+            if((n & 1) != 0){
+                pow *= x;
+            }    
+            x *= x;
+            n >>>= 1;
+        }
+        return pow;
+    }
+}
+```
