@@ -209,4 +209,16 @@
 ***
 # Chapter 12 - Math
 
-## [Day1]()
+## [Day1](https://github.com/TomasZhu0321/LeetCode_Algorithm/tree/main/Chapter12_Math)
+
+(✅) 9. Palindrome Number
+
+(✅) 66. Plus One
+
+(❌) 172. Factorial Trailing Zeroes
+
+(❌) 50. Pow(x,n)
+
+(✅) 69. Sqrt(x)
+
+(✅) 149. Max Points on a line
