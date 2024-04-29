@@ -91,3 +91,30 @@ class Solution {
   }
 }
 ```
+***
+# 69. Sqrt(x)
+* **一刷:15:02(✅)**
+* [69. Sqrt(x)](https://leetcode.com/problems/sqrtx/?envType=study-plan-v2&envId=top-interview-150)
+
+## My Code 
+* 思路：二分法，最后结果return end。因为当end < start 时，已经相当于round down了
+
+```java
+class Solution {
+    public int mySqrt(int x) {
+        if(x == 0 || x == 1) return x;
+        long start = 0; 
+        long end = x/2;
+        long mid = 0;
+        while(start <= end){
+            mid = start +  ((end - start ) / 2);
+            long sqrt = mid * mid;
+            if(sqrt == x) { return (int) mid;}
+            if(sqrt < x) {start = mid + 1;}
+            else {end = mid - 1;}
+        }
+        return (int)end;
+    }
+}
+```
+
