@@ -156,3 +156,41 @@ class Solution {
     }
 }
 ```
+***
+# 149. Max Points on a line
+* **一刷:48:02(✅)**
+* [149. Max Points on a line ](https://leetcode.com/problems/max-points-on-a-line/?envType=study-plan-v2&envId=top-interview-150)
+
+## My Code
+* 通过map记录来找最大，问题是效率极低
+```java
+class Solution {
+    public int maxPoints(int[][] points) {
+        Arrays.sort(points, (arr1, arr2) -> {
+            if (arr1[0] == arr2[0]) {
+                return arr1[1] - arr2[1];
+            }
+            return arr1[0] - arr2[0];
+        });
+        int start = 0;
+        int max = 1;
+        while (start <= points.length - 2) {
+            Map<Double, Integer> map = new HashMap<>();
+            for (int i = start + 1; i <= points.length - 1; i++) {
+                int num = 0;
+                double k = (double) (points[i][1] - points[start][1]) / (points[i][0] - points[start][0]);
+                num = map.getOrDefault(k, 1);
+                map.put(k, num + 1);
+                if (num + 1 > max) {
+                    max = num + 1;
+                }
+            }
+            if (max > points.length / 2) {
+                return max;
+            }
+            start++;
+        }
+        return max;
+    }
+}
+```
