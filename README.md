@@ -174,13 +174,14 @@
 (❌) 42. Trapping Rain Water
 
 ***
+
 # Chapter 11 - Graph_DFS_BFS
-# [797_200](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter11_Graph_DFS_BFS/797_200.md)
+## [797_200](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter11_Graph_DFS_BFS/797_200.md)
 (✅) 797. All Paths from Source to Target
 
 (❌) 200. Number of Islands
 
-# [695_1020_130_417](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter11_Graph_DFS_BFS/695_1020_130_417.md)
+## [695_1020_130_417](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter11_Graph_DFS_BFS/695_1020_130_417.md)
 (✅) 695. Max Area of Island 
 
 (✅) 1020. Number of Enclaves 
@@ -189,7 +190,7 @@
 
 (❌) 417. Pacific Atlantic Water Flows
 
-# [827_127_841_463](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter11_Graph_DFS_BFS/827_127_841_463.md)
+## [827_127_841_463](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter11_Graph_DFS_BFS/827_127_841_463.md)
 
 (✅) 827. Making A Large Island
 
@@ -199,8 +200,13 @@
 
 (❌) 127. Word Ladder
 
-# [1971_684](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter11_Graph_DFS_BFS/1971_684.md)
+## [1971_684](https://github.com/TomasZhu0321/LeetCode_Algorithm/blob/main/Chapter11_Graph_DFS_BFS/1971_684.md)
 
 (✅) 1971. Find if Path Exists in Graph
 
 (✅) 684. Redundant Connection
+
+***
+# Chapter 12 - Math
+
+## [Day1]()
