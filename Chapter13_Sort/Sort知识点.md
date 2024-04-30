@@ -16,7 +16,7 @@
   * 4. After the traversing, swap the pointer and pivot, and go on
 ![image](./img/quicksort_2.png)
 ![image](./img/quicksort_3.png)
-### Time Complexity and Auxiliary Space
+### Time Complexity and Space Complexity
 #### Time Complexity
 * Best Case: $\Omega (NlogN)$
   * When the pivot chosen at the each step divides the array into roughly **equal halves**
@@ -251,3 +251,11 @@ class GFG {
         return res;
     }
 ```
+### Time Complexity and Space Complexity
+#### Time Complexity
+* No Matter what, the Merge sort's time complexity stays the same which is $O(N * logN)$
+#### Space Complexity
+* $O(n)$, Additional space is required for the temporary array used during merging.
+## Quick Sort 和 Merge Sor的比较和优劣
+![image](./img/CompareQuick.png)
+![image](./img/CompartMerge.png)
