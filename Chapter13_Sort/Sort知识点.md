@@ -18,18 +18,18 @@
 ![image](./img/quicksort_3.png)
 ### Time Complexity and Auxiliary Space
 #### Time Complexity
-* Best Case: $\omega$ (NlogN)
+* Best Case: $\Omega (NlogN)$
   * When the pivot chosen at the each step divides the array into roughly **equal halves**
     * Which mean at **each step of recursion**, the time complexity is $O(n)$
     * The **depth** of recursion is roughly $O(logN)$
-    *  ==> $\omega$ (N * logN)
+    *  ==> $\Omega (NlogN)$
 * Worst Case: $O(N * N)$
   * When the pivot chosen at the each step results in **highly unbalanced paritions** (When the array is already sorted and the pivot is always chosen as the smallest or largest element.)
     * One arr is void, and the other one contains all the elements left
     * ==> $O(N * N)$
 #### Auxiliary Space
 * Depends on the depth of **recursion**
-  * Best case: $\omega$ (logN)
+  * Best case: $\Omega (logN)$
   * Worst case: $O(N)$
 ### 代码实现
 ```java
