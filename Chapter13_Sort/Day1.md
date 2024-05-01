@@ -99,3 +99,25 @@ class Solution {
     }
 }
 ```
+***
+# 27. Remove Elements
+* **一刷:10:20(✅)**
+* [27. Remove Elements](https://leetcode.com/problems/remove-element/)
+## My Code
+```java
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        int res = 0;
+        int slow = 0, fast = 0;
+        while(fast < nums.length){
+            if(nums[fast] != val){
+                nums[slow] = nums[fast];
+                slow ++;
+                res ++;
+            }
+            fast ++;
+        }
+        return res;
+    }
+}
+```
