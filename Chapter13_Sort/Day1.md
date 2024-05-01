@@ -121,3 +121,42 @@ class Solution {
     }
 }
 ```
+***
+# 179. Largest Number
+* **一刷:30:20(❌)**
+* [179. Largest Number](https://leetcode.com/problems/largest-number/)
+
+## 知识点
+### 自定义比较方法： Override Comparator中的compare方法
+![image](./img/179.png)
+* 在红框内自定义**比较的规则**
+
+### Str1.compareTo(Str2);
+* 字符串的比较大小，根据字典顺序排序
+
+## Code
+```java
+class Solution {
+    public String largestNumber(int[] nums) {
+        String [] str = new String [nums.length];
+        for(int i = 0 ; i < nums.length; i ++){
+            str[i] = String.valueOf(nums[i]);
+        }
+        Arrays.sort(str, new Comparator<String>(){
+            @Override
+            public int compare(String a, String b){
+                String order1 = a + b;
+                String order2 = b + a;
+                return order2.compareTo(order1);
+            }
+        });
+        if(str[0].equals("0")) return "0";
+        StringBuilder res = new StringBuilder();
+        for(String s : str){
+            res.append(s);
+        }
+        return res.toString();
+    }
+}
+```
+
