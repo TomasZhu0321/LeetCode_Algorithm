@@ -62,3 +62,40 @@ class Solution {
     }
 }
 ```
+***
+
+# 56. Merge Intervals
+* **一刷:15:50(✅)**
+* [56. Merge Intervals](https://leetcode.com/problems/merge-intervals/)
+## My Code
+```java
+class Solution {
+    public int[][] merge(int[][] intervals) {
+        Arrays.sort(intervals, (arr1, arr2) -> {
+            if (arr1[0] == arr2[0]) {
+                return arr1[1] - arr2[1];
+            } else {
+                return arr1[0] - arr2[0];
+            }
+        });
+        List<int[]> list = new LinkedList<>();
+        int preEnd = intervals[0][1];
+        int preStart = intervals[0][0];
+        for (int i = 1; i < intervals.length; i++) {
+            int start = intervals[i][0];
+            int end = intervals[i][1];
+            if (start > preEnd) {
+                int[] tmp = { preStart, preEnd };
+                list.add(tmp);
+                preStart = start;
+                preEnd = end;
+            } else {
+                preEnd = Math.max(preEnd, end);
+            }
+        }
+        int[] tmp = { preStart, preEnd };
+        list.add(tmp);
+        return list.toArray(new int[list.size()][]);
+    }
+}
+```
