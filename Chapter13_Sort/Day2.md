@@ -44,6 +44,8 @@ class Solution {
 ```
 * !注意在partition中，需要先交换pivot与right的位置，因为for循环还是需要遍历整个[left, right];
 
+## Code
+
 ```java
 public class Solution {
     public int findKthLargest(int[] nums, int k) {
