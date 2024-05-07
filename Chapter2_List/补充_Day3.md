@@ -64,3 +64,34 @@ class Solution {
     }
 }
 ```
+***
+# 160. Intersection of Two Linked Lists
+* **一刷:28:22(❌)**
+* [160. Intersection of Two Linked Lists](https://leetcode.com/problems/intersection-of-two-linked-lists/)
+
+## 错误反思
+* 两个ListNode即使null，也可以是相等的，所以不用害怕null. 如果两个点都在null上，`直接返回本身(null)`就可以了！
+* 错误反思：
+  * 将问题复杂化了，判断条件不用将`indexA.next != null || indexB.next != null)`领出来。
+```java
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        ListNode indexA = headA;
+        ListNode indexB = headB;
+        while (indexA!=indexB) {
+            if (indexA == null) {
+                indexA = headB;
+            } else {
+                indexA = indexA.next;
+            }
+            if (indexB == null) {
+                indexB = headA;
+            } else {
+                indexB = indexB.next;
+            }
+        }
+        return indexA;
+    }
+}
+```
+
