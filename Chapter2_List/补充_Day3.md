@@ -178,3 +178,30 @@ class Solution {
     }
 }
 ```
+***
+# 328. Odd Even Linked List
+* **一刷:15:22(✅)**
+* [328. Odd Even Linked List](https://leetcode.com/problems/odd-even-linked-list/)
+
+## My Code
+```java
+class Solution {
+    public ListNode oddEvenList(ListNode head) {
+        if(head == null || head.next == null || head.next.next == null) return head;
+        ListNode dummy = head;
+        ListNode odd = head;
+        ListNode even = head.next;
+        ListNode evenDummy = head.next;
+        while(odd != null && even!= null && odd.next!=null && even.next != null) {
+            ListNode tmpOdd = odd.next.next;
+            odd.next = odd.next.next;
+            odd = tmpOdd;
+            ListNode tmpEven = even.next.next;
+            even.next = even.next.next;
+            even = tmpEven;
+        }
+        odd.next = evenDummy;
+        return dummy;
+    }
+}
+```
