@@ -72,7 +72,7 @@ class Solution {
 ## 错误反思
 * 两个ListNode即使null，也可以是相等的，所以不用害怕null. 如果两个点都在null上，`直接返回本身(null)`就可以了！
 * 错误反思：
-  * 将问题复杂化了，判断条件不用将`indexA.next != null || indexB.next != null)`领出来。
+  * 将问题复杂化了，判断条件不用将`indexA.next != null || indexB.next != null)`领出来, 这样反而是错误的
 ```java
 public class Solution {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
@@ -95,3 +95,28 @@ public class Solution {
 }
 ```
 
+***
+# 141. Linked List Cycle (Linked List Cycle II)
+* **一刷:8:22(✅)**
+* [141. Linked List Cycle (Linked List Cycle II)](https://leetcode.com/problems/linked-list-cycle/)
+
+## 技巧
+* 指针类移动list的题
+  * 不要害怕将 指针移到null的时候，作为条件
+  * 越前的在判断语句中应放在越前 e.g. `if(point != null && point.next != null)`
+## My Code
+```java 
+public class Solution {
+    public boolean hasCycle(ListNode head) {
+        if(head == null || head.next == null) return false;
+        ListNode slow = head;
+        ListNode fast = head.next;
+        while(fast!= null && fast.next != null){
+            if(fast == slow) return true;
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        return false;
+    }
+}
+```
