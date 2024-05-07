@@ -120,3 +120,61 @@ public class Solution {
     }
 }
 ```
+***
+# 92. Reverse Linked List II
+* **一刷:38:22(✅)**
+* [92. Reverse Linked List II](https://leetcode.com/problems/reverse-linked-list-ii/)
+
+## My Code
+```java
+class Solution {
+    public ListNode reverseBetween(ListNode head, int left, int right) {
+        if (head.next == null || left == right)
+            return head;
+
+        ListNode dummy = head;
+        ListNode first = head;
+        ListNode last = head;
+        int position = 1;
+        while (position + 1 < left) {
+            first = first.next;
+            last = last.next;
+            position++;
+        }
+        while (position < right) {
+            last = last.next;
+            position++;
+        }
+        ListNode end = last.next;
+        last.next = null;
+        ListNode reList;
+        if (left == 1) {
+            reList = first;
+            reList = reverse(reList);
+            first.next = end;
+            return reList;
+        } else {
+            reList = first.next;
+            ListNode res = reverse(reList);
+            first.next = res;
+            reList.next = end;
+        }
+        return dummy;
+    }
+
+    private ListNode reverse(ListNode head) {
+        if (head == null)
+            return null;
+        ListNode slow = null;
+        ListNode fast = head;
+        while (fast.next != null) {
+            ListNode tmp = fast.next;
+            fast.next = slow;
+            slow = fast;
+            fast = tmp;
+        }
+        fast.next = slow;
+        return fast;
+    }
+}
+```
