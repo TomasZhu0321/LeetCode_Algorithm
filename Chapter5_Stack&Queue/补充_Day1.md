@@ -39,3 +39,57 @@ class MyStack {
     }
 }
 ```
+***
+# 54. Spiral Matrix
+* **一刷:27：04(✅)**
+* [54. Spiral Matrix](https://leetcode.com/problems/spiral-matrix/)
+
+## My Code
+```java
+class Solution {
+    public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> res = new LinkedList<>();
+        int row = matrix.length - 1; // 0, 1 ,2
+        int col = matrix[0].length - 1; // 0, 1, 2, 3
+        int i = 0, j = 0;
+        int time = Math.min(row + 1, col + 1) / 2; // 3/2= 1;
+        int range = 0;
+        while (time > 0) {
+            while (j < col - range) {
+                res.add(matrix[i][j]);
+                j++;
+            }
+            while (i < row - range) {
+                res.add(matrix[i][j]);
+                i++;
+            }
+            while (j > range) {
+                res.add(matrix[i][j]);
+                j--;
+            }
+            while (i > range) {
+                res.add(matrix[i][j]);
+                i--;
+            }
+            j++;
+            i++;
+            time--;
+            range++;
+        }
+        if (res.size() != (row + 1) * (col + 1)) {
+            int left = (row + 1) * (col + 1) - res.size();
+            while (left > 0) {
+                if (row == Math.max(row, col)) {
+                    res.add(matrix[i][j]);
+                    i++;
+                } else {
+                    res.add(matrix[i][j]);
+                    j++;
+                }
+                left--;
+            }
+        }
+        return res;
+    }
+}
+```
