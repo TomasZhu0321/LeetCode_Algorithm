@@ -123,6 +123,7 @@ class MovingAverage {
 ***
 # 281. Zigzag Iterator
 * **一刷:9：04(✅)**
+* [281. Zigzag Iterator](https://leetcode.com/problems/zigzag-iterator/)
 
 ## My Code
 ```java
