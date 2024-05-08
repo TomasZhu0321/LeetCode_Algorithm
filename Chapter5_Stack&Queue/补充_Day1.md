@@ -93,3 +93,31 @@ class Solution {
     }
 }
 ```
+***
+# 346. Moving  Average from Data Stream
+* **一刷:7：04(✅)**
+* [346. Moving  Average from Data Stream](https://leetcode.com/problems/moving-average-from-data-stream/)
+
+## My Code
+```java
+class MovingAverage {
+    int num,sum,size;
+    Deque <Integer> dq = new LinkedList<>();
+    public MovingAverage(int size) {
+        num = 0;
+        sum = 0;
+        this.size = size;
+    }
+    public double next(int val) {
+        dq.offer(val);
+        sum += val;
+        num ++;
+        if(num > size){
+            sum -= dq.poll();
+            num --;
+        }
+        return (double) sum / num;
+    }
+}
+```
+
