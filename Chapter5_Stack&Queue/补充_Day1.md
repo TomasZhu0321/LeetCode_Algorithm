@@ -160,3 +160,41 @@ public class ZigzagIterator {
     }
 }
 ```
+***
+# 1429. First Unique Numbe
+* **一刷:20：04(✅)**
+* [1429. First Unique Numbe](https://leetcode.com/problems/first-unique-number/)
+
+## My Code
+```java
+class FirstUnique {
+    Map<Integer, Integer> map = new HashMap<>();
+    Deque<Integer> dq = new LinkedList<>();
+
+    public FirstUnique(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            add(nums[i]);
+        }
+    }
+    public int showFirstUnique() {
+        if (dq.isEmpty())
+            return -1;
+        int tmp = dq.peek();
+        if (map.get(tmp) == 1) {
+            return tmp;
+        } else {
+            dq.poll();
+        }
+        return showFirstUnique();
+    }
+
+    public void add(int value) {
+        int v = map.getOrDefault(value, 0);
+        v = v + 1;
+        map.put(value, v);
+        if (v == 1) {
+            dq.offer(value);
+        }
+    }
+}
+```
