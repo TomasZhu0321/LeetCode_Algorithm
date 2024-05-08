@@ -198,3 +198,29 @@ class FirstUnique {
     }
 }
 ```
+***
+# 362. 362. Design Hit Counter
+* **一刷:60：04(❌)**
+* [362. 362. Design Hit Counter](https://leetcode.com/problems/design-hit-counter/) 
+
+## My Code
+```java
+class HitCounter {
+    private Deque<Integer> hits = new LinkedList<Integer>();
+
+    public HitCounter() {
+    }
+    public void hit(int timestamp) {
+        this.hits.add(timestamp);
+    }
+    
+    public int getHits(int timestamp) {
+        while (!hits.isEmpty()) {
+            int diff = timestamp - hits.peek();
+            if (diff >= 300) hits.poll();
+            else break;
+        }
+        return hits.size();
+    }
+}
+```
