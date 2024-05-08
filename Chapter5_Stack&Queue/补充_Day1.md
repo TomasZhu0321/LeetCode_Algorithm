@@ -120,4 +120,42 @@ class MovingAverage {
     }
 }
 ```
+***
+# 281. Zigzag Iterator
+* **一刷:9：04(✅)**
 
+## My Code
+```java
+public class ZigzagIterator {
+    Deque<Integer> dq = new LinkedList<>();
+    int size1, size2;
+    public ZigzagIterator(List<Integer> v1, List<Integer> v2) {
+        size1 = v1.size();
+        size2 = v2.size();
+        int index = 0;
+        while (size1 != 0 || size2 != 0) {
+            if (size1 != 0 && size2 != 0) {
+                dq.add(v1.get(index));
+                dq.add(v2.get(index));
+                size1--;
+                size2--;
+            } else if (size1 == 0 && size2 != 0) {
+                dq.add(v2.get(index));
+                size2--;
+            } else {
+                dq.add(v1.get(index));
+                size1--;
+            }
+            index ++;
+        }
+    }
+
+    public int next() {
+        return dq.poll();
+    }
+
+    public boolean hasNext() {
+        return !dq.isEmpty();
+    }
+}
+```
