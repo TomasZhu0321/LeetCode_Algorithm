@@ -172,3 +172,45 @@ class Solution {
     }
 }
 ```
+***
+# 1249. Minimum Remove to Make Valid Parenthese
+* **一刷:30：04(✅)**
+* [1249. Minimum Remove to Make Valid Parenthese](https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/)
+
+## My Code
+* Stack与其他类型结合的问题，可以通过Stack来记录index
+
+```java
+class Solution {
+    public String minRemoveToMakeValid(String s) {
+        Deque<Integer> indexs = new LinkedList<>();
+        char[] sb = s.toCharArray();
+        for (int i = 0; i < sb.length; i++) {
+            if (!Character.isLowerCase(sb[i])) {
+                if (sb[i] == ')') {
+                    if (indexs.isEmpty() || sb[indexs.peek()] == ')') {
+                        sb[i] = ' ';
+                    } else if (sb[indexs.peek()] == '(') {
+                        indexs.pop();
+                    }
+                } else if (sb[i] == '(') {
+                    if (indexs.isEmpty() || sb[indexs.peek()] == '(') {
+                        indexs.push(i);
+                    }
+                }
+            }
+        }
+        while (!indexs.isEmpty()) {
+            int x = indexs.pop();
+            sb[x] = ' ';
+        }
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < sb.length; i++) {
+            if (sb[i] != ' ') {
+                res.append(String.valueOf(sb[i]));
+            }
+        }
+        return res.toString();
+    }
+}
+```
