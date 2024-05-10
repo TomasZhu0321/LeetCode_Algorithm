@@ -214,3 +214,41 @@ class Solution {
     }
 }
 ```
+***
+# 735. Asteroid Collision
+* **一刷:20：04(✅)**
+* [735. Asteroid Collision](https://leetcode.com/problems/asteroid-collision/)
+## 知识点
+* 栈的时间复杂度问题：因为不是对整个stack中的元素进行操作，那么就是O(N)
+
+```java
+class Solution {
+    public int[] asteroidCollision(int[] asteroids) {
+        Deque<Integer> stack = new LinkedList<>();
+        for (int i = 0; i < asteroids.length; i++) {
+            if (!stack.isEmpty() && asteroids[i] < 0 && stack.peek() > 0) {
+                int tmp = stack.pop();
+                if (Math.abs(tmp) == Math.abs(asteroids[i]))
+                    continue;
+                int res = Math.max(Math.abs(tmp), Math.abs(asteroids[i])) == Math.abs(tmp) ? tmp : asteroids[i];
+                while (!stack.isEmpty() && res < 0 && stack.peek() > 0) {
+                    tmp = stack.pop();
+                    if (Math.abs(tmp) == Math.abs(asteroids[i]))
+                        break;
+                    res = Math.max(Math.abs(tmp), Math.abs(asteroids[i])) == Math.abs(tmp) ? tmp : asteroids[i];
+                }
+                if (Math.abs(tmp) != Math.abs(asteroids[i])) {
+                    stack.push(res);
+                }
+            } else {
+                stack.push(asteroids[i]);
+            }
+        }
+        int[] arr = new int[stack.size()];
+        for (int i = stack.size() - 1; i >= 0; i--) {
+            arr[i] = stack.pop();
+        }
+        return arr;
+    }
+}
+```
