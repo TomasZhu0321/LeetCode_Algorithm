@@ -91,7 +91,7 @@ class Solution {
 ***
 # 1472. Design Browser History
 * **一刷:20：04(❌)**
-* (https://leetcode.com/problems/design-browser-history/)
+* [1472. Design Browser History](https://leetcode.com/problems/design-browser-history/)
 
 ## My Code
 ```java
@@ -131,6 +131,44 @@ class BrowserHistory {
             steps--;
         }
         return current;
+    }
+}
+```
+***
+# 1209. Remove All Adjacent Duplicates in String II
+* **一刷:30：04(❌)**
+* [1209. Remove All Adjacent Duplicates in String II](https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string-ii/)
+
+## 知识点
+* 对String直接进行删除操作(甚至删除中间) : `sb.delete(start,end);`
+## 思路
+* 通过stack来记录的总数，然后直接通过StringBuilder进行删减操作
+* stack记录的是总数，所以不用1，2，3，单个相加！
+* 当删除操作过后，需要进行**回退**！！！ `i = i - k;`
+* 每次开头都需要判断`sb.charAt(i) != sb.charAt(i - 1)`，这样也保证了落下来的新东西是否能够继续消消乐
+
+## Code
+```java
+class Solution {
+    public String removeDuplicates(String s, int k) {
+        Deque<Integer> counts = new LinkedList<>();
+        StringBuilder sb = new StringBuilder(s);
+        for(int i = 0 ; i < sb.length(); i ++){
+            if(i == 0  || sb.charAt(i) != sb.charAt(i - 1)){
+                counts.push(1);
+            }
+            else{
+                int increments = counts.pop() ;
+                increments ++;
+                if(increments == k){
+                    sb.delete(i - k + 1, i + 1);
+                    i = i - k;
+                }else{
+                    counts.push(increments);
+                }
+            }
+        }
+        return sb.toString();
     }
 }
 ```
