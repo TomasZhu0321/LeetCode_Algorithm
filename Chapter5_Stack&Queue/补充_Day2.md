@@ -88,3 +88,49 @@ class Solution {
     }
 }
 ```
+***
+# 1472. Design Browser History
+* **一刷:20：04(❌)**
+* (https://leetcode.com/problems/design-browser-history/)
+
+## My Code
+```java
+class BrowserHistory {
+    private Deque<String> history = new LinkedList<>();
+    private Deque<String> future = new LinkedList<>();
+    private String current;
+
+    public BrowserHistory(String homepage) {
+        // 'homepage' is the first visited URL.
+        current = homepage;
+    }
+
+    public void visit(String url) {
+        // Push 'current' in 'history' stack and mark 'url' as 'current'.
+        history.push(current);
+        current = url;
+        // We need to delete all entries from 'future' stack.
+        future = new LinkedList<>();
+    }
+
+    public String back(int steps) {
+        // Pop elements from 'history' stack, and push elements in 'future' stack.
+        while (steps > 0 && !history.isEmpty()) {
+            future.push(current);
+            current = history.pop();
+            steps--;
+        }
+        return current;
+    }
+
+    public String forward(int steps) {
+        // Pop elements from 'future' stack, and push elements in 'history' stack.
+        while (steps > 0 && !future.isEmpty()) {
+            history.push(current);
+            current = future.pop();
+            steps--;
+        }
+        return current;
+    }
+}
+```
