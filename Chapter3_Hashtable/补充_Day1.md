@@ -207,3 +207,50 @@ class Solution {
     }
 }
 ```
+***
+# 380. Insert Delete GetRandom O(1)
+* **一刷:17:02(✅)**
+* [380. Insert Delete GetRandom O(1)](https://leetcode.com/problems/insert-delete-getrandom-o1/)
+## 知识点
+* List是可以在链条内更新的: `list.set(int index, E element)`
+
+## Code
+```java
+class RandomizedSet {
+    List<Integer> list = new LinkedList<>();
+    Map<Integer,Integer> map = new HashMap<>();
+    public RandomizedSet() {
+        
+    }
+    
+    public boolean insert(int val) {
+        if(map.containsKey(val)){
+            return false;
+        }else {
+            map.put(val,list.size());
+            list.add(val);
+            return true;
+        }
+    }
+    
+    public boolean remove(int val) {
+        if(map.containsKey(val)){
+            int index = map.get(val);
+            int lastElement = list.getLast();
+            list.set(index,lastElement);
+            map.put(lastElement, index);
+            list.removeLast();
+            map.remove(val);
+            return true;
+        }else {
+            return false;
+        }
+    }
+    
+    public int getRandom() {
+        Random random = new Random();
+        int ran = random.nextInt(list.size());
+        return list.get(ran);
+    }
+}
+```
