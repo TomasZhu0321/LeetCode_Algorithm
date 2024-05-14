@@ -26,3 +26,97 @@ class Solution {
     }
 }
 ```
+***
+# 146. LRU Cache (好题🌟)
+* **一刷:40:02(❌)**
+* [146. LRU Cache](https://leetcode.com/problems/lru-cache/)
+
+## 分析
+* 本题好在不是简单的实现一个function，而是需要设计整个`DList`，以及对应的方法(`removeNode(DList node)` 和 `addNodeToHead(DList node)`)
+* 本题通过DList来管理Node的顺序，通过`Map<Integer,DList>`来管理Node Key的唯一性
+* DList的定义
+  * 单独的class
+  * 包含了key和value（到时候可以直接取）
+  * DList prev 和 DList next
+  * 具体的实现是在LRUCache的构造函数中
+## Code
+```java
+
+class DList {
+    int key;
+    int value;
+    DList prev;
+    DList next;
+}
+
+class LRUCache {
+    private Map<Integer, DList> cache = new HashMap<>();
+    private int capacity;
+    private DList head, tail;
+    private int size = 0;
+
+    public LRUCache(int capacity) {
+        this.capacity = capacity;
+        head = new DList();
+        tail = new DList();
+        head.next = tail;
+        tail.prev = head;
+    }
+
+    public int get(int key) {
+        if (cache.containsKey(key)) {
+            DList res = cache.get(key);
+            removeNode(res);
+            addNodeToHead(res);
+            return res.value;
+        } else {
+            return -1;
+        }
+    }
+
+    public void put(int key, int value) {
+        if (cache.containsKey(key)) {
+            DList res = cache.get(key);
+            res.value = value;
+            removeNode(res);
+            addNodeToHead(res);
+
+        } else {
+            if (size < capacity) {
+                DList node = new DList();
+                node.key = key;
+                node.value = value;
+                cache.put(key, node);
+                addNodeToHead(node);
+                size++;
+            } else {
+                DList node = new DList();
+                int tmp = tail.prev.key;
+                removeNode(tail.prev);
+                cache.remove(tmp);
+                node.key = key;
+                node.value = value;
+                cache.put(key, node);
+                addNodeToHead(node);
+            }
+        }
+
+    }
+
+    private void addNodeToHead(DList node) {
+        DList pre = head;
+        DList nex = head.next;
+        pre.next = node;
+        nex.prev = node;
+        node.prev = pre;
+        node.next = nex;
+    }
+
+    private void removeNode(DList node) {
+        DList pre = node.prev;
+        DList nex = node.next;
+        pre.next = nex;
+        nex.prev = pre;
+    }
+}
+```
