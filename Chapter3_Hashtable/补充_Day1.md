@@ -120,3 +120,36 @@ class LRUCache {
     }
 }
 ```
+***
+# 128. Longest Consecutive Sequence
+* **一刷:15:02(✅)**
+* [128. Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence/)
+## 时间复杂度分析
+![image](../Chapter3_Hashtable/img/128.png)
+![image](../Chapter3_Hashtable/img/128_1.png)
+
+## My Code
+```java
+class Solution {
+    public int longestConsecutive(int[] nums) {
+        if(nums.length == 0){return 0;}
+        Set<Integer> set = new HashSet<>();
+        for(int i : nums){
+            set.add(i);
+        }
+        int res = 1;
+        for (int i = 0; i < nums.length; i++) {
+            if(!set.contains(nums[i] - 1)){
+                int start = 1;
+                int cur = nums[i];
+                while(set.contains(cur + 1)){
+                    start ++;
+                    cur = cur + 1;
+                }
+                res = Math.max(res,start);
+            }
+        }
+        return res;
+    }
+}
+```
