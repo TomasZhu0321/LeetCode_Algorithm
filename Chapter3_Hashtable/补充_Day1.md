@@ -334,3 +334,47 @@ class Solution {
     }
 }
 ```
+***
+# 348. Design Tic-Tac-Toe
+* **一刷:60:02(✅)**
+* [348. Design Tic-Tac-Toe](https://leetcode.com/problems/design-tic-tac-toe/)
+## 优化 (很妙🌟)
+* 不用将每个内容都存入Map中，而是分别通过 `row,col数组` + `diag, disDiag标志`四个量来衡量是否获胜
+* 因为只有两个选手，可以从`player1 -->1 , player2 --> -1`且ensure了每次下棋♟️都不会走repetitive的位置，那么可以通过记录当前row或者col或者diag或者disDiag的总数来判断是否获胜
+![image](./img/348.png)
+
+## Code
+```java
+class TicTacToe {
+    int [] rows;
+    int [] cols;
+    int diag;
+    int disDiag;
+    public TicTacToe(int n) {
+        rows = new int [n];
+        cols = new int [n];
+        diag = 0;
+        disDiag = 0;
+    }
+    
+    public int move(int row, int col, int player) {
+        int currentPlayer = player == 1 ? 1 : -1;
+        rows[row] += currentPlayer;
+        cols[col] += currentPlayer;
+        if(row == col){
+            diag += currentPlayer;
+        }
+        int n = rows.length;
+        if (col + row == n - 1){
+            disDiag += currentPlayer;
+        }
+        if(Math.abs(rows[row]) == n ||
+        Math.abs(cols[col]) == n||
+        Math.abs(diag) == n||
+        Math.abs(disDiag) == n){
+            return currentPlayer == 1 ? 1 : 2;
+        }
+        return 0;
+    }
+}
+```
