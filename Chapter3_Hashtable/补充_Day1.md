@@ -153,3 +153,57 @@ class Solution {
     }
 }
 ```
+***
+# 73. Set Matrix Zeroes
+* **一刷:17:02(✅)**
+* [73. Set Matrix Zeroes](https://leetcode.com/problems/set-matrix-zeroes/)
+## 优化思路
+* 因为变成0这个操作是在the whole row & col上操作，所以可以想象成俄罗斯方块，将第一次遍历中所有的0都上浮到first cow & col
+* 需要额外记录 first cow & col中是否包含0
+
+## Code
+```java
+class Solution {
+    public void setZeroes(int[][] matrix) {
+        boolean firstRow = false;
+        boolean firstCol = false;
+        for(int i = 0; i < matrix.length; i ++){
+            if(matrix[i][0] == 0) {
+                firstCol = true;
+                break;
+            }
+        }
+        for(int i = 0; i < matrix[0].length; i ++){
+            if(matrix[0][i] == 0) {
+                firstRow = true;
+                break;
+            }
+        }
+        for(int i = 1; i < matrix.length; i ++){
+            for(int j = 1; j < matrix[0].length; j ++){
+                if(matrix[i][j] == 0){
+                    matrix[i][0] = 0;
+                    matrix[0][j] = 0;
+                }
+            }
+        }
+        for(int i = 1; i < matrix.length; i ++){
+            for(int j = 1; j < matrix[0].length; j ++){
+                if(matrix[i][0] == 0 || matrix[0][j] == 0){
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+        if(firstRow){
+            for(int i = 0; i < matrix[0].length; i ++){
+                matrix[0][i] = 0;
+            }
+        }
+        if(firstCol){
+            for(int i = 0; i < matrix.length; i ++){
+                matrix[i][0] = 0;
+            }
+        }
+    }
+}
+```
