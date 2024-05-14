@@ -286,3 +286,51 @@ class Solution {
     }
 }
 ```
+***
+# 350. Intersection of Two Arrays
+* **一刷:15:02(✅)**
+* [350. Intersection of Two Arrays](https://leetcode.com/problems/intersection-of-two-arrays-ii/)
+
+## 技巧
+* 优化：当两个数组差距很大，可以通过小数组作为主数组进行操作
+```java
+public int[] intersect(int[] nums1, int[] nums2) {
+        if (nums1.length > nums2.length) {
+            return intersect(nums2, nums1);
+        }
+}
+```
+* 直接在数组上进行拼接迭代工作，而不需要使用List浪费space
+  * 当找到内容，直接在主数组（小的那个）上面更新，最后返回:`Arrays.copyOfRange(nums1,0,k)`就可以
+
+## Code 
+```java
+class Solution {
+    public int[] intersect(int[] nums1, int[] nums2) {
+        if (nums1.length > nums2.length) {
+            return intersect(nums2, nums1);
+        }
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        int k = 0;
+        int index1 = 0;
+        int index2 = 0;
+        while (index1 < nums1.length) {
+            if (nums1[index1] == nums2[index2]) {
+                nums1[k] = nums1[index1];
+                index1++;
+                index2++;
+                k++;
+            } else if (nums1[index1] > nums2[index2]) {
+                index2++;
+            } else {
+                index1++;
+            }
+            if (index2 >= nums2.length)
+                break;
+        }
+
+        return Arrays.copyOfRange(nums1, 0, k);
+    }
+}
+```
