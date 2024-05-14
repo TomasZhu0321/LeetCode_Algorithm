@@ -254,3 +254,35 @@ class RandomizedSet {
     }
 }
 ```
+***
+# 49. Group Anagrams
+* **一刷:32:02(✅)**
+* [49. Group Anagrams](https://leetcode.com/problems/group-anagrams/)
+## 知识点 & 技巧
+* map里面的values可以直接通过`map.values()`获取到全部，然后通过`new ArrayList<>(map.values())`直接转换成一个`List<List<String>>`类型的结果。相当于`new ArrayList<>`用来指定一个容器的类型，然后map.values()获取到了不同key对应下所有的values(这里是List<String>)类型,然后放进去
+* 技巧：🌟字符串匹配问题！！！
+  * 可以通过26个字母创建一个int arr，然后将遍历到的char通过`[i - 'a']`统计到对应的位置
+  * 直接通过 `String key = new String(arr) // charArr to String`来生成一个key(因为只关心字符出现个数，不care出现的先后顺序)
+## Code
+```java
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        Map<String, List<String>> map = new HashMap<>();
+        
+        for(String str : strs) {
+            char[] charCount = new char[26];
+            for(char c : str.toCharArray()) {
+                charCount[c - 'a']++;
+            }
+            String key = new String(charCount); 
+
+            if(!map.containsKey(key)) {
+                map.put(key, new LinkedList<>());
+            }
+            map.get(key).add(str);
+        }
+        
+        return new ArrayList<>(map.values());
+    }
+}
+```
