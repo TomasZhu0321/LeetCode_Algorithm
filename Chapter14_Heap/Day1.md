@@ -62,3 +62,47 @@ class Solution {
     }
 }
 ```
+***
+#  23. Merge k Sorted Lists
+* **一刷:25:22(✅)**
+* [23. Merge k Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists/)
+
+## 优化
+* 在最开始只传入链表的开头，然后遍历的时候将链表内容再传入priorityqueue能够将时间复杂度减少到O(n*logK)
+## My Code
+```java
+class Solution {
+    public ListNode mergeKLists(ListNode[] lists) {
+        if (lists == null || lists.length == 0) {
+            return null;
+        }
+
+        // PriorityQueue to keep track of the minimum element from each list
+        PriorityQueue<ListNode> pq = new PriorityQueue<>((a, b) -> a.val - b.val);
+
+        // Add the head of each list to the PriorityQueue
+        for (ListNode list : lists) {
+            if (list != null) {
+                pq.add(list);
+            }
+        }
+
+        // Create a dummy node to form the merged list
+        ListNode dummy = new ListNode(-1);
+        ListNode current = dummy;
+
+        // While the PriorityQueue is not empty, extract the minimum element and process
+        while (!pq.isEmpty()) {
+            ListNode node = pq.poll();
+            current.next = node;
+            current = current.next;
+
+            // If there is a next node in the same list, add it to the PriorityQueue
+            if (node.next != null) {
+                pq.add(node.next);
+            }
+        }
+        return dummy.next;
+    }
+}
+```
