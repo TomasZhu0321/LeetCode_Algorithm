@@ -29,3 +29,36 @@ class Solution {
     }
 }
 ```
+***
+# 347. Top K Frequent Elements
+* **一刷:25:22(✅)**
+* [347. Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/)
+
+## 技巧
+* `Map.Entry<Integer,Integer> me : map.entrySet()` 来获得一组map的值
+* `pq.add(new int []{me.getKey(),me.getValue()});` 来添加结果
+* `PriorityQueue<int []> pq = new PriorityQueue<>((pair1,pair2) -> pair1[1] - pair2[1]);` 比较的是value的值
+## Code
+```java
+class Solution {
+    public int[] topKFrequent(int[] nums, int k) {
+        if(nums.length == k) return nums;
+        Map<Integer,Integer> map = new HashMap<>();
+        for (int i : nums){
+            map.put(i,map.getOrDefault(i,0) + 1);
+        }
+        PriorityQueue<int []> pq = new PriorityQueue<>((pair1,pair2) -> pair1[1] - pair2[1]);
+        for(Map.Entry<Integer,Integer> me : map.entrySet()){
+            pq.add(new int []{me.getKey(),me.getValue()});
+            if(pq.size() > k){
+                pq.poll();
+            }
+        }
+        int [] res = new int [k];
+        for(int i =0; i<k;i ++){
+            res[i] = pq.poll()[0];
+        }
+        return res;
+    }
+}
+```
