@@ -150,3 +150,38 @@ class Solution {
     }
 }
 ```
+***
+#  88. Merge Sorted Array
+* **一刷:15:22(❌)**
+* [88. Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/)
+
+## 技巧！🌟
+* **Interview Tip** : Whenever you're trying to solve an **array** problem **in place**, always consider the possibility of **iterating backwards** instead of forwards through the array. It can completely change the problem, and make it a lot easier.
+
+## Code
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int p = m + n - 1;
+        int a = m - 1;
+        int b = n - 1;
+        while (p >= 0) {
+            if (b < 0) {
+                break;
+            }
+            if (a < 0) {
+                nums1[p] = nums2[b];
+                b--;
+            } else {
+                if (nums2[b] >= nums1[a]) {
+                    nums1[p] = nums2[b];
+                    b--;
+                } else {
+                    nums1[p] = nums1[a];
+                    a--;
+                }
+            }
+            p--;
+        }
+    }
+}
+
