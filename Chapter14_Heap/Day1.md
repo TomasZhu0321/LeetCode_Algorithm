@@ -106,3 +106,47 @@ class Solution {
     }
 }
 ```
+
+***
+#  1086. High Five
+* **一刷:25:22(❌)**
+* [1086. High Five](https://leetcode.com/problems/high-five/)
+## Code 
+* 思路
+  * 通过Arrays.sort()进行sort之后(TC：Nlog(N))
+  * 通过while循环，取前5个，放入的`List<int []>`中
+  * 最后取出来的方式
+```java
+        int[][] solutionArray = new int[solution.size()][];
+        return solution.toArray(solutionArray);
+```
+```java
+class Solution {
+    public int[][] highFive(int[][] items) {
+        int K = 5;
+        Arrays.sort(
+                items,
+                (a, b) -> {
+                    if (a[0] == b[0])
+                        return b[1] - a[1];
+                    return a[0] - b[0];
+                });
+        List<int[]> solution = new ArrayList<>();
+        int n = items.length;
+        int i = 0;
+        while (i < n) {
+            int id = items[i][0];
+            int sum = 0;
+            // obtain total using the top 5 scores
+            for (int k = i; k < i + K; k++)
+                sum += items[k][1];
+            // ignore all the other scores for the same id
+            while (i < n && items[i][0] == id)
+                i++;
+            solution.add(new int[] { id, sum / K });
+        }
+        int[][] solutionArray = new int[solution.size()][];
+        return solution.toArray(solutionArray);
+    }
+}
+```
