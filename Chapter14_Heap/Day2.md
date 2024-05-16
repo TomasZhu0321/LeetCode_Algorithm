@@ -184,6 +184,11 @@ class Solution {
 * **int --> Character** : `Character ch = (char)(i + 'a');`
 
 ## Code
+### 思路
+* 通过MaxHeap来维护char的出现频率
+* 分情况讨论
+  * 情况1: 取的值(poll) 和之前的结果不一样，直接append
+  * 情况2: 和之前结果一样，再取第二顺位(如果没有第二顺位说明走到了死胡同就reutrn “")
 ```java
 class Solution {
     public String reorganizeString(String s) {
