@@ -175,3 +175,53 @@ class Solution {
     }
 }
 ```
+***
+# 767. Reorganize String
+* **一刷:60:50(❌)**
+* [767. Reorganize String](https://leetcode.com/problems/reorganize-string/)
+
+## 知识点
+* **int --> Character** : `Character ch = (char)(i + 'a');`
+
+## Code
+```java
+class Solution {
+    public String reorganizeString(String s) {
+        char [] cArr = s.toCharArray();
+        int [] alpha = new int [26];
+        for(char c : cArr){
+            alpha[c - 'a'] ++;
+        }
+        PriorityQueue<Character> pq = new PriorityQueue<>((a,b)->{
+           return  alpha[b - 'a'] - alpha[a - 'a'];
+        });
+        for(int i = 0 ; i < 26; i ++){
+            if(alpha[i]!=0){
+                Character cha = (char) (i + 'a');
+                pq.offer(cha);
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        while(!pq.isEmpty()){
+            char tmp = pq.poll();
+            if(sb.length() == 0 || tmp != sb.charAt(sb.length() - 1) ){
+                sb.append(tmp);
+                alpha[tmp - 'a'] --;
+                if(alpha[tmp - 'a'] > 0){
+                    pq.offer(tmp);
+                }
+            }else{
+                if(pq.isEmpty()) return  "";
+                char tmp2 = pq.poll();
+                sb.append(tmp2);
+                alpha[tmp2 - 'a'] -- ;
+                if(alpha[tmp2 - 'a'] > 0){
+                    pq.offer(tmp2);
+                }
+                pq.offer(tmp);
+            }
+        }
+        return sb.toString();
+    }
+}
+```
