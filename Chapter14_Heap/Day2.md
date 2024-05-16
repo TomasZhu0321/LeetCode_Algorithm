@@ -96,3 +96,82 @@ class Solution {
     }
 }
 ```
+***
+# 378. Kth Smallest Element in a Sorted Matrix
+* **一刷:30:50(✅)**
+* [378. Kth Smallest Element in a Sorted Matrix](https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/)
+## 技巧
+### 1.自定义存储node以及初始化方法
+```java
+class Node {
+    int value;
+    int row;
+    int col;
+    public Node(int value, int row, int col){
+        this.value = value;
+        this.row = row;
+        this.col = col;
+    }
+    public int getValue(){
+        return this.value;
+    }
+    public int getRow(){
+        return this.row;
+    }
+    public int getCol(){
+        return this.col;
+    }
+}
+```
+### 2. PriorityQueue能够初始化空间
+```java
+ PriorityQueue<Node> pq = new PriorityQueue<>(Math.min(n,k), (a,b)->{
+            return a.getValue() - b.getValue();
+        });
+```
+
+## Code
+```java
+class Node {
+    int value;
+    int row;
+    int col;
+    public Node(int value, int row, int col){
+        this.value = value;
+        this.row = row;
+        this.col = col;
+    }
+    public int getValue(){
+        return this.value;
+    }
+    public int getRow(){
+        return this.row;
+    }
+    public int getCol(){
+        return this.col;
+    }
+}
+class Solution {
+    public int kthSmallest(int[][] matrix, int k) {
+        int n = matrix.length;
+        PriorityQueue<Node> pq = new PriorityQueue<>(Math.min(n,k), (a,b)->{
+            return a.getValue() - b.getValue();
+        });
+        //initialize pq
+        for(int i = 0 ; i < Math.min(n,k); i ++){
+            pq.offer(new Node(matrix[i][0],i,0));
+        }
+        Node small = pq.peek();
+        while(k > 0){
+            small = pq.poll();
+            int r = small.getRow();
+            int c = small.getCol();
+            if( c < n - 1){
+                pq.offer(new Node(matrix[r][c + 1], r, c + 1));
+            }
+            k --;
+        }
+        return small.getValue();
+    }
+}
+```
