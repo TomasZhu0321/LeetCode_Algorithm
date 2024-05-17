@@ -230,3 +230,43 @@ class Solution {
     }
 }
 ```
+***
+# 1438. Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit 
+* **一刷:60:50(❌)**
+* [1438. Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit ](https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/)
+## My Code
+```java
+class Solution {
+    public int longestSubarray(int[] nums, int limit) {
+        int start = 0, end = 0, res = 0;
+        Deque<Integer> maxQue = new LinkedList<>();
+        Deque<Integer> minQue = new LinkedList<>();
+        while (end < nums.length) {
+            // maintain the max inside currnet window: 54321
+            if (!maxQue.isEmpty() && nums[maxQue.peekLast()] <= nums[end]) {
+                maxQue.pollLast();
+            }
+            maxQue.offerLast(end);
+            // maintain the min inside currnet window: 12345
+            if (!minQue.isEmpty() && nums[minQue.peekLast()] >= nums[end]) {
+                minQue.pollLast();
+            }
+            minQue.offerLast(end);
+            while (!minQue.isEmpty() && !maxQue.isEmpty()
+                    && Math.abs(nums[maxQue.peekFirst()] - nums[minQue.peekFirst()]) > limit) {
+                start++;
+                if (maxQue.peekFirst() < start) {
+                    maxQue.pollFirst();
+                }
+                if (minQue.peekFirst() < start) {
+                    minQue.pollFirst();
+                }
+
+            }
+            res = Math.max(res, end - start + 1);
+            end++;
+        }
+        return res;
+    }
+}
+```
