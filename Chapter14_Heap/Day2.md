@@ -270,3 +270,46 @@ class Solution {
     }
 }
 ```
+***
+# 295. Find Median from Data Stream
+* **一刷:36:50(❌)**
+* [295. Find Median from Data Stream](https://leetcode.com/problems/find-median-from-data-stream/)
+
+## Insight
+* 为了保持两个 heap 始终**均分**; 以及各自拥有 **最小/最大** 的两半
+  * 将传入值传入maxH / minH中，然后弹出poll，这样就能获得排序好heap中最 小/大值， 然后放入另一半之中！ 
+## Code 
+```java
+class MedianFinder {
+    PriorityQueue<Integer> minH = new PriorityQueue<>(1);
+    PriorityQueue<Integer> maxH = new PriorityQueue<>(1, (a, b) -> {
+        return b - a;
+    });
+    boolean even = true;
+
+    public MedianFinder() {
+
+    }
+
+    public void addNum(int num) {
+        if (even) {
+            minH.offer(num);
+            maxH.offer(minH.poll());
+        } else {
+            maxH.offer(num);
+            minH.offer(maxH.poll());
+        }
+        even = !even;
+    }
+
+    public double findMedian() {
+        double res;
+        if (even) {
+            res = (minH.peek() + maxH.peek()) / 2.0;
+        } else {
+            res = maxH.peek() / 1.0;
+        }
+        return res;
+    }
+}
+```
