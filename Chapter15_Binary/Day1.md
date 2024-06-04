@@ -82,3 +82,36 @@ class Solution {
     }
 }
 ```
+***
+# 162. Find Peak Element
+* **一刷:14：45(✅)**
+* [162. Find Peak Element](https://leetcode.com/problems/find-peak-element/)
+
+## My Code
+```java
+class Solution {
+    public int findPeakElement(int[] nums) {
+        int res = 0;
+        int start = 0;
+        int end = nums.length - 1;
+        if(nums.length == 1) return 0;
+        while(start <= end){
+            int mid = start + (end - start) / 2;
+            //edge cases
+            if(mid == 0 && nums[mid + 1] < nums[mid]) return mid;
+            if(mid == nums.length - 1 && nums[mid - 1] < nums[mid]) return mid;
+
+            if(mid + 1 < nums.length && nums[mid + 1] > nums[mid]){
+                start = mid + 1;
+            }
+            else if (mid >= 0 && nums[mid] < nums[mid - 1]){
+                end = mid - 1;
+            }else {
+                res = mid ;
+                return res;
+            }
+        }
+        return res;
+    }
+}
+```
