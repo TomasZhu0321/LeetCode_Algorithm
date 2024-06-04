@@ -240,3 +240,32 @@ class Solution {
     }
 }
 ```
+***
+# 69. Sqrt(x)
+* **一刷:17：45(✅)**
+* [69. Sqrt(x)](https://leetcode.com/problems/sqrtx/)
+
+## My Code
+* 当结果很大可能超出范围时`(-2,147,483,648 , 2,147,483,647)`，用long
+```java
+class Solution {
+    public int mySqrt(int x) {
+        long start = 0;
+        long end = x;
+        while(start <= end){
+            long mid = start + (end - start)/2;
+            long res = mid * mid;
+            if (x < mid * mid){
+                end = mid - 1;
+            }
+            else if(x > mid * mid){
+                start = mid + 1;
+            }else {
+                return (int)mid;
+            }
+        }
+        return (int) end;
+    }
+}
+```
+***
