@@ -43,3 +43,42 @@ class Solution {
     }
 }
 ```
+***
+# 33. Search in Rotated Sorted Array
+* **一刷:50：45(❌)**
+* [33. Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/)
+
+## My Code
+### 分析
+* 二分法找准核心是如果target不在左边区域，那么直接去右边`(start = mid  + 1);`; 不在右边区域，那么直接去左边`(end = mid - 1);`;
+* 题目重点就是找准如何判断是否在左边内或者右边内
+* 二分法成立的条件就是单调递增(ascending order)的序列！那么为了使二分法成立，就需要先划分清楚哪边是有序的
+
+### Code
+```java
+class Solution {
+    public int search(int[] nums, int target) {
+        int start = 0;
+        int end = nums.length - 1;
+        while(start <= end){
+            int mid = start + (end - start)/2;
+            if(nums[mid] == target) return mid;
+            if(nums[start] <= nums[mid]){
+                if(nums[mid] > target && nums[start] <= target){
+                    end = mid - 1;
+                }else{
+                    start = mid + 1;
+                }
+            }
+            else {
+                if(nums[mid] < target && target <= nums[end]){
+                    start = mid + 1;
+                }else{
+                    end = mid - 1;
+                }
+            }
+        }
+        return -1;
+    }
+}
+```
