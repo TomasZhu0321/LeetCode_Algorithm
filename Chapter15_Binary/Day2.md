@@ -47,3 +47,31 @@ class Solution {
  * int param_1 = obj.pickIndex();
  */
 ```
+***
+# 1060. Missing Element in Sorted Array
+* **一刷:20：45(❌)**
+* [1060. Missing Element in Sorted Array](https://leetcode.com/problems/missing-element-in-sorted-array/)
+
+## 思路
+* 可以通过index之间的差值来确定missing values!
+## Code
+```java
+class Solution {
+    public int missingElement(int[] nums, int k) {
+        int totalMissing = (nums[nums.length - 1] - nums[0]) - (nums.length - 1);
+        if(k > totalMissing) return nums[nums.length - 1] + k - totalMissing;
+        int start = 0;
+        int end = nums.length - 1;
+        while(start < end){
+            int mid = start + (end - start) / 2;
+            int missingUntilMid = nums[mid] - nums[0] - mid;
+            if(missingUntilMid >= k){
+                end = mid;
+            }else {
+                start = mid + 1;
+            }
+        }
+        return nums[0] + k + start - 1;
+    }
+}
+```
