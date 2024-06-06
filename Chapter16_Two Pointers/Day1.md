@@ -178,3 +178,74 @@ class Solution {
     }
 }
 ```
+***
+# 647. Palindromic Substrings
+* **二刷:7：45(✅)**
+* [647. Palindromic Substrings](https://leetcode.com/problems/palindromic-substrings/)
+
+## 法1: 二维DP
+```java
+class Solution {
+    public int countSubstrings(String s) {
+        boolean[][] dp = new boolean[s.length()][s.length()];
+        int num = 0;
+        // initialzie
+        for (int i = 0; i < s.length(); i++) {
+            dp[i][i] = true;
+        }
+        for (int i = s.length() - 1; i >= 0; i--) {
+            for (int j = i; j < s.length(); j++) {
+                if (s.charAt(i) == s.charAt(j)) {
+                    if (j - i >= 2) {
+                        if (dp[i + 1][j - 1]) {
+                            dp[i][j] = true;
+                            num++;
+                        }
+                    }else {
+                        dp[i][j] = true;
+                        num++;
+                    }
+                }
+            }
+        }
+        return num;
+
+    }
+}
+```
+
+## 法2:双指针
+```java
+class Solution {
+    public int countSubstrings(String s) {
+        int ans = 0;
+
+        for (int i = 0; i < s.length(); ++i) {
+            // odd-length palindromes, single character center
+            ans += countPalindromesAroundCenter(s, i, i);
+
+            // even-length palindromes, consecutive characters center
+            ans += countPalindromesAroundCenter(s, i, i + 1);
+        }
+
+        return ans;
+    }
+
+    private int countPalindromesAroundCenter(String ss, int lo, int hi) {
+        int ans = 0;
+
+        while (lo >= 0 && hi < ss.length()) {
+            if (ss.charAt(lo) != ss.charAt(hi))
+                break;      // the first and last characters don't match!
+
+            // expand around the center
+            lo--;
+            hi++;
+
+            ans++;
+        }
+
+        return ans;
+    }
+}
+```
