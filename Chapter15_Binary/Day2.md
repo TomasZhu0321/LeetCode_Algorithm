@@ -75,3 +75,66 @@ class Solution {
     }
 }
 ```
+***
+# 1062. Longest Repeating Substring
+* **一刷:30：45(❌)**
+* [1062. Longest Repeating Substring](https://leetcode.com/problems/longest-repeating-substring/)
+
+## 算法：Rolling Hash
+![image](./img/rollingHash1.jpg)
+![image](./img/rollingHash2.jpg)
+
+## Code
+```java
+import java.util.HashSet;
+
+class Solution {
+    public int longestRepeatingSubstring(String s) {
+        int n = s.length();
+        int left = 1, right = n;
+
+        while (left <= right) {
+            int L = left + (right - left) / 2;
+            if (search(s, L, n) != -1) {
+                left = L + 1;
+            } else {
+                right = L - 1;
+            }
+        }
+
+        return left - 1;
+    }
+
+    private int search(String s, int L, int n) {
+        HashSet<Long> seen = new HashSet<>();
+        long hash = 0;
+        long base = 31;
+        long mod = (long) 1e9 + 7;
+        long baseL = 1;
+
+        // 计算 base^L % mod
+        for (int i = 0; i < L; i++) {
+            baseL = (baseL * base) % mod;
+        }
+
+        // 计算第一个长度为 L 的子串的哈希值
+        for (int i = 0; i < L; i++) {
+            hash = (hash * base + s.charAt(i)) % mod;
+        }
+        seen.add(hash);
+
+        // 滚动哈希值遍历字符串
+        for (int start = 1; start <= n - L; start++) {
+            hash = (hash * base - s.charAt(start - 1) * baseL % mod + mod) % mod;
+            hash = (hash + s.charAt(start + L - 1)) % mod;
+
+            if (seen.contains(hash)) {
+                return start;
+            }
+            seen.add(hash);
+        }
+
+        return -1;
+    }
+}
+```
