@@ -99,3 +99,30 @@ class Solution {
     }
 }
 ```
+***
+# 238. Product of Array Except Self
+*  **一刷: 25mins(✅)**
+* [238. Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/)
+
+## 思路1: 从左到右，再从右到左
+### 思路：
+* 从左到右除开本身先iterate一遍
+* 从右到左，通过一个tmp来记录nums[i]，把剩下的补齐
+### Code
+```java
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+        int [] arr = new int [nums.length];
+        arr[0] = 1;
+        for (int i = 1; i < nums.length ; i ++){
+            arr[i] = nums[i - 1] * arr[i - 1];
+        }
+        int tmp = nums[nums.length - 1];
+        for (int i = nums.length - 2; i >= 0 ; i --){
+            arr[i] = arr[i] * tmp;
+            tmp = tmp * nums[i];
+        }
+        return arr;
+    }
+}
+```
