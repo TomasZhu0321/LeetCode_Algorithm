@@ -28,7 +28,7 @@ class Solution {
 
 ***
 # 121. Best Time to Buy and Sell Stock
-* **二刷: 15mins(❌) **
+* **二刷: 15mins(❌)**
 * [121. Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
 
 ## 思路1: 记录peaks & valleys (最值)
@@ -77,4 +77,25 @@ class Solution {
         return dp[prices.length - 1][1];
     }
 }
+```
 ***
+# 217. Contains Duplicate
+*  **一刷: 5mins(✅)**
+* [217. Contains Duplicate](https://leetcode.com/problems/contains-duplicate/)
+
+## 考点: Set的underlying implementation & set.add return boolean
+* HashSet底层实现是HashMap. set.add返回值是boolean
+## Code
+* TC: O(N)
+* SC: O(N)
+```java
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        Set<Integer> set = new HashSet<>();
+        for(int i : nums){
+            if(set.add(i) == false) return true;
+            
+        }return false;
+    }
+}
+```
