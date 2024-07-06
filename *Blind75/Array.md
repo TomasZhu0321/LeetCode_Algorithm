@@ -54,3 +54,27 @@ class Solution {
     }
 }
 ```
+## 思路2: 二维DP
+* TC:O(N)
+* SC:O(N)
+### 思路
+* 二维dp：
+  * dp含义：当天买/卖的最值
+  * 每天的值都是之前记录中的最大
+  * 最后一天就是最大值
+### Code
+```java
+class Solution {
+    public int maxProfit(int[] prices) {
+        int [][] dp = new int [prices.length][2];
+        dp[0][0] = -prices[0];
+        for(int i = 1; i < prices.length; i ++){
+            //buy (since is negative value, so actually find the mini)
+            dp[i][0] = Math.max(-prices[i], dp[i - 1][0]);
+            //sell: max profit
+            dp[i][1] = Math.max(prices[i] + dp[i - 1][0], dp[i - 1][1]);
+        }
+        return dp[prices.length - 1][1];
+    }
+}
+***
