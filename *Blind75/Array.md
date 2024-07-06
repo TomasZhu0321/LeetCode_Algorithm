@@ -1,7 +1,6 @@
 # 1. Two Sum
-* **一刷:11：45(✅)**
+* **二刷:11：45(✅)**
 * [1. Two Sum](https://leetcode.com/problems/two-sum/)
-
 ## 思路1: 双for (自己实现)
 * TC: O(N*2)
 * SC: O(1)
@@ -23,6 +22,35 @@ class Solution {
         }
         // In case there is no solution, we'll just return null
         return null;
+    }
+}
+```
+
+***
+# 121. Best Time to Buy and Sell Stock
+* **二刷: 15mins(❌) **
+* [121. Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
+
+## 思路1: 记录peaks & valleys (最值)
+* TC:O(N)
+* SC:O(1)
+### 思路
+* 通过 low来记录最小值；通过maxProfit来记录最大值结果
+* 注意single day是不能又买又卖。因此通过**if - elseif**，如果找到了min就跳过找下一个；如果没找到就比较maxprofit看是不是最大
+### Code
+```java
+class Solution {
+    public int maxProfit(int[] prices) {
+        int low = Integer.MAX_VALUE;
+        int maxProfit = 0;
+        for(int i = 0 ; i < prices.length; i ++){
+            if(prices[i] < low){
+                low = prices[i];
+            }else if(prices[i] - low > maxProfit){
+                maxProfit = prices[i] - low;
+            }
+        }
+        return maxProfit;
     }
 }
 ```
