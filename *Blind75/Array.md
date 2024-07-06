@@ -126,3 +126,46 @@ class Solution {
     }
 }
 ```
+***
+# 53. Maximum Subarray
+* **一刷:30:12(✅)**
+* [53. Maximum Subarray](https://leetcode.com/problems/maximum-subarray/)
+## 思路1: 二维DP
+### 思路
+* DP数组[0]:不取当前值的最大值； DP数组[1]:取当前值的最大值
+* dp[i][0]由dp[i - 1]取和不取的最大值得到
+* dp[i][1]由取前面和重新开始(只选当前)的最大值得到
+### Code
+* TC:O(N)
+* SC:O(N)
+```java
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int [] dp = new int [nums.length + 1];
+        int max = Integer.MIN_VALUE;
+        for (int i = 1; i <= nums.length; i ++){
+            dp[i] = Math.max(dp[i-1]+nums[i - 1],nums[i - 1]);
+            max = Math.max(max, dp[i]);
+        }
+        return max;
+    }
+}
+```
+## 思路2: 一维DP，通过一个max来单独记录最大值
+* dp[i]: 代表 当前值 以及 之前sum 的最大值
+* 通过max来记录最大值可以让dp专注于迭代当前值的最优情况(哪怕前面出现了最优结果，也没关系)
+* 通过dp[i]表达式来确定如何初始化数组
+### Code
+```java
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int max = Integer.MIN_VALUE;
+        int [] dp = new int [nums.length + 1];
+        for(int i = 1; i <= nums.length ; i ++){
+            dp[i] = Math.max(dp[i - 1] + nums[i - 1], nums[i - 1]);
+            max = Math.max(dp[i],max);
+        }
+        return max;
+    }
+}
+```
