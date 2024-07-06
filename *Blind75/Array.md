@@ -169,3 +169,17 @@ class Solution {
     }
 }
 ```
+* 优化空间复杂度（把dp[i - 1]也通过一个值替代
+```java
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int max = Integer.MIN_VALUE;
+        int pre = 0;
+        for(int i = 1; i <= nums.length ; i ++){
+            pre = Math.max(pre + nums[i - 1], nums[i - 1]);
+            max = Math.max(pre,max);
+        }
+        return max;
+    }
+}
+```
