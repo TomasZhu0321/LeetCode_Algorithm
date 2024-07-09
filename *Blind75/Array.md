@@ -287,3 +287,45 @@ class Solution {
     }
 }
 ```
+# 15. 3Sum
+* **二刷:40:32(❌)**
+* [15. 3Sum](https://leetcode.com/problems/3sum/)
+## 分析
+![image](img/15.jpg)
+### 思路
+* 通过`双指针`，控制i为最外收束的，left通过i的值来确定==>`left = i + 1`
+* **去重**: 去重逻辑不光需要考虑i的去重，`left和right也需要`(自己考虑到！) 
+
+
+## My Code
+```java
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> res = new LinkedList<>();
+        for(int i = 0; i <= nums.length - 2; i ++){
+            if(i > 0 && nums[i - 1] == nums[i]) continue;
+            int left = i + 1;
+            int right = nums.length - 1;
+            while(left < right){
+                int tmpRes = nums[i] + nums[left] + nums[right];
+                if(tmpRes < 0) left ++;
+                else if(tmpRes > 0) right --;
+                else {
+                    List<Integer> r = new LinkedList<>();
+                    r.add(nums[i]);
+                    r.add(nums[left]);
+                    r.add(nums[right]);
+                    res.add(r);
+                    while (right > left && nums[right] == nums[right - 1]) right--;
+                    while (right > left && nums[left] == nums[left + 1]) left++;  
+                    right--; 
+                    left++;
+                }
+            }
+        }
+        return res;
+    }
+}
+```
+***
