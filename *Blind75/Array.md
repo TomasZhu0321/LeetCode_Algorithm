@@ -217,6 +217,7 @@ class Solution {
 ***
 
 # 153. Find Minimum in Rotated Sorted Array
+* **一刷:28:12(✅)**
 * [153. Find Minimum in Rotated Sorted Array](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/)
 
 ## 思路1: Binary Search
@@ -246,6 +247,43 @@ class Solution {
             
         }
         return nums[mid];
+    }
+}
+```
+# 33. Search in Rotated Sorted Array
+* **一刷:50：45(❌)**
+* [33. Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/)
+
+## 思路1: 二分法，找准一定有一边是sorted
+* 本题的破题点是: 二分法后，一定有一边是sorted的！
+* 那么先通过`if nums[left] <= nums[mid]`来将其分割成两部分，一部分有序，一部分无序。如果不在当前范围内，直接在另一半中去找
+### Code
+```java
+class Solution {
+    public int search(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length - 1;
+        int mid = left + (right - left) / 2;
+        while (left <= right) {
+            mid = left + (right - left) / 2;
+            if (nums[mid] == target)
+                return mid;
+            //sorted order
+            if(nums[left] <= nums[mid]){
+                if(target < nums[mid] && target >= nums[left]){
+                    right = mid - 1;
+                }else {
+                    left = mid + 1;
+                }
+            }else {
+                if(target <= nums[right] && target > nums[mid]){
+                    left = mid + 1;
+                }else {
+                    right = mid - 1;
+                }
+            }
+        }
+        return -1;
     }
 }
 ```
