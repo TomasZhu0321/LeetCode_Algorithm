@@ -329,3 +329,27 @@ class Solution {
 }
 ```
 ***
+# 11. Container With Most Water
+* **一刷:15:32(❌)**
+* [11. Container With Most Water](https://leetcode.com/problems/container-with-most-water/)
+## 思路1: 双指针
+* left和right的移动是: 哪边的柱子低一点，就移动哪一边
+```java
+class Solution {
+    public int maxArea(int[] height) {
+        int left = 0;
+        int right = height.length - 1;
+        int max = Integer.MIN_VALUE;
+        while(left < right){
+            int water = (right - left) * (Math.min(height[left],height[right]));
+            max = Math.max(max,water);
+            if(height[left] <= height[right]){
+                left ++;
+            }else {
+                right --;
+            }
+        }
+        return max;
+    }
+}
+```
