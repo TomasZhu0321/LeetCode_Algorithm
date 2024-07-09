@@ -169,17 +169,48 @@ class Solution {
     }
 }
 ```
-* 优化空间复杂度（把dp[i - 1]也通过一个值替代
+## 思路3: **Kadane's Algorithm** 
+* 解决**Maximum subarry 问题**的一种高效算法
 ```java
 class Solution {
     public int maxSubArray(int[] nums) {
-        int max = Integer.MIN_VALUE;
-        int pre = 0;
-        for(int i = 1; i <= nums.length ; i ++){
-            pre = Math.max(pre + nums[i - 1], nums[i - 1]);
-            max = Math.max(pre,max);
+        int max_so_far = nums[0];
+        int result = nums[0];
+        for(int i = 1; i < nums.length ; i ++){
+            max_so_far = Math.max(max_so_far + nums[i], nums[i]);
+            result = Math.max(result,max_so_far);
         }
-        return max;
+        return result;
+    }
+}
+```
+
+***
+# 152. Maximum Product Subarray
+* **一刷:30:12(❌)**
+* [152. Maximum Product Subarray](https://leetcode.com/problems/maximum-product-subarray/)
+
+## 思路1: Kadane算法
+* 问题的点在于negative value会导致结果彻底反转
+  * 通过记录一个**min_so_far**
+* 遇到0会彻底失效
+  * 在`Math.min(nums[i],Math.min(num[i]*min_so_far , min[i]*max_so_far))`;中, `num[i]`就相当于本身`x1`了
+### Code
+```java
+class Solution {
+    public int maxProduct(int[] nums) {
+        double result = nums[0];
+        double max_so_far = nums[0];
+        double min_so_far = nums[0];
+        for(int i = 1; i < nums.length; i ++){
+            double tmp_max = Math.max(nums[i],Math.max(min_so_far * nums[i],max_so_far * nums[i]));
+            System.out.println(i + " - Max: " + tmp_max);
+            min_so_far = Math.min(nums[i],Math.min(max_so_far * nums[i],min_so_far * nums[i]));
+            System.out.println(i + " - Min: "  + min_so_far);
+            max_so_far = tmp_max;
+            result = Math.max(result, max_so_far);
+        }
+        return (int)result;
     }
 }
 ```
