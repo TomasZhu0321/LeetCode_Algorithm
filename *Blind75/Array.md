@@ -214,3 +214,38 @@ class Solution {
     }
 }
 ```
+***
+
+# 153. Find Minimum in Rotated Sorted Array
+* [153. Find Minimum in Rotated Sorted Array](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/)
+
+## 思路1: Binary Search
+* Binary Search最容易错的是 **termination point**
+  * 本题当mid的值等于left或者right，说明了范围就在两个当中
+  * 去两个当中最小的就是答案
+### Code
+```java
+class Solution {
+    public int findMin(int[] nums) {
+        int left = 0;
+        int right = nums.length - 1;
+        if (nums[left] < nums[right] ) return nums[left];
+        int mid = ( right - left ) / 2;
+        while(left < right){
+            mid = left + ( right - left ) / 2;
+            if(mid == left || mid == right){
+                if(mid == left) return Math.min(nums[mid + 1], nums[mid]);
+                else return Math.min(nums[mid - 1], nums[mid]);
+            }
+            if(nums[mid] < nums[right] && nums[left] > nums[right]){
+                right = mid;               
+            }
+            else if(nums[mid] > nums[right] && nums[left] > nums[right]){
+                left = mid;               
+            }
+            
+        }
+        return nums[mid];
+    }
+}
+```
