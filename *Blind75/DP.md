@@ -47,3 +47,98 @@ class Solution {
     }
 }
 ```
+***
+## 思路2: DFS + Memorization
+* 通过DFS来遍历每一种情况，然后使用一个统一的Memorization array来记录所有重复过的结果
+![image](./img/322.jpeg)
+### Code
+```java
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        if(amount < 1) return 0;
+        return coinChange(new int [amount], amount, coins);
+    }
+    private int coinChange(int [] count, int remain, int [] coins){
+        if(remain < 0) return -1;
+        if(remain == 0) return 0;
+        if(count[remain - 1] != 0 ) return count[remain - 1];
+        int min = Integer.MAX_VALUE;
+        for(int i = 0 ; i < coins.length; i ++){
+            int res = coinChange(count,remain - coins[i],coins);
+            if(res >= 0 && res < min){
+                min = 1 + res;
+            }
+        }
+        count[remain - 1] = (min == Integer.MAX_VALUE) ? -1 : min;
+        return count[remain - 1];
+    }
+
+}
+```
+***
+# 300. Longest Increasing Subsequence
+* **一刷:20：45(✅)**
+* [300. Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/)
+## 思路1: DP
+* dp数组记录当前nums[i]能够取到的最长increasing subsequence. 
+* 两个for循环，里面的for循环通过倒序来找比当前nums[j]小的值能够取到的最大值。然后通过一个res来记录总的值
+### Code
+* 时间复杂度: O(N^2)
+* 空间复杂度: O(N)
+```java
+class Solution {
+    public int lengthOfLIS(int[] nums) {
+        int [] dp = new int [nums.length];
+        Arrays.fill(dp,1);
+        int res = 1;
+        for(int i = 1; i < nums.length; i ++){
+            int max = 1;
+            for(int j = i - 1; j >= 0; j --){
+                if(nums[i] > nums[j]){
+                    max = Math.max(max, dp[j] + 1);
+                }
+            }
+            dp[i] = max;
+            res = Math.max(res, dp[i]);
+        }
+        return res;
+    }
+}
+```
+## 思路2: Binary Search + 维系一个最长increasing subsequence
+* 每次到一个新的点，通过二分法找到它所在的位置，然后替换成更小的值。然后最后list的长度就是最大的递增序列
+* 这里其实包含了贪心，因为只有每次你加入的值越小，你的子序列potential的长度才会越长
+* list.set(index, target);
+* binary search应该找的是第一个target > 前面一个值的位置，所以是start
+### Code
+```java
+class Solution {
+    public int lengthOfLIS(int[] nums) {
+        List<Integer> list = new ArrayList<>();
+        list.add(nums[0]);
+        for(int i = 1; i < nums.length; i ++){
+            if(nums[i] < list.get(list.size() - 1)){
+                binarySearch(list,nums[i]);
+            }
+            else if(nums[i] > list.get(list.size() - 1)){
+                list.add(nums[i]);
+            }
+        }
+        return list.size();
+    }
+    private void binarySearch(List<Integer> list, int target ){
+        int start = 0;
+        int end = list.size() - 1;
+        int mid = start + ((end - start)/2) ; 
+        while(start < end){
+            mid = start + ((end - start)/2);
+            if(list.get(mid) >= target){
+                end = mid;
+            }else if(list.get(mid) <= target){
+                start = mid + 1;
+            }
+        }
+        list.set(start,target);
+    }
+}
+```
