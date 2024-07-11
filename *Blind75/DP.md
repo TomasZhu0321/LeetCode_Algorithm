@@ -169,3 +169,56 @@ class Solution {
     }
 }
 ```
+# 139. Word Break
+* **二刷:20:50(❌)**
+* [139. Word Break](https://leetcode.com/problems/word-break/)
+## 思路1: BFS
+### 思路
+![image](./img/word_break_bfs.jpeg)
+### Code
+```java
+class Solution {
+    public boolean wordBreak(String s, List<String> wordDict) {
+        Set<String> wordD = new HashSet<>(wordDict);
+        Set<Integer> seen = new HashSet<>();
+        Queue<Integer> que = new LinkedList<>();
+        que.offer(0);
+        seen.add(0);
+        while(!que.isEmpty()){
+            int start = que.poll();
+            if(start == s.length()) return true;
+            for(int end = start + 1; end <= s.length(); end ++){
+                if(!seen.contains(end) && wordD.contains(s.substring(start,end))){
+                    que.offer(end);
+                    seen.add(end);
+                }
+            }
+        }
+        return false;
+    }
+}
+```
+## 思路2: 一维DP
+* DP数组表示的是当前字符串以及之前的内容能否凑成string在worddict中
+* 类似背包问题，就是看在wordDict中能够取出值把背包放满
+* tricky的点在于dp数组的index和substring的start值是有一个错位. 因为要判断当前值到底能不能true应该找的当前j的“前一个”，但dp初始化是s.length() + 1. 所以自动就退了一格
+* e.g. "catsandog"中 d的index是6，在dp中是7。dog的判断，j是6,那么应该找的n对应于dp的值，刚好也是6，n的dp是false，所以是false
+![image](./img/wordbreak_DP.jpeg)
+### Code
+```java
+class Solution {
+    public boolean wordBreak(String s, List<String> wordDict) {
+        Set<String> words = new HashSet<>(wordDict);
+        boolean [] dp = new boolean [s.length() + 1];
+        dp[0] = true;
+        for(int i = 1; i <= s.length(); i ++){
+            for(int j = 0; j < i; j ++){
+                if(dp[j] && words.contains(s.substring(j,i))){
+                    dp[i] = true;
+                }
+            }
+        }
+        return dp[s.length()];
+    }
+}
+```
