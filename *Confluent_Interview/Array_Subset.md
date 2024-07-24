@@ -60,7 +60,6 @@ class Solution{
         }else {
             System.out.println("It cannot sum up to the target");
         }
-
     }
 }
 ```
