@@ -25,7 +25,7 @@ initial_players = [3, 1, 4, 1, 5]
 next_players = [9, 2, 6, 5, 3]
 rank = 3
 
-Output: 10
+Output: 26
 Explanation: The player needs to defeat the opponent with the 3rd highest strength at each level.
 ```
 
