@@ -1,3 +1,4 @@
+https://leetcode.com/discuss/interview-question/3683641/Confluent-OA-or-The-Bitwise-Equation
 # 问题
 ![image](./img/bitEquation.png)
 # Code
