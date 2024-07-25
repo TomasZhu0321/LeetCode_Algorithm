@@ -5,6 +5,7 @@
 ![image](./img/monster_3.png)
 
 # Code
+
 * BFS
 * 注意: if(defeated.contains(neighbor))不能省略，因为避免进入死循环
 * 
@@ -51,6 +52,66 @@ public class MonsterFight {
 
         System.out.println(getAllDefeatableMonsters(1, winRelations)); // 输出: [2, 3, 4, 5]
         System.out.println(getAllDefeatableMonsters(2, winRelations)); // 输出: [4]
+    }
+}
+
+```
+
+# 问题2
+![image](./img/monster.png)
+
+## Code
+```java
+package org.example;
+
+import java.util.*;
+
+public class MonsterFight2 {
+
+    public static String findLeastStrongMonster(List<String> monsters, Map<String, List<String>> relations, List<String> inputMonsters) {
+        // 构建反向图
+        Map<String, Set<String>> reverseGraph = new HashMap<>();
+        for (String monster : monsters) {
+            reverseGraph.put(monster, new HashSet<>());
+        }
+        for (String monster : relations.keySet()) {
+            for (String defeated : relations.get(monster)) {
+                reverseGraph.get(defeated).add(monster);
+            }
+        }
+
+        // 找到所有能打赢输入列表中所有怪兽的怪兽
+        Set<String> potentialMonsters = new HashSet<>(monsters);
+        for (String inputMonster : inputMonsters) {
+            Set<String> canDefeatInput = new HashSet<>();
+            Queue<String> queue = new LinkedList<>();
+            queue.add(inputMonster);
+
+            while (!queue.isEmpty()) {
+                String current = queue.poll();
+                for (String neighbor : reverseGraph.get(current)) {
+                    if (!canDefeatInput.contains(neighbor)) {
+                        canDefeatInput.add(neighbor);
+                        queue.add(neighbor);
+                    }
+                }
+            }
+            potentialMonsters.retainAll(canDefeatInput);
+        }
+
+        // 返回最弱的怪兽
+        return potentialMonsters.iterator().next();
+    }
+
+    public static void main(String[] args) {
+        List<String> monsters = Arrays.asList("Dragons", "Zombies", "Snakes", "Goblins");
+        Map<String, List<String>> relations = new HashMap<>();
+        relations.put("Dragons", Arrays.asList("Zombies", "Goblins"));
+        relations.put("Zombies", Collections.singletonList("Goblins"));
+        relations.put("Goblins", Collections.singletonList("Snakes"));
+
+        List<String> inputMonsters = Arrays.asList("Snakes", "Goblins");
+        System.out.println(findLeastStrongMonster(monsters, relations, inputMonsters)); // 输出: Zombies
     }
 }
 
