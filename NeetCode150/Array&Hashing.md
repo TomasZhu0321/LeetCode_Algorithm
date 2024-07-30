@@ -393,3 +393,33 @@ class Solution {
     }
 }
 ```
+***
+# 128. Longest Consecutive Sequence
+* **一刷:30:32(❌)**
+* [128. Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence/)
+## 思路1: Set记录，然后找起点
+* 通过set来确定是否之前存在值。如果没有值说明是开头，然后通过while去找到尾部
+* 如果不是开头，直接不遍历，这样能保证是时间复杂度是O(N)
+
+### Code
+```java
+class Solution {
+    public int longestConsecutive(int[] nums) {
+        Set<Integer> numSet = new HashSet<>();
+        for(int i:nums){
+            numSet.add(i);
+        }
+        int max = 0;
+        for(int i : numSet){
+            if(!numSet.contains(i - 1)){
+                int tmp = 1;
+                while(numSet.contains(i + tmp)){
+                    tmp ++;
+                }
+                max = Math.max(max,tmp);
+            }
+        }
+        return max;
+    }
+}
+```
