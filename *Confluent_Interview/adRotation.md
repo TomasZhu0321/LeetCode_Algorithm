@@ -3,6 +3,7 @@
 ![image](./img/bitwise2.png)
 ![image](./img/bitwise3.png)
 # Code
+* highestbit是为了求出mask，mask的意思是为了确保取反之后，最高位前面的内容被清除掉
 ```java
 class AdRotation {
 

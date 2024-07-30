@@ -353,3 +353,43 @@ class Solution {
     }
 }
 ```
+***
+# 36. Valid Sudoku
+* **一刷:36:32(❌)**
+* [36. Valid Sudoku](https://leetcode.com/problems/valid-sudoku/)
+## 思路1: `Map<Integer, HashSet<Character>> `
+### 知识点
+* 可以通过`Map + Set`的方式，map来记录区域，set来记录每个区域的使用情况: `Map<Integer, HashSet<Character>> row = new HashMap<>();`
+* `map.getOrDefault(row, new HashSet<>())` : 如果不存在返回new HashSet<>()，但不会插入进map中
+* `map.computeIfAbsent(row, k -> new HashSet<>())` : 如果不存在，创建新的HashSet,并且插入进map中（如果存在就返回key对应的value
+* getOrDefault和computeIfAbsent的区别就是一个会改变(computeIfAbsent)map的mapping一个不改变(getOrDefualt)
+
+### Code 
+```java
+class Solution {
+    public boolean isValidSudoku(char[][] board) {
+        Map<Integer, HashSet<Character>> row = new HashMap<>();
+        Map<Integer, HashSet<Character>> col = new HashMap<>();
+        Map<Integer, HashSet<Character>> square = new HashMap<>();
+        for(int i = 0;i<9;i++){
+            for(int j = 0; j < 9; j++){
+                char c = board[i][j];
+                if(c == '.'){
+                    continue;
+                }
+                if(row.getOrDefault(i,new HashSet<>()).contains(c)||
+                col.getOrDefault(j,new HashSet<>()).contains(c) ||
+                square.getOrDefault((i/3)*3 + j/3, new HashSet<>()).contains(c)){
+                    return false;
+                }
+                row.computeIfAbsent(i, k -> new HashSet<>()).add(c);
+                col.computeIfAbsent(j, k->new HashSet<>()).add(c);
+                square.computeIfAbsent( (i/3)*3 + j/3, k->new HashSet<>()).add(c);
+                
+            }
+        }
+        return true;
+        
+    }
+}
+```
