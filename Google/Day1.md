@@ -102,4 +102,85 @@ class Solution {
   }
 }
 ```
+***
 
+# Prefix Sum
+## 介绍 + 使用场景
+![image](./img/prefix.png)
+
+## 2955. Number of Same-End Substrings 介绍
+* 【technique/data structure的实现方法】**The basic idea is** to precompute the cumulative sums of an array, which enables quick subarray sum queries. 
+* 【为什么采用这个方法-这个方法的常用使用场景】**I chose this technique because** it is particularly useful when frequent queries are required to find the sum of any subarray. 
+* 【结合本题进行分析/为什么本题适合这个方法？】**For instance, in this case,** we need to frequently query the total number of appearances of lowercase English letters in a substring, the prefix sum array allows us to compute these sums directly by taking the difference between two precomputed values. 
+* 【使用这个方法的好处/time complexity的对比】 **This approach effectively reduces the time complexity of** subarray sum queries from linear time to constant time, significantly improving efficiency.
+
+# 2955. Number of Same-End Substrings 
+* **一刷:30:22(❌)**
+* [2955. Number of Same-End Substrings ](https://leetcode.com/problems/number-of-same-end-substrings/?envType=company&envId=google&favoriteSlug=google-thirty-days&difficulty=MEDIUM)
+
+## Prefix Sum
+### 二维数组的prefix sum介绍
+* We implement the prefix sum method using a 2D array to store the **cumulative counts** for each of the 26 lowercase English letters from 'a' to 'z'. Each row in the array represents a letter and **tracks its prefix sums** in the string s. This allows us to efficiently calculate the number of times any letter appears in a given substring **by quickly referencing the precomputed values.**
+
+## Code
+```java
+class Solution {
+  /**
+   * Counts the number of substrings with the same starting and ending character within given queries.
+   *
+   * @param s the input string
+   * @param queries an array of queries, where each query is an array with two integers [left, right]
+   * @return an array where each element corresponds to the count of substrings for each query
+   */
+  public int[] sameEndSubstringCount(String s, int[][] queries) {
+    int stringLength = s.length();
+    int numberOfQueries = queries.length;
+
+    // Initialize the 2D prefix sum array
+    int[][] prefixSum = new int[26][stringLength + 1];
+    initPrefixSumArray(prefixSum, s);
+
+    // Calculate the number of same end substrings for each query
+    int[] result = new int[numberOfQueries];
+    for (int i = 0; i < numberOfQueries; i++) {
+      int left = queries[i][0];
+      int right = queries[i][1];
+      result[i] = calculateSameEndSubstrings(prefixSum, left, right);
+    }
+    return result;
+  }
+
+  /**
+   * Initializes the 2D prefix sum array that tracks character frequencies.
+   *
+   * @param prefixSum the 2D prefix sum array
+   * @param s the input string
+   */
+  private void initPrefixSumArray(int[][] prefixSum, String s) {
+    int stringLength = s.length();
+    for (int j = 1; j < stringLength + 1; j++) {
+      for (int i = 0; i < 26; i++) {
+        prefixSum[i][j] = prefixSum[i][j - 1];
+      }
+      prefixSum[s.charAt(j - 1) - 'a'][j]++;
+    }
+  }
+
+  /**
+   * Calculates the number of substrings with the same starting and ending character within a given range.
+   *
+   * @param prefixSum the 2D prefix sum array
+   * @param left the left boundary of the substring
+   * @param right the right boundary of the substring
+   * @return the number of substrings with the same starting and ending character
+   */
+  private int calculateSameEndSubstrings(int[][] prefixSum, int left, int right) {
+    int count = right - left + 1;
+    for (int i = 0; i < 26; i++) {
+      int letterAppearances = prefixSum[i][right + 1] - prefixSum[i][left];
+      count += (letterAppearances * (letterAppearances - 1) / 2);
+    }
+    return count;
+  }
+}
+```
