@@ -354,3 +354,51 @@ class Solution {
     }
 }
 ```
+***
+# 394. Decode String
+* **一刷:30:22(❌)**
+* [394. Decode String](https://leetcode.com/problems/decode-string/?envType=company&envId=google&favoriteSlug=google-thirty-days&difficulty=MEDIUM)
+
+## 思路: 双Stack
+* 通过res来记录遍历到的结果
+* 然后通过两个stack
+  * 一个用来装之前StringBuilder res的值（因为nested [[]] 而被迫重新开
+  * 一个用来记录循环的次数
+* 有四种情况
+  * 当为digit: `Character.isDigit(c)` 就记录k的值
+  * 为`[` : 就push当前的res和k进入stack，并且重新res = new StringBuilder(); k = 0; 这样就能保证res一定是最里面那层的值
+  * 为`]` : pop stringbuilder stack里面的值，它相当于是目前那个值的前序内容，所以在它 tmp.append(res) 循环添加 当前的res
+  * 最后更新 res = tmp，相当于最里面那个值解决了，然后一步一步往外扩展
+
+## Code
+```java
+class Solution {
+    public String decodeString(String s) {
+        StringBuilder res = new StringBuilder();
+        Stack<Integer> countStack = new Stack<>();
+        Stack<StringBuilder> strTmpStack = new Stack<>();
+        int times = 0;
+        for(int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if(Character.isDigit(c)) {
+                times = times * 10 + c - '0';
+            } else if(c == '[') {
+                countStack.push(times);
+                strTmpStack.push(res);
+                res = new StringBuilder();
+                times = 0;
+            } else if (c == ']') {
+                StringBuilder storedRes = strTmpStack.pop();
+                int t = countStack.pop();
+                for(int j = 0; j < t; j++) {
+                    storedRes.append(res);
+                }
+                res = storedRes;
+            } else {
+                res.append(c);
+            }
+        } 
+        return res.toString();
+    }
+}
+```
