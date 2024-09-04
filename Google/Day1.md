@@ -236,3 +236,42 @@ class Solution {
   }
 }
 ```
+***
+# 2981. Find Longest Special Substring That Occuers Thrice I
+* **一刷:30:22(❌)**
+* [2981. Find Longest Special Substring That Occuers Thrice I](https://leetcode.com/problems/find-longest-special-substring-that-occurs-thrice-i/?envType=company&envId=google&favoriteSlug=google-thirty-days&difficulty=MEDIUM)
+
+## 思路
+* 通过一个2D array来记录每一个lowercase English Letter的个数，row - 26， col - s.length() + 1(因为最多就s.length())
+* 然后使用sliding window来控制最长的window，windowLen = j - i + 1;
+* 然后traverse windowLen 从 k=1 到 k=windowLen, 代表了不同size的k，对应的count
+  * 这一步很关键是因为出现 nnnnnynnnn的情况，如果只考虑了一个window无法记录，通过二维数组的方式，能够进行全局的一个record
+
+## Code
+```java
+class Solution {
+    public int maximumLength(String s) {
+        int [][] subStringsCount = new int [26][s.length() + 1];
+        int n = s.length();
+        int max = 0;
+        //
+        for(int i = 0; i < n; i++){
+            char c = s.charAt(i);
+            int j = i;
+            while(j < n - 1 && s.charAt(j + 1) == c) {
+                j++;
+            }
+            int windowLen = j - i + 1;
+            for(int k = 1; k <= windowLen; k++){
+                int count = windowLen - k + 1;
+                subStringsCount[c - 'a'][k] += count;
+                if(subStringsCount[c - 'a'][k] >=3 ){
+                    max = Math.max(max, k);
+                }
+            }
+            i = j; //slide the window
+        }
+        return max == 0 ? -1 : max;
+    }
+}
+```
