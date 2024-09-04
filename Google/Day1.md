@@ -184,3 +184,55 @@ class Solution {
   }
 }
 ```
+***
+# 3026. Maximum Good Subarray Sum
+* **一刷:30:22(❌)**
+* [3026. Maximum Good Subarray Sum](https://leetcode.com/problems/maximum-good-subarray-sum/?envType=company&envId=google&favoriteSlug=google-thirty-days&difficulty=MEDIUM)
+
+## 思路
+### Prefix Sum + HashMap
+* 通过prefix sum来数组的前缀和
+* 通过map来记录最优的max值
+  * 本题比较绕的点在于 arr里面的数据是能够repeated的，这样的话map就不能一开始就traverse一遍，然后初始化
+  * 而是应该在最后
+  ```java
+    if(!prefixMap.containsKey(nums[i]) || prefixSumArray[i] < prefixSumArray[prefixMap.get(nums[i])]) {
+            prefixMap.put(nums[i] , i);
+        }
+  ```
+  * 逻辑就是如果前缀map还未包含nums[i] 或者 当前前缀sum array 小于了第一次出现prefixMap.get(nums[i])的值（因为我们是求的startIndex，是被减数，越小越好）==>更新
+## Code 
+```java
+class Solution {
+  public long maximumSubarraySum(int[] nums, int k) {
+    int numsLen = nums.length;
+    HashMap<Integer, Integer> prefixMap = new HashMap<>();
+    Long max = Long.MIN_VALUE;
+
+    //initialize prefix sum array
+    long [] prefixSumArray = new long [numsLen];
+    prefixSumArray[0] = nums[0];
+    for(int i = 1; i < numsLen; i++) {
+        prefixSumArray[i] = prefixSumArray[i - 1] + nums[i];
+    }
+
+    for(int i = 0; i < numsLen; i++) {
+        if(prefixMap.containsKey(nums[i] - k)) {
+            int startIndex = prefixMap.get(nums[i] - k);
+            long sum = prefixSumArray[i] - (startIndex > 0 ? prefixSumArray[startIndex - 1] : 0);
+            max = Math.max(sum, max);
+        }
+        if(prefixMap.containsKey(nums[i] + k)) {
+            int startIndex = prefixMap.get(nums[i] + k);
+            long sum = prefixSumArray[i] - (startIndex > 0 ? prefixSumArray[startIndex - 1] : 0);
+            max = Math.max(sum, max);
+        }
+        if(!prefixMap.containsKey(nums[i]) || prefixSumArray[i] < prefixSumArray[prefixMap.get(nums[i])]) {
+            prefixMap.put(nums[i] , i);
+        }
+    }
+
+    return max == Long.MIN_VALUE ? 0 : max;
+  }
+}
+```
