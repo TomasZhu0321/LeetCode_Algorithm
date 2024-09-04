@@ -304,3 +304,53 @@ class Solution {
     }
 }
 ```
+***
+# 1937. Maximum Number of Points with Cost
+* **一刷:30:22(❌)**
+* [1937. Maximum Number of Points with Cost](https://leetcode.com/problems/maximum-number-of-points-with-cost/?envType=company&envId=google&favoriteSlug=google-thirty-days&difficulty=MEDIUM)
+
+## 思路: 双重DP
+* 本题的难点在于如何balance max value 和 与col距离之间的关系
+* 通过`double dp`，分别从 : left --> right 和 right --> left 来计算最大值
+* 然后每一行就和它prevRow left --> right 的最大值 以及 right --> left最大值进行比较就可以了
+## 技巧：双DP(左到右 & 右到左)
+* 当发现可以使用record的值就考虑dp
+* 如果感觉dp与其他因素有规律的牵挂（比如本地就和col有一进一退的关联 ）
+* 可以考虑 添加一个临时的dp数组，**从左到右 从右到左** 分别遍历
+* 特别是和index的增减有关，两头分别遍历很有用！
+
+## Code
+```java
+class Solution {
+    public long maxPoints(int[][] points) {
+        long[][] dp = new long[points.length][points[0].length];
+        long[] prevRow = new long[points[0].length];
+        for (int j = 0; j < points[0].length; j++) {
+            prevRow[j] = points[0][j];
+        }
+        for (int i = 1; i < points.length; i++) {
+            long[] curRow = new long[points[0].length];
+            long[] leftMax = new long[points[0].length];
+            long[] rightMax = new long[points[0].length];
+            // leftMax initialization
+            leftMax[0] = prevRow[0];
+            for (int j = 1; j < prevRow.length; j++) {
+                leftMax[j] = Math.max(prevRow[j], leftMax[j - 1] - 1);
+            }
+            rightMax[prevRow.length - 1] = prevRow[prevRow.length - 1];
+            for (int j = rightMax.length - 2; j >= 0; j--) {
+                rightMax[j] = Math.max(prevRow[j], rightMax[j + 1] - 1);
+            }
+            for (int j = 0; j < points[0].length; j++) {
+                curRow[j] = points[i][j] + Math.max(leftMax[j], rightMax[j]);
+            }
+            prevRow = curRow;
+        }
+        long max = 0;
+        for (int i = 0; i < prevRow.length; i++) {
+            max = Math.max(max, prevRow[i]);
+        }
+        return max;
+    }
+}
+```
