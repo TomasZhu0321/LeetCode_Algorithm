@@ -402,3 +402,89 @@ class Solution {
     }
 }
 ```
+# 592. Fraction Addition and Subtraction
+* **一刷:30:22(❌)**
+* [592. Fraction Addition and Subtraction](https://leetcode.com/problems/fraction-addition-and-subtraction/?envType=company&envId=google&favoriteSlug=google-thirty-days&difficulty=MEDIUM)
+## Euclidean Algorithm for finding Greatest Common Divisor
+```java
+private int GCD(int a, int b) {
+  if(b == 0) {
+    return a;
+  }
+  return GCD (b, a%b);
+}
+```
+
+## Code
+```java
+class Solution {
+    public String fractionAddition(String expression) {
+        int expressLen = expression.length();
+        if (expressLen <= 4) {
+            return expression;
+        }
+        // push first fration
+        int start = 0;
+        int end = start;
+        while (expression.charAt(end) != '/') {
+            end++;
+        }
+        int num = Integer.parseInt(expression.substring(start, end));
+        start = end + 1;
+        end = start;
+        // System.out.println(expression.charAt(end));
+        while (expression.charAt(end) != '+' && expression.charAt(end) != '-') {
+            end++;
+        }
+        int deno = Integer.parseInt(expression.substring(start, end));
+        start = end;
+        int tmpNum = 0;
+        int tmpDeno = 0;
+        for (int i = start; i < expressLen; i++) {
+            char c = expression.charAt(i);
+            if (c == '/') {
+                tmpNum = Integer.parseInt(expression.substring(start, i));
+                start = i + 1;
+            } else if (i == expressLen - 1 || expression.charAt(i + 1) == '+' || expression.charAt(i + 1) == '-') {
+                tmpDeno = Integer.parseInt(expression.substring(start, i + 1));
+                int commonD = tmpDeno;
+                if (deno != tmpDeno) {
+                    commonD = deno * tmpDeno;
+                    tmpNum = tmpNum * deno;
+                    num = num * tmpDeno;
+                }
+                int commonN = tmpNum + num;
+                num = commonN;
+                deno = commonD;
+                start = i + 1;
+                if (start >= expressLen) {
+                    break;
+                }
+            }
+        }
+        int resN = num;
+        int resD = deno;
+
+        if (resN == 0) {
+            resD = 1;
+        } else {
+            int divide = gcd(Math.abs(num), Math.abs(deno));
+            resN = resN / divide;
+            resD = resD / divide;
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.valueOf(resN));
+        sb.append("/");
+        sb.append(String.valueOf(resD));
+        return sb.toString();
+    }
+
+    //Euclidean Algorithm to find the Greatest Common Divisor(GCD)
+    private int gcd(int a, int b) {
+        if (b == 0) {
+            return a; // If b is 0, then a is the GCD
+        }
+        return gcd(b, a % b); // Recursively call gcd with b and a % b
+    }
+}
+```
