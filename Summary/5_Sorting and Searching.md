@@ -1,6 +1,14 @@
 # Basic (Bubble)
-
+# Corner Cases
+* Empty Sequence
+* Sequence with one element
+* Sequence with two elements
+* Sequence with duplicate elements
 ***
+# Techniques
+## Sorted Inputs
+* When a given array is sorted, using **Binary Search** should be one of the first things that come to mind
+
 # Merge Sort
 ## 相关文章
 * [Merge Sort快速入门](https://www.geeksforgeeks.org/merge-sort/)
@@ -165,3 +173,15 @@ Essentially, there are 3 steps in the algorithm
   * Quick Sort: No need to use any external memory.
 * **Performance ?**
   * Quick Sort generally performs better in practice due to **in-place sorting** and better **cache locality**. Merge Sort is more consistent with O(n log n) time but requires more memory and is slower in practical use due to the merging process overhead.
+
+# LeetCode Questions
+## Essential Questions
+* [704. Binary Search](https://leetcode.com/problems/binary-search/description/)
+* [33. Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/description/)
+
+## Recommended Pratice Questions
+* [378. Kth Smallest Element in a Sorted Matrix](https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/)
+* [74. Search a 2D Matrix](https://leetcode.com/problems/search-a-2d-matrix/)
+* [215. Kth Largest Element in an Array](https://leetcode.com/problems/search-a-2d-matrix/)
+* [153. Find Minimum in Rotated Sorted Array](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/)
+* [4. Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/)
