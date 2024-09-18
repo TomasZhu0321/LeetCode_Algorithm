@@ -32,6 +32,7 @@
 
 ## Use Case
 * `Collections.sort()`
+
 ### Advantages
 * **Stability**: Merge Sort is a **stable** sorting algorithm, meaning it preserves the relative order of equal elements. This is especially important for **non-primitive** types where multiple attributes are involved. Stability ensures that when sorting by one attribute, the ralative order of elements with equal values in that attribute remains unchanged, which is useful for **multi-level** sorting based on additional attributes.
 * Preferred for **LinkedList** sorting
@@ -101,4 +102,66 @@ Essentially, there are 3 steps in the algorithm
 * Second, partition the array around pivot. To be specific, we keep track of **index of smaller elements** and keep **swapping**. After partition, it is ensured that all elements **to the left of the pivot** are smaller than those **to the right**. The left and right may not be sorted individually.
 * And then, **recursively** call for the two partitioned left and right subarrays **until only one element is left**.
 
-Front - End: React,Next.js, Javascript, HTML, CSS
+## 时间/空间复杂度分析
+### TC O(nlogn)
+* **Average Case**: Quicksort’s average-case performance is usually very good in practice, making it one of the fastest sorting Algorithm.
+* **Worst Case: O(N ^ 2)** : The worst-case Scenario for Quicksort occur when the pivot at each step consistently results in highly unbalanced partitions. When the array is already sorted and the pivot is always chosen as the smallest or largest element.
+### SC O(logN) //Consider recursive stack space || O(1) //don't consider
+* (In-place)
+
+## Use Case
+* `Arrays.sort()` //Primitive
+
+### Advantages
+* It has **a low overhead**, as it only requires a small amount of memory to function.
+* It is **Cache Friendly** as we work on the same array to sort and do not copy data to any auxiliary array.
+* Fastest general purpose algorithm for large data when stability is not required.
+### Disadvantages
+* It has a worst-case time complexity of O(N^2), which occurs when the pivot is chosen poorly.
+* This is the fact that quicksort is an **unstable algorithm**, meaning that it won’t be guaranteed to preserve the order of elements as it reorders; two elements that are exactly the same in the unsorted array could show up in a reversed order in the sorted one.
+
+## Code
+```java
+   public static void random (int [] arr, int low, int high) {
+        Random ranNum = new Random();
+        int randPivot = ranNum.nextInt(high - low + 1) + low;
+        int tmp = arr[high];
+        arr[high] = arr[randPivot];
+        arr[randPivot] = tmp;
+    }
+    public static int partition (int [] arr, int low, int high) {
+        random(arr,low,high);
+        int pivot = arr[high];
+        int pointer = low;
+        for (int i = low; i < high; i++) {
+            if (arr[i] <= pivot) {
+                int tmp = arr[i];
+                arr[i] = arr[pointer];
+                arr[pointer] = tmp;
+                pointer++;
+            }
+        }
+        arr[high] = arr[pointer];
+        arr[pointer] = pivot;
+        return pointer;
+    }
+    public static void quickSort (int [] arr, int low, int high) {
+        if (low < high) {
+            int partitionIndex = partition(arr, low, high);
+            quickSort(arr, low, partitionIndex - 1);
+            quickSort(arr, partitionIndex + 1, high);
+        }
+    }
+```
+
+# Merger Sort & Quick Sort Choosing
+* **Stability ?**
+  * Merge Sort: Stability is important, we do care about maintaining the order of our items.  
+    * Merge Sort preserves the relative order of records with equal keys, making it a stable algorithm. 
+  * Quick Sort: Stability is not important
+    *  Quick Sort is generally unstable because elements with equal values may change their relative order as they are swapped during partitioning. 
+* **External Memory ?**
+  * Merge Sort: Additional space is required for the temporary array used during merging.
+  * Quick Sort: No need to use any external memory.
+* **Performance ?**
+  * Quick Sort generally performs better in practice due to **in-place sorting** and better **cache locality**. Merge Sort is more consistent with O(n log n) time but requires more memory and is slower in practical use due to the merging process overhead.
