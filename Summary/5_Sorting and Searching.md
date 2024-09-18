@@ -104,12 +104,12 @@
 ## Defination
 ### 描述
 * **Quick Sort** is a sorting algorithm that follows **Divide and Conquer** approach. Essentially, it picks an element as a **pivot** and **patitions** the given array around that pivot by **placing** the pivot in its correct position in the sorted array.
-### 细节
+### Steps
 Essentially, there are 3 steps in the algorithm
 * First, we choose a **pivot**. Here we can choose a random element as the pivot to reduce the possibility of the worst-case scenario. If we pick the first or last element, the worst-case scenario occurs when the given array is already sorted, and the time complexity will degrade to O(n^2).
 * Second, partition the array around pivot. To be specific, we keep track of **index of smaller elements** and keep **swapping**. After partition, it is ensured that all elements **to the left of the pivot** are smaller than those **to the right**. The left and right may not be sorted individually.
 * And then, **recursively** call for the two partitioned left and right subarrays **until only one element is left**.
-
+![image](./img/quickSort.jpeg)
 ## 时间/空间复杂度分析
 ### TC O(nlogn)
 * **Average Case**: Quicksort’s average-case performance is usually very good in practice, making it one of the fastest sorting Algorithm.
