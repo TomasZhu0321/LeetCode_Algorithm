@@ -51,3 +51,16 @@
 * `set.add(value);`
 * `set.contains(value);`
 * 只能loop来获取数据(没有get)
+
+# LeetCode
+## Essentials
+* [1. Two Sum](https://leetcode.com/problems/two-sum/description/)
+* [383. Random Note](https://leetcode.com/problems/ransom-note/)
+
+## Recommended
+* [49. Group Anagrams](https://leetcode.com/problems/group-anagrams/)
+* [380. Insert Delete GetRandom O(1)](https://leetcode.com/problems/insert-delete-getrandom-o1/)
+* [41. First Missing Positive](https://leetcode.com/problems/first-missing-positive/)
+* [146. LRU Cache](https://leetcode.com/problems/lru-cache/description/)
+* [432. All O one Data Structure](https://leetcode.com/problems/all-oone-data-structure/description/)
+
