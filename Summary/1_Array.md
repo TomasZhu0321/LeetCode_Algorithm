@@ -9,7 +9,14 @@
 
 * **Slicing or Concatenating** arrays take O(n) time
 * Use start and end indices to **demarcate** a subarray/range where possible.
-
+# 常用方法
+* `Arrays.fill(arr, 4);`
+* `Arrays.sort(arr);` //只能ascending，手动降序
+* `Arrays.binarySearch(arr, 5);` //找到返回对应的index，找不到返回负数
+* `Arrays.equals(arr1, arr2);` //比较的数组的内容而不是reference
+* `Arrays.copyOfRange(arr,0,5);` //复制index 0 - 4的内容
+* `Arrays.toString(arr);`//便于print
+* `List<String> list = Arrays.asList(arr);` //arr --> list, 但list的数组长度固定
 # Techniques
 ## 🪐Sliding Window
 * In a sliding window, the two pointers usually move in the same direction will never overtake each other.
