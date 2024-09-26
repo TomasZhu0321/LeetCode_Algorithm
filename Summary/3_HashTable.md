@@ -51,7 +51,10 @@
 * `set.add(value);`
 * `set.contains(value);`
 * 只能loop来获取数据(没有get)
-
+* `new ArrayList(set)` 能够将set里面的内容自动转换成对应数据类型
+  * e.g.`List<List<Integer>> res = new ArrayList(set);` `Set<List<Integer>> set = new HashSet<>();`
+* Set能够自动比较看两个list是否相同（顺序+内容都要相同）
+  
 # LeetCode
 ## Essentials
 * [1. Two Sum](https://leetcode.com/problems/two-sum/description/)

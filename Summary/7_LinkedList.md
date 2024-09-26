@@ -8,7 +8,7 @@
 * 删除开头/结尾:`list.removeFirst() ; list.removeLast()`
 * 清空: `list.clear()`
 * 反转: `Collections.reverse()` //TC: O(n); SC: O(1)
-
+* 排序: `Collections.sort()`
 # Common Routines
 ## Counting the number of nodes in the linked list
 ## Reversing a linkedlist in-place
